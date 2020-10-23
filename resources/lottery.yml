@@ -1,0 +1,33 @@
+称号抽奖箱:
+  name: §6称号抽奖箱
+  things:
+    §l§cNukkit驱动: ch
+    §d安全§e黑客: ch
+    §b心想事成: ch
+    §a开§b学§c啦: ch
+    §l§e金§7坷§b垃: ch
+    §l§b老司机: ch
+    §7万事如意: ch
+    §l§6我的世界§d·11周年: ch
+    §l§a无限击杀: ch
+    §7全服最帅: ch
+    §l§c百战未倒: ch
+    §l§aC§bO§cL§dO§eR: ch
+    §l§cGG: ch
+    §l§bbilibili: ch
+    §c欧皇: ch
+    §7PBS§a大家庭: ch
+    §b流年如歌: ch
+    §eMC§7BE§d万岁: ch
+  price: 50
+  description: §b开启此抽奖箱可获得称号哦~
+粒子抽奖箱:
+  name: §b流星抽奖箱
+  things:
+    happyvillager: p
+    blueflame: p
+    lavadrip: p
+    angryvillager: p
+    heart: p
+  price: 50
+  description: §b开启此抽奖箱可获得粒子哦~

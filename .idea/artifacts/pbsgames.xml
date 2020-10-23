@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="pbsgames">
+    <output-path>$USER_HOME$/Desktop/nukkit/plugins</output-path>
+    <root id="archive" name="pbsgames.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/resources/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/每日奖励.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/helloform.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/lottery.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/report.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/rushlevel.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/屏蔽词.yml" />
+      <element id="module-output" name="pbsgames" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/chao.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/timemessage.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/duelmode.yml" />
+    </root>
+  </artifact>
+</component>

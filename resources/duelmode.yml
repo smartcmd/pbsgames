@@ -1,0 +1,65 @@
+builduhc:
+  modename: §l§e决战黎明
+  item:
+    [364,0,64]:
+      name: 好吃的牛肉~
+    [278,0,1]:
+      name: 稿♂击!
+    [276,0,1]:
+      name: 猛男♂剑!
+    [5,0,256]:
+    [332,0,16]:
+    [346,0,1]:
+    [322,0,10]:
+    [466,0,3]:
+    [261,0,1]:
+    [262,0,64]:
+    [325,8,1]:
+    [325,10,1]:
+  armor:
+    306:
+      place: helmet
+    307:
+      place: chestplate
+    308:
+      place: leggings
+    309:
+      place: boots
+bowpvp:
+  modename: §l§e归心似箭
+  item:
+    [261,0,1]:
+      enchantment:
+        19: 5
+        22: 1
+        21: 1
+    [262,0,64]:
+    [364,0,64]:
+  armor:
+    306:
+      place: helmet
+    307:
+      place: chestplate
+    308:
+      place: leggings
+    309:
+      place: boots
+potpvp:
+  modename: §l§e药水决斗
+  item:
+    [364,0,64]:
+    [368,0,16]:
+    [276,0,1]:
+    [438,22,29]:
+    [373,15,4]:
+  armor:
+    310:
+      place: helmet
+    311:
+      place: chestplate
+    312:
+      place: leggings
+    313:
+      place: boots
+handpvp:
+  modename: §l§e空手决斗

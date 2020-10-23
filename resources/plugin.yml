@@ -1,0 +1,7 @@
+name: pbsgames
+main: top.mcpbs.games.Main
+version: "1.3.0"
+author: smart_cmd
+api: ["1.0.11"]
+description: pbsgames main plugin
+#big update! UHC

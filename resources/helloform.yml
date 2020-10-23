@@ -1,0 +1,7 @@
+HelloForm:
+  #这个是设置玩家进入服务器后过几秒发送弹窗(second)
+  TaskTime: 10
+  #这个是设置弹窗标题
+  Title: 欢迎来到PBS小游戏服!
+  #这个是设置弹窗内容
+  Content: §e欢迎来到PBS小游戏服!
