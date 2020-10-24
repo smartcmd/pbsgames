@@ -40,7 +40,7 @@ public class LR implements Listener {
 
     @EventHandler
     public void onPlayerCmd(PlayerCommandPreprocessEvent event){
-        if (event.getMessage().equals("/hub") && Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom && Room.aplaying.get(event.getPlayer()).isend == false && !((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.containsKey(event.getPlayer())){
+        if (event.getMessage().equals("/hub") && Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom && Room.aplaying.get(event.getPlayer()).isend == false && !((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.get(event.getPlayer())){
             Room.aplaying.get(event.getPlayer()).playerAccidentQuit(event.getPlayer());
         }
         if (event.getMessage().equals("/hub") && Room.awaiting.containsKey(event.getPlayer()) && Room.awaiting.get(event.getPlayer()) instanceof UHCRoom){

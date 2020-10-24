@@ -92,7 +92,7 @@ public class UHCRoom extends Room {
             Room.aplaying.put(player,this);
             Room.awaiting.remove(player,this);
             player.sendTitle("§a游戏开始!","§b努力存活下去吧!");
-//            player.sendMessage("§a世界正在生成，如果出现回弹为正常现象~");
+            player.sendMessage("§a世界正在生成，如果出现一次回弹为正常现象~");
             player.setGamemode(0);
             player.setMaxHealth(40);
             player.setHealth(player.getMaxHealth());

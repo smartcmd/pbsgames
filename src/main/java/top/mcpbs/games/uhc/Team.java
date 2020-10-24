@@ -54,12 +54,7 @@ public class Team {
         }
         Random r = new Random();
         this.spawnpos = new Position((double)(r.nextInt(2001) - 1000), 250.0D, (double)(r.nextInt(2001) - 1000),level);
-        BaseFullChunk chunk = (BaseFullChunk) this.spawnpos.getChunk();
-        try {
-            chunk.load(true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.spawnpos = this.spawnpos.level.getSafeSpawn(this.spawnpos);
+        BaseFullChunk chunk = this.spawnpos.level.getChunk(this.spawnpos.getChunkX(),this.spawnpos.getChunkZ(),true);
+        this.spawnpos.y = chunk.getHeightMap((int)this.spawnpos.x,(int)this.spawnpos.z) + 1;
     }
 }
