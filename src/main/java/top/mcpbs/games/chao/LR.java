@@ -20,7 +20,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
 
@@ -129,7 +129,7 @@ public class LR implements Listener {
 
     @EventHandler
     public void onFormResponse(PlayerFormRespondedEvent event){
-        if (event.getFormID() == MenuID.CHAO_STORE_LIST){
+        if (event.getFormID() == FormID.CHAO_STORE_LIST){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -137,16 +137,16 @@ public class LR implements Listener {
             switch (response.getClickedButtonId()){
                 case 0:
                     FormWindowSimple form0 = new FormWindowSimple("§a装备商店","§e看看有什么需要的吧~");
-                    event.getPlayer().showFormWindow(form0,MenuID.CHAO_STORE_EQUIPMENT);//装备商店还没加商品~
+                    event.getPlayer().showFormWindow(form0, FormID.CHAO_STORE_EQUIPMENT);//装备商店还没加商品~
                     break;
                 case 1:
                     FormWindowSimple form1 = new FormWindowSimple("§a天赋强化","§e看看有什么想要强化的吧~");
                     form1.addButton(new ElementButton("§a增加 §6百分之20 §d乱斗币吸取倍率" + "\n§e需要50乱斗币",new ElementButtonImageData("path","textures/ui/anvil_icon")));
                     form1.addButton(new ElementButton("§e增加 §d2 §c血量" + "\n§e需要60乱斗币",new ElementButtonImageData("path","textures/ui/anvil_icon")));
-                    event.getPlayer().showFormWindow(form1,MenuID.CHAO_STORE_TALENT);
+                    event.getPlayer().showFormWindow(form1, FormID.CHAO_STORE_TALENT);
             }
         }
-        if (event.getFormID() == MenuID.CHAO_STORE_TALENT){
+        if (event.getFormID() == FormID.CHAO_STORE_TALENT){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;

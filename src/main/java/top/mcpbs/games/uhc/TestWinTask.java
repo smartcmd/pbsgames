@@ -4,9 +4,11 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.window.FormWindowSimple;
+import cn.nukkit.item.Item;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.scheduler.PluginTask;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
+import top.mcpbs.games.Main;
 import top.mcpbs.games.playerinfo.coin.Coin;
 import top.mcpbs.games.playerinfo.score.Score;
 
@@ -29,6 +31,15 @@ public class TestWinTask extends PluginTask {
                 }
                 Team winteam = room.playerteam.get(aliveplayer.get(0));
                 if (winteam.player.containsAll(aliveplayer)) {
+                    for (Player g : aliveplayer){
+                        g.getInventory().clearAll();
+                        Item hub = Item.get(355,0,1);
+                        hub.setCustomName("返回主城");
+                        Item again = Item.get(339,0,1);
+                        again.setCustomName("再来一局");
+                        g.getInventory().addItem(hub);
+                        g.getInventory().addItem(again);
+                    }
                     String s = "";
                     for (Player p : winteam.player){
                         if (room.playing.contains(p)) {
@@ -41,19 +52,14 @@ public class TestWinTask extends PluginTask {
                     }
                     for (Player p : winteam.player) {
                         if (room.playing.contains(p)) {
-                            String res = "";
-                            res += "§a你的击杀数: " + room.killnum.get(p) + "\n";
-                            res += "§a你获得了 5 + 2 * " + room.killnum.get(p) + " 的硬币和分数!恭喜";
-                            FormWindowSimple form = new FormWindowSimple("§e你的收益", res);
-                            form.addButton(new ElementButton("§e我知道了"));
-                            p.showFormWindow(form, MenuID.UHC_WIN_FORM);
+                            Server.getInstance().getScheduler().scheduleDelayedTask(new SettlementFormTask(Main.plugin,p,true),5);
                             int num = 5 + 2 * room.killnum.get(p);
                             Coin.addCoin(p, num);
                             Score.addScore(p, num);
                         }
                     }
                     room.isend = true;
-                    Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(owner, room), 20 * 5);
+                    Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(owner, room), 20 * 15);
                 }
             }
         }

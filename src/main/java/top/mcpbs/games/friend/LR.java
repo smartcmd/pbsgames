@@ -16,7 +16,7 @@ import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 import top.mcpbs.games.util.DateUtil;
 import top.mcpbs.games.util.SElementButton;
 
@@ -28,7 +28,7 @@ public class LR implements Listener {
 
     @EventHandler
     public void onPlayerFormRespondedEvent(PlayerFormRespondedEvent event){
-        if (event.getFormID() == MenuID.FRIEND_FORM){
+        if (event.getFormID() == FormID.FRIEND_FORM){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -50,12 +50,12 @@ public class LR implements Listener {
                             form0.addButton(new ElementButton("§7" + s + "§c[离线]",new ElementButtonImageData("path","textures/ui/dressing_room_customization")));
                         }
                     }
-                    event.getPlayer().showFormWindow(form0,MenuID.FRIEND_LIST);
+                    event.getPlayer().showFormWindow(form0, FormID.FRIEND_LIST);
                     break;
                 case 1:
                     FormWindowCustom form1 = new FormWindowCustom("§a添加好友");
                     form1.addElement(new ElementInput("§e输入玩家名称(此玩家必须登录过服务器,否则无法添加)"));
-                    event.getPlayer().showFormWindow(form1,MenuID.FRIEND_ADD);
+                    event.getPlayer().showFormWindow(form1, FormID.FRIEND_ADD);
                     break;
                 case 2:
                     FormWindowSimple form2 = new FormWindowSimple("§a好友申请","§e以下是玩家发送给你的好友申请");
@@ -64,7 +64,7 @@ public class LR implements Listener {
                     for (String s : m.keySet()){
                         form2.addButton(new ElementButton(s + " §aTime: §e" + m.get(s),new ElementButtonImageData("path","textures/ui/invite_pressed")));
                     }
-                    event.getPlayer().showFormWindow(form2,MenuID.FRIEND_APPLICATION);
+                    event.getPlayer().showFormWindow(form2, FormID.FRIEND_APPLICATION);
                     break;
                 case 3:
                     FormWindowSimple form3 = new FormWindowSimple("§a系统信息","§e以下为系统信息");
@@ -74,11 +74,11 @@ public class LR implements Listener {
                     for (String s : ll){
                         form3.addButton(new ElementButton(s,new ElementButtonImageData("path","textures/ui/altOffersIcon")));
                     }
-                    event.getPlayer().showFormWindow(form3,MenuID.FRIEND_SYSTEM_INFO);
+                    event.getPlayer().showFormWindow(form3, FormID.FRIEND_SYSTEM_INFO);
                     break;
             }
         }
-        if (event.getFormID() == MenuID.FRIEND_LIST){
+        if (event.getFormID() == FormID.FRIEND_LIST){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -88,9 +88,9 @@ public class LR implements Listener {
             String f = l.get(response.getClickedButtonId());
             FormWindowSimple form = new FormWindowSimple(f,"§e你想对此好友执行什么操作?");
             form.addButton(new SElementButton("§c删除此好友",new ElementButtonImageData("path","textures/ui/cancel"),f));
-            event.getPlayer().showFormWindow(form,MenuID.FRIEND_REM);
+            event.getPlayer().showFormWindow(form, FormID.FRIEND_REM);
         }
-        if (event.getFormID() == MenuID.FRIEND_REM){
+        if (event.getFormID() == FormID.FRIEND_REM){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -110,7 +110,7 @@ public class LR implements Listener {
             fc.save();
             event.getPlayer().sendMessage("§e删除好友成功!");
         }
-        if (event.getFormID() == MenuID.FRIEND_ADD){
+        if (event.getFormID() == FormID.FRIEND_ADD){
             FormResponseCustom response = (FormResponseCustom) event.getResponse();
             if (response == null){
                 return;
@@ -136,7 +136,7 @@ public class LR implements Listener {
                 }
             }
         }
-        if (event.getFormID() == MenuID.FRIEND_APPLICATION){
+        if (event.getFormID() == FormID.FRIEND_APPLICATION){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -146,9 +146,9 @@ public class LR implements Listener {
             String aname = (String) ((((HashMap)c.get("friend application")).keySet()).toArray())[response.getClickedButtonId()];
             form.addButton(new SElementButton("§a同意",new ElementButtonImageData("path","textures/ui/check"),aname));
             form.addButton(new SElementButton("§c拒绝",new ElementButtonImageData("path","textures/ui/cancel"),aname));
-            event.getPlayer().showFormWindow(form,MenuID.FRIEND_APPLICATION_2);
+            event.getPlayer().showFormWindow(form, FormID.FRIEND_APPLICATION_2);
         }
-        if (event.getFormID() == MenuID.FRIEND_APPLICATION_2){
+        if (event.getFormID() == FormID.FRIEND_APPLICATION_2){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -184,7 +184,7 @@ public class LR implements Listener {
                     break;
             }
         }
-        if (event.getFormID() == MenuID.FRIEND_SYSTEM_INFO){
+        if (event.getFormID() == FormID.FRIEND_SYSTEM_INFO){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -198,7 +198,7 @@ public class LR implements Listener {
                 event.getPlayer().sendMessage("§e什么也没发生...");
             }
         }
-        if (event.getFormID() == MenuID.FRIEND_APPLICATION_TOUCHING){
+        if (event.getFormID() == FormID.FRIEND_APPLICATION_TOUCHING){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -238,7 +238,7 @@ public class LR implements Listener {
             if (player.getLevel().getName().equals("world")){
                 FormWindowSimple form = new FormWindowSimple(player.getName(),"加好友?");
                 form.addButton(new SElementButton("§a发出好友申请",new ElementButtonImageData("path","textures/ui/invite_pressed"),player.getName()));
-                player1.showFormWindow(form,MenuID.FRIEND_APPLICATION_TOUCHING);
+                player1.showFormWindow(form, FormID.FRIEND_APPLICATION_TOUCHING);
             }
         }
     }

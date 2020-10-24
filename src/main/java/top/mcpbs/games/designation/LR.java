@@ -7,7 +7,7 @@ import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.form.response.FormResponseSimple;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 
 import java.util.HashMap;
 
@@ -15,7 +15,7 @@ public class LR implements Listener {
 
     @EventHandler
     public void onPlayerFormRespondedEvent(PlayerFormRespondedEvent event){
-        if (event.getFormID() == MenuID.CH_USE_FORM){
+        if (event.getFormID() == FormID.CH_USE_FORM){
             Config config = new Config(Main.plugin.getDataFolder() + "/playerdata/" + event.getPlayer().getName() + ".yml");
             HashMap m = (HashMap)config.get("ch");
             FormResponseSimple response = (FormResponseSimple) event.getResponse();

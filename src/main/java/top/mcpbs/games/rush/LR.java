@@ -1,6 +1,7 @@
 package top.mcpbs.games.rush;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
@@ -10,8 +11,10 @@ import cn.nukkit.event.block.BlockPlaceEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
+import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.math.Vector3;
+import top.mcpbs.games.duel.DuelRoom;
 import top.mcpbs.games.room.Room;
 
 import java.util.ArrayList;
@@ -91,6 +94,21 @@ public class LR implements Listener {
     public void onPlayerFallDamage(EntityDamageEvent event) {
         if (Room.aplaying.get(event.getEntity()) instanceof RushRoom && event.getCause() == EntityDamageEvent.DamageCause.FALL) {
             event.setCancelled();
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event){
+        if (Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof RushRoom && Room.aplaying.get(event.getPlayer()).isend == true){
+            if (event.getPlayer().getInventory().getItemInHand().getId() == 355){
+                Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
+                Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
+            }
+            if (event.getPlayer().getInventory().getItemInHand().getId() == 339){
+                Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
+                Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
+                Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/jonrush"));
+            }
         }
     }
 }

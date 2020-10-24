@@ -43,6 +43,9 @@ public class RushTask extends PluginTask {
                     l.add("   ");
                     l.add("§eplay.mcpbs.top");
                     Main.s.showScoreboard(player, "§l§6战桥", l);
+                    if (player.getY() < 90) {
+                        player.teleport(room.pos1);
+                    }
                 }
             }
             if (room.isPlaying) {

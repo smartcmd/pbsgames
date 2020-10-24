@@ -7,7 +7,7 @@ import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.element.ElementButtonImageData;
 import cn.nukkit.form.window.FormWindowSimple;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 
 public class Particle extends Command {
     public Particle(String name, String description) {
@@ -24,7 +24,7 @@ public class Particle extends Command {
             form.addButton(new ElementButton("§b查看你拥有的粒子&设置使用粒子",new ElementButtonImageData("path","textures/items/book_enchanted")));
             form.addButton(new ElementButton("§e关闭粒子",new ElementButtonImageData("path","textures/blocks/barrier")));
             form.addButton(new ElementButton("§d调整粒子发射速度",new ElementButtonImageData("path","textures/items/book_writable")));
-            player.showFormWindow(form, MenuID.PARTICLE_FORM);
+            player.showFormWindow(form, FormID.PARTICLE_FORM);
         }
         return true;
     }

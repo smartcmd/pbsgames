@@ -74,7 +74,6 @@ public class RushRoom extends Room {
         pos3 = new Position(pos3tmp.get(0),pos3tmp.get(1),pos3tmp.get(2),this.roomlevel);
 
         RushRooms.put(this.roomId,this);
-        this.waitRoom = new WaitRoom();
     }
     @Override
     public void gameStart() {
@@ -108,7 +107,6 @@ public class RushRoom extends Room {
         this.isPlaying = true;
         this.isStartChemical = false;
         this.waittime = 15;
-        this.waitRoom.remWaitRoom();
     }
 
     @Override
@@ -141,7 +139,7 @@ public class RushRoom extends Room {
         player.getInventory().setItem(2,hub);
         this.waiting.add(player);
         Room.awaiting.put(player, this);
-        this.waitRoom.joinWaitRoom(player);
+        player.teleport(this.pos1);
         player.sendMessage("§a成功加入房间 §erush-" + this.roomId + "!");
         player.sendMessage("§a输入/hub即可退出当前房间!");
         player.sendTitle("§e地图名称: " + this.mapname);

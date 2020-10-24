@@ -7,7 +7,7 @@ import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.form.element.ElementDropdown;
 import cn.nukkit.form.element.ElementInput;
 import cn.nukkit.form.window.FormWindowCustom;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class Report extends Command {
             l.add("其他作弊类型");
             f.addElement(new ElementDropdown("§e作弊类型",l));
             f.addElement(new ElementInput("§b其他作弊类型(将上一个选项选为“其他作弊类型”生效)"));
-            ((Player)sender).showFormWindow(f, MenuID.REPORT_FORM);
+            ((Player)sender).showFormWindow(f, FormID.REPORT_FORM);
         }
         return true;
     }

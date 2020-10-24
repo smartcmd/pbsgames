@@ -8,7 +8,7 @@ import cn.nukkit.form.element.ElementButtonImageData;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.utils.Config;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 import top.mcpbs.games.util.SElementButton;
 
 import java.util.HashMap;
@@ -34,7 +34,7 @@ public class LotteryCmd extends Command {
             for (String ss : c.getAll().keySet()){
                 form.addButton(new SElementButton((String)((HashMap)c.get(ss)).get("name"),new ElementButtonImageData("path","textures/ui/gift_square"),ss));
             }
-            player.showFormWindow(form, MenuID.LOTTERY_LIST_FORM);
+            player.showFormWindow(form, FormID.LOTTERY_LIST_FORM);
         }
         return true;
     }

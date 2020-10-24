@@ -1,6 +1,7 @@
 package top.mcpbs.games.uhc;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.block.BlockID;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
@@ -13,9 +14,12 @@ import cn.nukkit.event.player.PlayerFormRespondedEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.form.response.FormResponseSimple;
+import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
+import top.mcpbs.games.Main;
+import top.mcpbs.games.playerinfo.diamond.Diamond;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
 
@@ -45,10 +49,6 @@ public class LR implements Listener {
 
     @EventHandler
     public void onPlayerDamage(EntityDamageEvent event){
-//        if (event.getCause() == EntityDamageEvent.DamageCause.FALL && Room.aplaying.get(event.getEntity()) instanceof UHCRoom){
-//            event.setCancelled();
-//            return;
-//        }
         if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
             EntityDamageByEntityEvent event1 = (EntityDamageByEntityEvent)event;
             if (event.getEntity() instanceof Player && event1.getDamager() instanceof Player && Room.aplaying.get(event1.getDamager()) instanceof UHCRoom) {
@@ -78,6 +78,21 @@ public class LR implements Listener {
                     ((UHCRoom)Room.aplaying.get(entity)).isdead.put(entity,true);
                     Score.remScore(entity,5);
                     entity.setHealth(entity.getMaxHealth());
+                    entity.getInventory().clearAll();
+                    Item hub = Item.get(355,0,1);
+                    hub.setCustomName("返回主城");
+                    Item again = Item.get(339,0,1);
+                    again.setCustomName("再来一局");
+                    entity.getInventory().addItem(hub);
+                    entity.getInventory().addItem(again);
+
+                    UHCRoom room = (UHCRoom) Room.aplaying.get(entity);
+                    int killnum = room.killnum.get(entity);
+                    Score.addScore(entity,killnum * 2);
+                    Diamond.addDiamond(entity,killnum * 2);
+
+                    Server.getInstance().getScheduler().scheduleDelayedTask(new SettlementFormTask(Main.plugin,entity,false),5);
+
                     String color = ((UHCRoom)Room.aplaying.get(entity)).playerteam.get(entity).color;;
                     String color1 = ((UHCRoom)Room.aplaying.get(damager)).playerteam.get(damager).color;;
                     damager.sendTitle("", "§a你击杀了玩家 " + color + entity.getName());
@@ -181,7 +196,7 @@ public class LR implements Listener {
 
     @EventHandler
     public void onForm(PlayerFormRespondedEvent event){
-        if(event.getFormID() == MenuID.UHC_POTSTORE){
+        if(event.getFormID() == FormID.UHC_POTSTORE){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (this.getPlayerYNum(event.getPlayer()) < 10){
                 event.getPlayer().sendMessage("§c你的地狱疣不够哦~");

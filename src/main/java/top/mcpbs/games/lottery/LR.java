@@ -12,7 +12,7 @@ import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.level.Position;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 import top.mcpbs.games.playerinfo.diamond.Diamond;
 import top.mcpbs.games.util.SElementButton;
 
@@ -23,7 +23,7 @@ public class LR implements Listener {
 
     @EventHandler
     public void onPlayerFormRespondedEvent(PlayerFormRespondedEvent event){
-        if (event.getFormID() == MenuID.LOTTERY_LIST_FORM){
+        if (event.getFormID() == FormID.LOTTERY_LIST_FORM){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -42,9 +42,9 @@ public class LR implements Listener {
             FormWindowSimple form = new FormWindowSimple(response.getClickedButton().getText(),s);
             form.addButton(new SElementButton("§a开启此抽奖箱",new ElementButtonImageData("path","textures/ui/gift_square"), ((SElementButton) response.getClickedButton()).s));
             form.addButton(new ElementButton("§c取消",new ElementButtonImageData("path","textures/ui/cancel")));
-            event.getPlayer().showFormWindow(form,MenuID.LOTTERY_BUY_FORM);
+            event.getPlayer().showFormWindow(form, FormID.LOTTERY_BUY_FORM);
         }
-        if (event.getFormID() == MenuID.LOTTERY_BUY_FORM){
+        if (event.getFormID() == FormID.LOTTERY_BUY_FORM){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;

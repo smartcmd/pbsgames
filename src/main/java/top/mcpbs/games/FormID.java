@@ -1,6 +1,6 @@
 package top.mcpbs.games;
 
-public class MenuID {
+public class FormID {
     public static final int LOBBY_GAMESLIST_FORM = 1;
     public static final int LOBBY_JOIN_FORM = 2;
     public static final int REPORT_FORM = 0;
@@ -8,7 +8,7 @@ public class MenuID {
     public static final int LOTTERY_LIST_FORM = 4;
     public static final int PARTICLE_USE_FORM = 5;
     public static final int PERSONALITY_FORM = 6;
-    public static final int UHC_WIN_FORM = 7;
+    public static final int UHC_SETTLEMENT_FORM = 7;
     public static final int PARTICLE_SPEED_FORM = 8;
     public static final int FRIEND_FORM = 9;
     public static final int FRIEND_LIST = 10;

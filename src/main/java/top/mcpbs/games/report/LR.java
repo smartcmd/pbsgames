@@ -8,7 +8,7 @@ import cn.nukkit.event.player.PlayerFormRespondedEvent;
 import cn.nukkit.form.response.FormResponseCustom;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 import top.mcpbs.games.util.DateUtil;
 
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class LR implements Listener {
     @EventHandler
     public void onForm(PlayerFormRespondedEvent event){
-        if(event.getFormID() == MenuID.REPORT_FORM){
+        if(event.getFormID() == FormID.REPORT_FORM){
             FormResponseCustom response = (FormResponseCustom) event.getResponse();
             if (response == null){
                 return;

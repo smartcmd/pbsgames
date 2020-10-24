@@ -16,7 +16,7 @@ import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.element.ElementButtonImageData;
 import cn.nukkit.form.response.FormResponseSimple;
 import cn.nukkit.form.window.FormWindowSimple;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 import top.mcpbs.games.chao.ChaoTask;
 import top.mcpbs.games.duel.DuelRoom;
 import top.mcpbs.games.rush.RushRoom;
@@ -48,13 +48,13 @@ public class LR implements Listener {
                     xyx.addButton(new ElementButton("§l§b空手决斗" + "\n§l§f游戏中: §a" + DuelRoom.getModePlaying("handpvp") + " §f等待中: §a" + DuelRoom.getModeWaiting("handpvp"),new ElementButtonImageData("path","textures/items/bone")));
                     xyx.addButton(new ElementButton("§l§c天坑大乱斗" + "\n§l§f游戏中: §a" + ChaoTask.getPlaying(),new ElementButtonImageData("path","textures/items/stone_sword")));
                     xyx.addButton(new ElementButton("§l§e极限生存冠军" + "\n§l§f游戏中: §a" + UHCRoom.getAllPlaying() + " §f等待中: §a" + UHCRoom.getAllWaiting(),new ElementButtonImageData("path","textures/items/diamond_pickaxe")));
-                    player.showFormWindow(xyx, MenuID.LOBBY_GAMESLIST_FORM);
+                    player.showFormWindow(xyx, FormID.LOBBY_GAMESLIST_FORM);
                     break;
                 case 264:
                     FormWindowSimple gx = new FormWindowSimple("§c个性工坊","§6欢迎来到个性工坊!");
                     gx.addButton(new ElementButton("§e我的粒子",new ElementButtonImageData("path","textures/ui/realms_particles")));
                     gx.addButton(new ElementButton("§6我的称号",new ElementButtonImageData("path","textures/items/book_enchanted")));
-                    player.showFormWindow(gx,MenuID.PERSONALITY_FORM);
+                    player.showFormWindow(gx, FormID.PERSONALITY_FORM);
                     break;
                 case 397:
                     Server.getInstance().getCommandMap().dispatch(player,"friend");
@@ -68,7 +68,7 @@ public class LR implements Listener {
     @EventHandler
     public void onFormResponded(PlayerFormRespondedEvent event){
         Player player = event.getPlayer();
-        if (event.getFormID() == MenuID.LOBBY_GAMESLIST_FORM) {
+        if (event.getFormID() == FormID.LOBBY_GAMESLIST_FORM) {
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -97,7 +97,7 @@ public class LR implements Listener {
                     break;
             }
         }
-        if (event.getFormID() == MenuID.PERSONALITY_FORM){
+        if (event.getFormID() == FormID.PERSONALITY_FORM){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;

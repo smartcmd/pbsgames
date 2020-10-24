@@ -14,7 +14,7 @@ import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
-import top.mcpbs.games.MenuID;
+import top.mcpbs.games.FormID;
 
 import java.util.HashMap;
 
@@ -22,7 +22,7 @@ public class LR implements Listener {
 
     @EventHandler
     public void onForm(PlayerFormRespondedEvent event){
-        if (event.getFormID() == MenuID.PARTICLE_FORM){
+        if (event.getFormID() == FormID.PARTICLE_FORM){
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
@@ -44,7 +44,7 @@ public class LR implements Listener {
                             form1.addButton(new ElementButton(s + " §e[点击使用]",new ElementButtonImageData("path","textures/items/book_portfolio")));
                         }
                     }
-                    event.getPlayer().showFormWindow(form1,MenuID.PARTICLE_USE_FORM);
+                    event.getPlayer().showFormWindow(form1, FormID.PARTICLE_USE_FORM);
                     break;
                 case 1:
                     Config config1 = new Config(Main.plugin.getDataFolder() + "/playerdata/" + event.getPlayer().getName() + ".yml");
@@ -61,11 +61,11 @@ public class LR implements Listener {
                     FormWindowCustom form2 = new FormWindowCustom("§e更改粒子发射速度");
                     form2.addElement(new ElementLabel("§b数值范围在1-20之间(这里的数值指的是粒子发射间隔，单位1/20秒，所以说1是最快的，20是最慢的)"));
                     form2.addElement(new ElementInput("§6在下面输入数值:"));
-                    event.getPlayer().showFormWindow(form2,MenuID.PARTICLE_SPEED_FORM);
+                    event.getPlayer().showFormWindow(form2, FormID.PARTICLE_SPEED_FORM);
             }
 
         }
-        if (event.getFormID() == MenuID.PARTICLE_USE_FORM){
+        if (event.getFormID() == FormID.PARTICLE_USE_FORM){
             Config config = new Config(Main.plugin.getDataFolder() + "/playerdata/" + event.getPlayer().getName() + ".yml");
             HashMap m = (HashMap)config.get("particle");
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
@@ -85,7 +85,7 @@ public class LR implements Listener {
                 event.getPlayer().sendMessage("§a启用成功!");
             }
         }
-        if (event.getFormID() == MenuID.PARTICLE_SPEED_FORM){
+        if (event.getFormID() == FormID.PARTICLE_SPEED_FORM){
             if (event.getResponse() == null){
                 return;
             }
