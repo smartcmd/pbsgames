@@ -52,7 +52,7 @@ public class TestWinTask extends PluginTask {
                     }
                     for (Player p : winteam.player) {
                         if (room.playing.contains(p)) {
-                            Server.getInstance().getScheduler().scheduleDelayedTask(new SettlementFormTask(Main.plugin,p,true),5);
+                            Server.getInstance().getScheduler().scheduleDelayedTask(new SettlementFormTask(Main.plugin,p,true),3 * 20);
                             int num = 5 + 2 * room.killnum.get(p);
                             Coin.addCoin(p, num);
                             Score.addScore(p, num);

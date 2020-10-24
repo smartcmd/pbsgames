@@ -28,6 +28,9 @@ public class Form {
     }
 
     public static void IncomeSettlementForm(Player player,boolean iswinner){
+        if (!Room.aplaying.containsKey(player) || (Room.aplaying.containsKey(player) && !(Room.aplaying.get(player) instanceof UHCRoom))){
+            return;
+        }
         UHCRoom room = (UHCRoom) Room.aplaying.get(player);
         FormWindowCustom form = new FormWindowCustom("游戏结束!");
         int killnum = room.killnum.get(player);

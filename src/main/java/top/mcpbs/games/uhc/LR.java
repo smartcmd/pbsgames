@@ -92,7 +92,7 @@ public class LR implements Listener {
                     Score.addScore(entity,killnum * 2);
                     Diamond.addDiamond(entity,killnum * 2);
 
-                    Server.getInstance().getScheduler().scheduleDelayedTask(new SettlementFormTask(Main.plugin,entity,false),5);
+                    Server.getInstance().getScheduler().scheduleDelayedTask(new SettlementFormTask(Main.plugin,entity,false),3 * 20);
 
                     String color = ((UHCRoom)Room.aplaying.get(entity)).playerteam.get(entity).color;;
                     String color1 = ((UHCRoom)Room.aplaying.get(damager)).playerteam.get(damager).color;;
@@ -122,6 +122,14 @@ public class LR implements Listener {
                 entity.sendMessage("§c你死了!§6不要灰心，下局加油吧！");
                 entity.sendMessage("§a输入/hub返回大厅，或继续观战~");
                 entity.sendMessage("§e你失去了5分数");
+
+                UHCRoom room = (UHCRoom) Room.aplaying.get(entity);
+                int killnum = room.killnum.get(entity);
+                Score.addScore(entity,killnum * 2);
+                Diamond.addDiamond(entity,killnum * 2);
+
+                Server.getInstance().getScheduler().scheduleDelayedTask(new SettlementFormTask(Main.plugin,entity,false),3 * 20);
+
                 entity.getInventory().clearAll();
                 Item hub = Item.get(355,0,1);
                 hub.setCustomName("返回主城");
