@@ -7,6 +7,7 @@ import cn.nukkit.plugin.Plugin;
 import cn.nukkit.plugin.PluginBase;
 import top.mcpbs.games.designation.DesignationCmd;
 import top.mcpbs.games.duel.LoadCmd;
+import top.mcpbs.games.getid.GetBlockID;
 import top.mcpbs.games.hpandscoreshow.HPAndScoreShow;
 import top.mcpbs.games.hub.Hub;
 import top.mcpbs.games.pbc.AddPBC;
@@ -80,7 +81,7 @@ public class Main extends PluginBase {
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.laba.LabaCmd("laba","小喇叭（发送全服消息）",this));
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.chao.JoinChao("chao","加入大乱斗"));
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.getid.GetIDInHand("getid",""));
-        Server.getInstance().getCommandMap().register("",new top.mcpbs.games.getid.GetIDUnderCmd("getidu",""));
+        Server.getInstance().getCommandMap().register("",new GetBlockID("getblockid",""));
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.chao.ChaoStore("chaostore","大乱斗商店",this));
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.uhc.JoinRoom("joinuhc","UHC"));
         this.getServer().getScheduler().scheduleRepeatingTask(new HPAndScoreShow(this),1);

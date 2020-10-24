@@ -17,8 +17,8 @@ public class HelloForm{
     public static void showForm(Player player){
         if (content == null || title == null){
             Config config = new Config(Main.plugin.getDataFolder() + "/helloform.yml");
-            content = config.getString("content");
-            title = config.getString("title");
+            content = config.getString("Content");
+            title = config.getString("Title");
         }
         FormWindowSimple form = new FormWindowSimple(title,content);
         form.addButton(new ElementButton("好的"));
