@@ -62,7 +62,6 @@ public class UHCRoom extends Room {
         this.roomlevel.setTime(6000);
         this.roomlevel.getGameRules().setGameRule(GameRule.DO_DAYLIGHT_CYCLE,false);
         this.roomlevel.getGameRules().setGameRule(GameRule.SHOW_COORDINATES,true);
-        this.roomlevel.getGameRules().setGameRule(GameRule.NATURAL_REGENERATION,false);
         this.roomlevel.setSpawnLocation(new Vector3(0,0,0));
 
         for (int i = 1;i <= 8;i++){
@@ -76,6 +75,9 @@ public class UHCRoom extends Room {
 
     @Override
     public void gameStart() {
+        for (Team t : this.team){
+            t.cleanBlock();
+        }
         int tmp = 0;
         for (Player player : waiting){
             Team team = this.team.get(tmp);
@@ -91,7 +93,7 @@ public class UHCRoom extends Room {
             compass.setCustomName("§e最近的敌人");
             player.getInventory().addItem(compass);
             player.getInventory().addItem(Item.get(333,0,1));//boat
-            player.teleport(team.spawnpos);
+
             Room.aplaying.put(player,this);
             Room.awaiting.remove(player,this);
             player.sendTitle("§a游戏开始!","§b努力存活下去吧!");

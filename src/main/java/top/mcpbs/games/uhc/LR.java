@@ -9,10 +9,8 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
-import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
-import cn.nukkit.event.player.PlayerFormRespondedEvent;
-import cn.nukkit.event.player.PlayerInteractEvent;
-import cn.nukkit.event.player.PlayerQuitEvent;
+import cn.nukkit.event.entity.EntityRegainHealthEvent;
+import cn.nukkit.event.player.*;
 import cn.nukkit.form.response.FormResponseSimple;
 import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.item.Item;
@@ -73,9 +71,11 @@ public class LR implements Listener {
                     entity.sendMessage("§c你死了!§6不要灰心，下局加油吧！");
                     entity.sendMessage("§a输入/hub返回大厅，或继续观战~");
                     entity.sendMessage("§e你由于被淘汰而失去了5分数!");
+
                     for (Item drop : entity.getInventory().getContents().values()){
                         entity.dropItem(drop);
                     }
+
                     ((UHCRoom)Room.aplaying.get(entity)).isdead.put(entity,true);
                     Score.remScore(entity,5);
                     entity.setHealth(entity.getMaxHealth());
@@ -130,6 +130,10 @@ public class LR implements Listener {
 
                 Server.getInstance().getScheduler().scheduleDelayedTask(new SettlementFormTask(Main.plugin,entity,false),3 * 20);
 
+                for (Item drop : entity.getInventory().getContents().values()){
+                    entity.dropItem(drop);
+                }
+
                 entity.getInventory().clearAll();
                 Item hub = Item.get(355,0,1);
                 hub.setCustomName("返回主城");
@@ -137,9 +141,7 @@ public class LR implements Listener {
                 again.setCustomName("再来一局");
                 entity.getInventory().setItem(2,hub);
                 entity.getInventory().setItem(5,again);
-                for (Item drop : entity.getInventory().getContents().values()){
-                    entity.dropItem(drop);
-                }
+
                 ((UHCRoom)Room.aplaying.get(entity)).isdead.put(entity,true);
                 Score.remScore(entity,5);
                 entity.setHealth(entity.getMaxHealth());
@@ -264,6 +266,22 @@ public class LR implements Listener {
                     Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"joinuhc");
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerHealthBack(EntityRegainHealthEvent event){
+        if (Room.aplaying.containsKey(event.getEntity()) && Room.aplaying.get(event.getEntity()) instanceof UHCRoom){
+            if (event.getRegainReason() == EntityRegainHealthEvent.CAUSE_REGEN){
+                event.setAmount(0F);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event){
+        if (Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom && ((UHCRoom) Room.aplaying.get(event.getPlayer())).waittime <= 15){
+            event.setCancelled();
         }
     }
 }

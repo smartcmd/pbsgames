@@ -16,7 +16,13 @@ public class GameStartTask extends PluginTask {
     public void onRun(int i) {
         room.waittime -= 1;
         for (Player player : room.waiting){
-            player.sendTitle("","§e游戏即将开始！\n§a" + room.waittime);
+            if (room.waittime > 15){
+                player.sendTitle("","§e游戏即将开始！\n§a" + room.waittime);
+            }
+            if (room.waittime <= 15){
+                player.teleport(room.playerteam.get(player).spawnpos);
+                player.sendTitle("","§e游戏即将开始！\n§a" + room.waittime + "\n§6加载世界中...");
+            }
         }
         this.test();
     }

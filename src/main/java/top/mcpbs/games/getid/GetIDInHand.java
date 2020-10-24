@@ -16,7 +16,7 @@ public class GetIDInHand extends Command {
             return true;
         } else {
             Player p = (Player)sender;
-            p.sendMessage("此物品的ID为：" + p.getInventory().getItemInHand().getId());
+            p.sendMessage("此物品的ID为：" + p.getInventory().getItemInHand().toString());
         }
         return true;
     }
