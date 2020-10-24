@@ -57,7 +57,7 @@ public class LR implements Listener {
     @EventHandler
     public void onEntityAttack(EntityDamageByEntityEvent event){
         if (event.getDamager() instanceof Player && event.getEntity() instanceof Player){
-            event.getEntity().getLevel().addParticleEffect(event.getEntity().getPosition().add(0,1,0), ParticleEffect.CRITICAL_HIT);
+            event.getEntity().getLevel().addParticleEffect(event.getEntity().getPosition(), ParticleEffect.CRITICAL_HIT);
         }
     }
 }

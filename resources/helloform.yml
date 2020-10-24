@@ -1,5 +1,2 @@
-HelloForm:
-  #这个是设置弹窗标题
-  Title: 欢迎来到PBS小游戏服!
-  #这个是设置弹窗内容
-  Content: §e欢迎来到PBS小游戏服!
+title: §c欢迎来到pbsgames小游戏服!
+content: §a欢迎来到pbsgames小游戏服!最近更新了一大堆好玩的游戏呢~

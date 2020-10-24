@@ -2,6 +2,7 @@ package top.mcpbs.games.helloform;
 
 import cn.nukkit.Player;
 import cn.nukkit.form.element.ElementButton;
+import cn.nukkit.form.window.FormWindowModal;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
@@ -14,11 +15,10 @@ public class HelloForm{
     public static void showForm(Player player){
         if (content == null || title == null){
             Config config = new Config(Main.plugin.getDataFolder() + "/helloform.yml");
-            content = config.getString("Content");
-            title = config.getString("Title");
+            content = config.getString("content");
+            title = config.getString("title");
         }
-        FormWindowSimple form = new FormWindowSimple(title,content);
-        form.addButton(new ElementButton("好的"));
+        FormWindowModal form = new FormWindowModal(title,content,"确定","取消");
         player.showFormWindow(form, FormID.LOBBY_JOIN_FORM);
     }
 }
