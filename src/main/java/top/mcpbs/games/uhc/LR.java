@@ -122,6 +122,13 @@ public class LR implements Listener {
                 entity.sendMessage("§c你死了!§6不要灰心，下局加油吧！");
                 entity.sendMessage("§a输入/hub返回大厅，或继续观战~");
                 entity.sendMessage("§e你失去了5分数");
+                entity.getInventory().clearAll();
+                Item hub = Item.get(355,0,1);
+                hub.setCustomName("返回主城");
+                Item again = Item.get(339,0,1);
+                again.setCustomName("再来一局");
+                entity.getInventory().setItem(2,hub);
+                entity.getInventory().setItem(5,again);
                 for (Item drop : entity.getInventory().getContents().values()){
                     entity.dropItem(drop);
                 }
