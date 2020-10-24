@@ -1,6 +1,7 @@
 package top.mcpbs.games.uhc;
 
 import cn.nukkit.Player;
+import cn.nukkit.block.BlockAir;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
 import cn.nukkit.level.format.generic.BaseFullChunk;
@@ -54,8 +55,8 @@ public class Team {
         }
         Random r = new Random();
         this.spawnpos = new Position((r.nextInt(2001) - 1000), 250.0D,(r.nextInt(2001) - 1000),level);
-        this.spawnpos.level.generateChunk(this.spawnpos.getFloorX(),this.spawnpos.getFloorZ(),true);
-        while(this.spawnpos.getLevelBlock().getId() == 0){
+        this.spawnpos.level.generateChunk(this.spawnpos.getChunkX(),this.spawnpos.getChunkZ(),true);
+        while(this.spawnpos.level.getBlockIdAt(this.spawnpos.getFloorX(),this.spawnpos.getFloorY(),this.spawnpos.getFloorZ()) == 0){
             this.spawnpos.add(0,-1,0);
         }
         this.spawnpos.add(0,1,0);

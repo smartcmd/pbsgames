@@ -112,7 +112,7 @@ public class DuelRoom extends Room {
         this.roomId = id;
 
         FileUtil f = new FileUtil();
-        new File(Server.getInstance().getDataPath() + "/worlds/duellevel/region" + id).mkdirs();
+        new File(Server.getInstance().getDataPath() + "/worlds/duellevel" + id + "/region").mkdirs();
         f.copyDir(Server.getInstance().getDataPath() + "/worlds/dueltmp" + rnum +"/region",Server.getInstance().getDataPath() + "/worlds/duellevel" + id + "/region");
         Server.getInstance().generateLevel("duellevel" + id);
         this.roomlevel = Server.getInstance().getLevelByName("duellevel" + this.roomId);
