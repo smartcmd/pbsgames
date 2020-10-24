@@ -10,7 +10,6 @@ import top.mcpbs.games.Main;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
 import top.mcpbs.games.util.FileUtil;
-import top.mcpbs.games.waitroom.WaitRoom;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -113,7 +112,8 @@ public class DuelRoom extends Room {
         this.roomId = id;
 
         FileUtil f = new FileUtil();
-        f.copyDir(Server.getInstance().getDataPath() + "/worlds/" + "dueltmp" + rnum +"/region",Server.getInstance().getDataPath() + "/worlds/" + "duellevel" + id + "/region");
+        new File(Server.getInstance().getDataPath() + "/worlds/duellevel/region" + id).mkdirs();
+        f.copyDir(Server.getInstance().getDataPath() + "/worlds/dueltmp" + rnum +"/region",Server.getInstance().getDataPath() + "/worlds/duellevel" + id + "/region");
         Server.getInstance().generateLevel("duellevel" + id);
         this.roomlevel = Server.getInstance().getLevelByName("duellevel" + this.roomId);
 

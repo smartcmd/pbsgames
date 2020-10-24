@@ -53,8 +53,11 @@ public class Team {
                 break;
         }
         Random r = new Random();
-        this.spawnpos = new Position((double)(r.nextInt(2001) - 1000), 250.0D, (double)(r.nextInt(2001) - 1000),level);
-        this.spawnpos.level.loadChunk(this.spawnpos.getChunkX(),this.spawnpos.getChunkZ());
-        this.spawnpos = this.spawnpos.level.getSafeSpawn(this.spawnpos);
+        this.spawnpos = new Position((r.nextInt(2001) - 1000), 250.0D,(r.nextInt(2001) - 1000),level);
+        this.spawnpos.level.generateChunk(this.spawnpos.getChunkX(),this.spawnpos.getChunkZ(),true);
+        while(this.spawnpos.getLevelBlock().getId() == 0){
+            this.spawnpos.add(0,-1,0);
+        }
+        this.spawnpos.add(0,1,0);
     }
 }
