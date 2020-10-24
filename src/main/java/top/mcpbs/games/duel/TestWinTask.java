@@ -48,8 +48,8 @@ public class TestWinTask extends PluginTask {
                         hub.setCustomName("返回主城");
                         Item again = Item.get(339,0,1);
                         again.setCustomName("再来一局");
-                        winner.getInventory().addItem(hub);
-                        winner.getInventory().addItem(again);
+                        winner.getInventory().setItem(2,hub);
+                        winner.getInventory().setItem(5,again);
                     }
                     if (loser != null && loser.isOnline()){
                         loser.sendTitle("§c你输了!","§e再接再厉!");
@@ -60,8 +60,8 @@ public class TestWinTask extends PluginTask {
                         hub.setCustomName("返回主城");
                         Item again = Item.get(339,0,1);
                         again.setCustomName("再来一局");
-                        loser.getInventory().addItem(hub);
-                        loser.getInventory().addItem(again);
+                        loser.getInventory().setItem(2,hub);
+                        loser.getInventory().setItem(5,again);
                     }
                     room.isend = true;
                     Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 15);
@@ -75,8 +75,8 @@ public class TestWinTask extends PluginTask {
                 hub.setCustomName("返回主城");
                 Item again = Item.get(339,0,1);
                 again.setCustomName("再来一局");
-                player.getInventory().addItem(hub);
-                player.getInventory().addItem(again);
+                player.getInventory().setItem(2,hub);
+                player.getInventory().setItem(5,again);
                 room.isend = true;
                 Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 15);
             }

@@ -47,7 +47,7 @@ public class BossBarTask extends PluginTask {
                     bossbarmap.get(player).setLength(tick);
                 }
                 if (101 <= tick && tick <= 200) {
-                    bossbarmap.get(player).setText("§ePLAY.MCPBS.TOP");
+                    bossbarmap.get(player).setText("§eplay.mcpbs.top");
                     bossbarmap.get(player).setLength(tick - 100);
                 }
                 if (201 <= tick && tick <= 300) {

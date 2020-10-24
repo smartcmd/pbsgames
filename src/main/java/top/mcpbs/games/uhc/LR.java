@@ -84,8 +84,8 @@ public class LR implements Listener {
                     hub.setCustomName("返回主城");
                     Item again = Item.get(339,0,1);
                     again.setCustomName("再来一局");
-                    entity.getInventory().addItem(hub);
-                    entity.getInventory().addItem(again);
+                    entity.getInventory().setItem(2,hub);
+                    entity.getInventory().setItem(5,again);
 
                     UHCRoom room = (UHCRoom) Room.aplaying.get(entity);
                     int killnum = room.killnum.get(entity);

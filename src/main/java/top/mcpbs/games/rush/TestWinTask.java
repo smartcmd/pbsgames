@@ -34,8 +34,8 @@ public class TestWinTask extends PluginTask {
                     Item again = Item.get(339,0,1);
                     again.setCustomName("再来一局");
 
-                    player.getInventory().addItem(hub);
-                    player.getInventory().addItem(again);
+                    player.getInventory().setItem(2,hub);
+                    player.getInventory().setItem(5,again);
 
                     ArrayList<Player> tmp = (ArrayList<Player>) room.playing.clone();
                     tmp.remove(player);
@@ -45,8 +45,9 @@ public class TestWinTask extends PluginTask {
                     tmp.get(0).setGamemode(3);
 
                     tmp.get(0).getInventory().clearAll();
-                    tmp.get(0).getInventory().addItem(hub);
-                    tmp.get(0).getInventory().addItem(again);
+
+                    tmp.get(0).getInventory().setItem(2,hub);
+                    tmp.get(0).getInventory().setItem(5,again);
 
                     Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(Main.plugin, room),20 * 15);
                     room.isend = true;
