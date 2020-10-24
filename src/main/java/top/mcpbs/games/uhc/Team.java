@@ -3,7 +3,9 @@ package top.mcpbs.games.uhc;
 import cn.nukkit.Player;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
+import cn.nukkit.level.format.generic.BaseFullChunk;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -52,6 +54,7 @@ public class Team {
         }
         Random r = new Random();
         this.spawnpos = new Position((double)(r.nextInt(2001) - 1000), 250.0D, (double)(r.nextInt(2001) - 1000),level);
+        this.spawnpos.level.loadChunk(this.spawnpos.getChunkX(),this.spawnpos.getChunkZ());
         this.spawnpos = this.spawnpos.level.getSafeSpawn(this.spawnpos);
     }
 }

@@ -64,6 +64,7 @@ public class RushRoom extends Room {
         Server.getInstance().generateLevel("rushlevel" + id);
         FileUtil f = new FileUtil();
         f.copyDir(Server.getInstance().getDataPath() + "/worlds/" + "rushtmp" + rnum +"/region",Server.getInstance().getDataPath() + "/worlds/" + "rushlevel" + id + "/region");
+        Server.getInstance().loadLevel("rushlevel" + id);
         this.roomlevel = Server.getInstance().getLevelByName("rushlevel" + this.roomId);
 
         ArrayList<Double> pos1tmp = (ArrayList) rushlevel.get("rushtmp" + rnum + ".pos1");
