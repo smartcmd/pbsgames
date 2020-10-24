@@ -1,4 +1,3 @@
-排行榜
-mail?
-override
-quick break tree(UHC)
+接下来的更新安排：
+friend,party,lottery,mail等重构和更新
+uhc还差个快速挖树，还有细节方面（比如说观感）
