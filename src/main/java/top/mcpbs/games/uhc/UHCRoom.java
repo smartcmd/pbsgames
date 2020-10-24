@@ -54,7 +54,9 @@ public class UHCRoom extends Room {
         this.roomId = id;
 
         FileUtil f = new FileUtil();
-        f.deleteDirectory(new File(Server.getInstance().getDataPath() + "/worlds/uhclevel" + this.roomId));
+        if (!new File(Server.getInstance().getDataPath() + "/worlds/uhclevel" + this.roomId).exists()) {
+            f.deleteDirectory(new File(Server.getInstance().getDataPath() + "/worlds/uhclevel" + this.roomId));
+        }
         Server.getInstance().generateLevel("uhclevel" + this.roomId,(new Random()).nextLong(), NormalGenerator.class);
         this.roomlevel = Server.getInstance().getLevelByName("uhclevel" + this.roomId);
         this.roomlevel.setTime(6000);
