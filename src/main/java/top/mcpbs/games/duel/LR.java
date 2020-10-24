@@ -52,7 +52,7 @@ public class LR implements Listener {
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent event){
         Player player = event.getPlayer();
-        if(event.getMessage().equals("/hub") && Room.aplaying.containsKey(player) && Room.aplaying.get(player) instanceof DuelRoom){
+        if(event.getMessage().equals("/hub") && Room.aplaying.containsKey(player) && Room.aplaying.get(player) instanceof DuelRoom && Room.aplaying.get(player).isend == false){
             Room.aplaying.get(player).playerAccidentQuit(player);
         }
         if (event.getMessage().equals("/hub") && Room.awaiting.containsKey(player) && Room.awaiting.get(player) instanceof DuelRoom){
@@ -70,7 +70,7 @@ public class LR implements Listener {
             if (event.getPlayer().getInventory().getItemInHand().getId() == 339){
                 Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
                 Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
-                Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/" + ((DuelRoom) Room.aplaying.get(event.getPlayer())).mode));
+                Server.getInstance().getCommandMap().dispatch(event.getPlayer(),((DuelRoom) Room.aplaying.get(event.getPlayer())).mode);
             }
         }
     }

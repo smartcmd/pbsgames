@@ -39,8 +39,8 @@ public class LR implements Listener {
     }
 
     @EventHandler
-    public void onPlayerCMD(PlayerCommandPreprocessEvent event){
-        if (event.getMessage().equals("/hub") && Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom){
+    public void onPlayerCmd(PlayerCommandPreprocessEvent event){
+        if (event.getMessage().equals("/hub") && Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom && Room.aplaying.get(event.getPlayer()).isend == false && !((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.containsKey(event.getPlayer())){
             Room.aplaying.get(event.getPlayer()).playerAccidentQuit(event.getPlayer());
         }
         if (event.getMessage().equals("/hub") && Room.awaiting.containsKey(event.getPlayer()) && Room.awaiting.get(event.getPlayer()) instanceof UHCRoom){
@@ -246,7 +246,7 @@ public class LR implements Listener {
                 if (event.getPlayer().getInventory().getItemInHand().getId() == 339){
                     Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
                     Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
-                    Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/joinuhc"));
+                    Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"joinuhc");
                 }
             }
         }
