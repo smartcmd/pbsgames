@@ -40,7 +40,7 @@ public class WaitRoom {
         this.roomid = id;
 
         FileUtil f = new FileUtil();
-        if (!new File(Server.getInstance().getDataPath() + "/worlds/waitlevel" + id).exists()){
+        if (new File(Server.getInstance().getDataPath() + "/worlds/waitlevel" + id).exists()){
             f.deleteDirectory(new File(Server.getInstance().getDataPath() + "/worlds/waitlevel" + id));
         }
         new File(Server.getInstance().getDataPath() + "/worlds/waitlevel" + id + "/region").mkdirs();

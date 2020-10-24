@@ -62,7 +62,7 @@ public class RushRoom extends Room {
         this.roomId = id;
 
         FileUtil f = new FileUtil();
-        if (!new File(Server.getInstance().getDataPath() + "/worlds/rushlevel" + id).exists()){
+        if (new File(Server.getInstance().getDataPath() + "/worlds/rushlevel" + id).exists()){
             f.deleteDirectory(new File(Server.getInstance().getDataPath() + "/worlds/rushlevel" + id));
         }
         new File(Server.getInstance().getDataPath() + "/worlds/rushlevel" + id + "/region").mkdirs();

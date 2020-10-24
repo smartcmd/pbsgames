@@ -112,7 +112,7 @@ public class DuelRoom extends Room {
         this.roomId = id;
 
         FileUtil f = new FileUtil();
-        if (!new File(Server.getInstance().getDataPath() + "/worlds/duellevel" + id).exists()){
+        if (new File(Server.getInstance().getDataPath() + "/worlds/duellevel" + id).exists()){
             f.deleteDirectory(new File(Server.getInstance().getDataPath() + "/worlds/duellevel" + id));
         }
         new File(Server.getInstance().getDataPath() + "/worlds/duellevel" + id + "/region").mkdirs();
