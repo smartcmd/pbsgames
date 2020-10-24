@@ -2,6 +2,7 @@ package top.mcpbs.games.duel;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.item.Item;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.scheduler.PluginTask;
 import top.mcpbs.games.Main;
@@ -42,20 +43,42 @@ public class TestWinTask extends PluginTask {
                         winner.sendMessage("§6你的收益: §escore+10 §bcoin+2");
                         Score.addScore(winner,10);
                         Coin.addCoin(winner,2);
+                        winner.getInventory().clearAll();
+                        Item hub = Item.get(355,0,1);
+                        hub.setCustomName("返回主城");
+                        Item again = Item.get(339,0,1);
+                        again.setCustomName("再来一局");
+                        winner.getInventory().addItem(hub);
+                        winner.getInventory().addItem(again);
                     }
                     if (loser != null && loser.isOnline()){
                         loser.sendTitle("§c你输了!","§e再接再厉!");
                         loser.sendMessage("§e你失去了5分数!");
                         Score.remScore(loser,5);
+                        loser.getInventory().clearAll();
+                        Item hub = Item.get(355,0,1);
+                        hub.setCustomName("返回主城");
+                        Item again = Item.get(339,0,1);
+                        again.setCustomName("再来一局");
+                        loser.getInventory().addItem(hub);
+                        loser.getInventory().addItem(again);
                     }
                     room.isend = true;
-                    Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 5);
+                    Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 15);
                 }
             }
             if (room.isPlaying == true && room.playing.size() == 1 && room.isend == false){
                 Player player = room.playing.get(0);
                 player.sendMessage("§e对方意外退出，本次游戏无收益...");
-                Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 5);
+                player.getInventory().clearAll();
+                Item hub = Item.get(355,0,1);
+                hub.setCustomName("返回主城");
+                Item again = Item.get(339,0,1);
+                again.setCustomName("再来一局");
+                player.getInventory().addItem(hub);
+                player.getInventory().addItem(again);
+                room.isend = true;
+                Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 15);
             }
         }
     }

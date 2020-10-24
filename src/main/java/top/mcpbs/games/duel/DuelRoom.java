@@ -125,31 +125,30 @@ public class DuelRoom extends Room {
         pos3 = new Position(pos3tmp.get(0),pos3tmp.get(1),pos3tmp.get(2),this.roomlevel);
 
         duelrooms.put(this.roomId, this);
-        this.waitRoom = new WaitRoom();
     }
 
     @Override
     public void gameStart() {
-        for (Player p : this.waiting){
+        for (Player p : this.waiting) {
             p.getInventory().clearAll();
-            for (Item item : this.item){
+            for (Item item : this.item) {
                 p.getInventory().addItem(item);
             }
-            if (armor.containsKey("helmet")){
+            if (armor.containsKey("helmet")) {
                 p.getInventory().setHelmet(armor.get("helmet"));
             }
-            if (armor.containsKey("chestplate")){
+            if (armor.containsKey("chestplate")) {
                 p.getInventory().setChestplate(armor.get("chestplate"));
             }
-            if (armor.containsKey("leggings")){
+            if (armor.containsKey("leggings")) {
                 p.getInventory().setLeggings(armor.get("leggings"));
             }
-            if (armor.containsKey("boots")){
+            if (armor.containsKey("boots")) {
                 p.getInventory().setBoots(armor.get("boots"));
             }
             Room.awaiting.remove(p);
-            Room.aplaying.put(p,this);
-            p.sendTitle("§a决斗开始!","§b努力击败对手吧!");
+            Room.aplaying.put(p, this);
+            p.sendTitle("§a决斗开始!", "§b努力击败对手吧!");
         }
         this.waiting.get(0).teleport(pos2);
         this.waiting.get(1).teleport(pos3);
@@ -158,7 +157,6 @@ public class DuelRoom extends Room {
         this.isStartChemical = false;
         this.waittime = 15;
         this.isPlaying = true;
-        this.waitRoom.remWaitRoom();
     }
 
     @Override
@@ -189,7 +187,7 @@ public class DuelRoom extends Room {
         player.getInventory().setItem(2,hub);
         this.waiting.add(player);
         Room.awaiting.put(player, this);
-        this.waitRoom.joinWaitRoom(player);
+        player.teleport(this.pos1);
         player.sendMessage("§a成功加入房间 §eDuel-" + this.roomId + "!");
         player.sendMessage("§a输入/hub即可退出当前房间!");
         player.sendTitle("§e地图名称: " + this.mapname);

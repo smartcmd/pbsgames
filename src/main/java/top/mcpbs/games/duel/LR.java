@@ -1,12 +1,14 @@
 package top.mcpbs.games.duel;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
+import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import top.mcpbs.games.room.Room;
 
@@ -55,6 +57,21 @@ public class LR implements Listener {
         }
         if (event.getMessage().equals("/hub") && Room.awaiting.containsKey(player) && Room.awaiting.get(player) instanceof DuelRoom){
             Room.awaiting.get(player).playerAccidentQuit(player);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event){
+        if (Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof DuelRoom && Room.aplaying.get(event.getPlayer()).isend == true){
+            if (event.getPlayer().getInventory().getItemInHand().getId() == 355){
+                Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
+                Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
+            }
+            if (event.getPlayer().getInventory().getItemInHand().getId() == 339){
+                Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
+                Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
+                Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/" + ((DuelRoom) Room.aplaying.get(event.getPlayer())).mode));
+            }
         }
     }
 }

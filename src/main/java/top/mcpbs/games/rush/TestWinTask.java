@@ -40,6 +40,7 @@ public class TestWinTask extends PluginTask {
             if (room.playing.size() == 1 && room.isPlaying){
                 Player player = room.playing.get(0);
                 player.sendMessage("§e对方意外退出，本次游戏无收益...");
+                room.isend = true;
                 Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(Main.plugin, room),20 * 5);
             }
         }
