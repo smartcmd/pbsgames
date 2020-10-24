@@ -1,6 +1,7 @@
 package top.mcpbs.games;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
@@ -9,6 +10,7 @@ import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.player.PlayerChatEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
+import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.ParticleEffect;
 import cn.nukkit.level.Position;
@@ -57,5 +59,10 @@ public class LR implements Listener {
         if (event.getDamager() instanceof Player && event.getEntity() instanceof Player){
             event.getEntity().getLevel().addParticleEffect(event.getEntity().getPosition().add(0,1,0), ParticleEffect.CRITICAL_HIT);
         }
+    }
+
+    @EventHandler
+    public void onPacket(DataPacketReceiveEvent event){
+        Server.getInstance().broadcastMessage(String.valueOf(event.getPacket().pid()));
     }
 }

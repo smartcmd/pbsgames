@@ -1,4 +1,4 @@
-package top.mcpbs.games.hpshow;
+package top.mcpbs.games.hpandscoreshow;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
@@ -6,8 +6,8 @@ import cn.nukkit.plugin.Plugin;
 import cn.nukkit.scheduler.PluginTask;
 import top.mcpbs.games.playerinfo.score.Score;
 
-public class HPShow extends PluginTask {
-    public HPShow(Plugin owner) {
+public class HPAndScoreShow extends PluginTask {
+    public HPAndScoreShow(Plugin owner) {
         super(owner);
     }
 

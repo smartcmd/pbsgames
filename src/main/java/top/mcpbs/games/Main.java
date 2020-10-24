@@ -7,7 +7,7 @@ import cn.nukkit.plugin.Plugin;
 import cn.nukkit.plugin.PluginBase;
 import top.mcpbs.games.designation.DesignationCmd;
 import top.mcpbs.games.duel.LoadCmd;
-import top.mcpbs.games.hpshow.HPShow;
+import top.mcpbs.games.hpandscoreshow.HPAndScoreShow;
 import top.mcpbs.games.hub.Hub;
 import top.mcpbs.games.pbc.AddPBC;
 import top.mcpbs.games.pbc.RemPBC;
@@ -83,7 +83,7 @@ public class Main extends PluginBase {
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.getid.GetIDUnderCmd("getidu",""));
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.chao.ChaoStore("chaostore","大乱斗商店",this));
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.uhc.JoinRoom("joinuhc","UHC"));
-        this.getServer().getScheduler().scheduleRepeatingTask(new HPShow(this),1);
+        this.getServer().getScheduler().scheduleRepeatingTask(new HPAndScoreShow(this),1);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.lobby.LobbyTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.rush.RushTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.particle.ParticleTask(this),1);
