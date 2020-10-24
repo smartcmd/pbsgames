@@ -1,8 +1,10 @@
 package top.mcpbs.games.uhc;
 
 import cn.nukkit.Player;
+import cn.nukkit.block.BlockID;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
+import cn.nukkit.level.format.Chunk;
 import cn.nukkit.level.format.generic.BaseFullChunk;
 
 import java.io.IOException;
@@ -53,8 +55,11 @@ public class Team {
                 break;
         }
         Random r = new Random();
-        this.spawnpos = new Position((double)(r.nextInt(2001) - 1000), 250.0D, (double)(r.nextInt(2001) - 1000),level);
-        BaseFullChunk chunk = this.spawnpos.level.getChunk(this.spawnpos.getChunkX(),this.spawnpos.getChunkZ(),true);
-        this.spawnpos.y = chunk.getHeightMap((int)this.spawnpos.x,(int)this.spawnpos.z) + 1;
+        this.spawnpos = new Position(r.nextInt(2001) - 1000, 250.0D, r.nextInt(2001) - 1000,level);
+        this.spawnpos.getLevel().generateChunk(this.spawnpos.getFloorX(),(int)this.spawnpos.getFloorZ(),true);
+        while(this.spawnpos.getLevelBlock().getId() == BlockID.AIR){
+            this.spawnpos.add(0,-1,0);
+        }
+        this.spawnpos.add(0,1,0);
     }
 }

@@ -54,7 +54,6 @@ public class UHCRoom extends Room {
         this.roomId = id;
 
         Server.getInstance().generateLevel("uhclevel" + this.roomId,(new Random()).nextLong(), NormalGenerator.class);
-        Server.getInstance().loadLevel("uhclevel" + this.roomId);
         this.roomlevel = Server.getInstance().getLevelByName("uhclevel" + this.roomId);
         this.roomlevel.setTime(6000);
         this.roomlevel.getGameRules().setGameRule(GameRule.DO_DAYLIGHT_CYCLE,false);
