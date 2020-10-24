@@ -64,25 +64,27 @@ public class RushTask extends PluginTask {
                             player.getInventory().addItem(Item.get(24, 0, 256));
                         }
                     }
-                    ArrayList l = new ArrayList();
-                    l.clear();
-                    l.add("§7#" + DateUtil.getDate("yyyy/MM/dd"));
-                    l.add(" ");
-                    l.add("地图名称");
-                    l.add("§a" + Room.aplaying.get(player).mapname);
-                    l.add("  ");
-                    l.add("你的得分");
-                    l.add("§a" + ((RushRoom) Room.aplaying.get(player)).scores.get(player));
-                    l.add("   ");
-                    ArrayList<Player> tmp = (ArrayList) Room.aplaying.get(player).playing.clone();
-                    tmp.remove(player);
-                    l.add("对手");
-                    l.add("§a" + tmp.get(0).getName());
-                    l.add("对手得分");
-                    l.add("§a" + ((RushRoom) Room.aplaying.get(player)).scores.get(tmp.get(0)) + " ");
-                    l.add("    ");
-                    l.add("§eplay.mcpbs.top");
-                    Main.s.showScoreboard(player, "§l§e战桥", l);
+                    if (room.isend == false) {
+                        ArrayList l = new ArrayList();
+                        l.clear();
+                        l.add("§7#" + DateUtil.getDate("yyyy/MM/dd"));
+                        l.add(" ");
+                        l.add("地图名称");
+                        l.add("§a" + Room.aplaying.get(player).mapname);
+                        l.add("  ");
+                        l.add("你的得分");
+                        l.add("§a" + ((RushRoom) Room.aplaying.get(player)).scores.get(player));
+                        l.add("   ");
+                        ArrayList<Player> tmp = (ArrayList) Room.aplaying.get(player).playing.clone();
+                        tmp.remove(player);
+                        l.add("对手");
+                        l.add("§a" + tmp.get(0).getName());
+                        l.add("对手得分");
+                        l.add("§a" + ((RushRoom) Room.aplaying.get(player)).scores.get(tmp.get(0)) + " ");
+                        l.add("    ");
+                        l.add("§eplay.mcpbs.top");
+                        Main.s.showScoreboard(player, "§l§e战桥", l);
+                    }
                 }
             }
         }

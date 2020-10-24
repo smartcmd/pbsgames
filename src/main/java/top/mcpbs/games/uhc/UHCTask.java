@@ -89,6 +89,9 @@ public class UHCTask extends PluginTask {
                             wither.setDuration(40);
                             player.addEffect(wither);
                         }
+                        if (room.boundary - x <= 25 || room.boundary - z <= 25){
+                            player.sendTitle("","§c接近边界!");
+                        }
                     }
                     if (player.getInventory().getItemInHand().getId() == 345) {
                         HashMap<Double, Player> m = new HashMap();

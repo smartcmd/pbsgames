@@ -45,18 +45,20 @@ public class DuelTask extends PluginTask {
 
             if (room.isPlaying == true) {
                 for (Player player : room.playing) {
-                    ArrayList<Player> tmp = (ArrayList<Player>) room.playing.clone();
-                    tmp.remove(player);
-                    ArrayList l = new ArrayList();
-                    l.add("§7#" + DateUtil.getDate("yyyy/MM/dd"));
-                    l.add(" ");
-                    l.add("地图名称");
-                    l.add("§a" + Room.aplaying.get(player).mapname);
-                    l.add("对手");
-                    l.add("§a" + tmp.get(0).getName());
-                    l.add("  ");
-                    l.add("§eplay.mcpbs.top");
-                    Main.s.showScoreboard(player, room.modename, l);
+                    if (room.isend == false) {
+                        ArrayList<Player> tmp = (ArrayList<Player>) room.playing.clone();
+                        tmp.remove(player);
+                        ArrayList l = new ArrayList();
+                        l.add("§7#" + DateUtil.getDate("yyyy/MM/dd"));
+                        l.add(" ");
+                        l.add("地图名称");
+                        l.add("§a" + Room.aplaying.get(player).mapname);
+                        l.add("对手");
+                        l.add("§a" + tmp.get(0).getName());
+                        l.add("  ");
+                        l.add("§eplay.mcpbs.top");
+                        Main.s.showScoreboard(player, room.modename, l);
+                    }
                 }
             }
         }
