@@ -54,7 +54,8 @@ public class Team {
                 break;
         }
         Random r = new Random();
-        this.spawnpos = new Position((r.nextInt(2001) - 1000), 250.0D,(r.nextInt(2001) - 1000),level);
-        this.spawnpos.y = this.spawnpos.level.getHighestBlockAt(this.spawnpos.getFloorX(),this.spawnpos.getFloorZ());
+        this.spawnpos = new Position((r.nextInt(2001) - 1000), 250D,(r.nextInt(2001) - 1000),level);
+        this.spawnpos.level.loadChunk(this.spawnpos.getChunkX(),this.spawnpos.getChunkZ(),true);
+        this.spawnpos = this.spawnpos.level.getSafeSpawn(this.spawnpos);
     }
 }
