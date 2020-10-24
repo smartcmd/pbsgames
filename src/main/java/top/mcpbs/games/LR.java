@@ -60,9 +60,4 @@ public class LR implements Listener {
             event.getEntity().getLevel().addParticleEffect(event.getEntity().getPosition().add(0,1,0), ParticleEffect.CRITICAL_HIT);
         }
     }
-
-    @EventHandler
-    public void onPacket(DataPacketReceiveEvent event){
-        Server.getInstance().broadcastMessage(String.valueOf(event.getPacket().pid()));
-    }
 }
