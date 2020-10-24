@@ -19,6 +19,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.potion.Effect;
 import top.mcpbs.games.FormID;
 import top.mcpbs.games.Main;
+import top.mcpbs.games.duel.DuelRoom;
 import top.mcpbs.games.playerinfo.diamond.Diamond;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
@@ -231,9 +232,23 @@ public class LR implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event){
-        if (Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom && event.getBlock().getId() == 117){
-            event.setCancelled();
-            Form.potStore(event.getPlayer());
+        if (Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom){
+            if (event.getBlock().getId() == 117 && !((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.containsKey(event.getPlayer())){
+                event.setCancelled();
+                Form.potStore(event.getPlayer());
+                return;
+            }
+            if (((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.containsKey(event.getPlayer()) || Room.aplaying.get(event.getPlayer()).isend == true) {
+                if (event.getPlayer().getInventory().getItemInHand().getId() == 355) {
+                    Server.getInstance().getCommandMap().dispatch(event.getPlayer(), "hub");
+                    Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
+                }
+                if (event.getPlayer().getInventory().getItemInHand().getId() == 339){
+                    Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
+                    Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
+                    Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/joinuhc"));
+                }
+            }
         }
     }
 }
