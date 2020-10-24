@@ -40,6 +40,7 @@ public class WaitRoom {
         this.roomid = id;
 
         FileUtil f = new FileUtil();
+        f.deleteDirectory(new File(Server.getInstance().getDataPath() + "/worlds/waitlevel" + id));
         new File(Server.getInstance().getDataPath() + "/worlds/waitlevel" + id + "/region").mkdirs();
         f.copyDir(Server.getInstance().getDataPath() + "/worlds/waittmp/region",Server.getInstance().getDataPath() + "/worlds/waitlevel" + id + "/region");
         Server.getInstance().generateLevel("waitlevel" + id);

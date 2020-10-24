@@ -62,6 +62,7 @@ public class RushRoom extends Room {
         this.roomId = id;
 
         FileUtil f = new FileUtil();
+        f.deleteDirectory(new File(Server.getInstance().getDataPath() + "/worlds/rushlevel" + id));
         new File(Server.getInstance().getDataPath() + "/worlds/rushlevel" + id + "/region").mkdirs();
         f.copyDir(Server.getInstance().getDataPath() + "/worlds/rushtmp" + rnum +"/region",Server.getInstance().getDataPath() + "/worlds/rushlevel" + id + "/region");
         Server.getInstance().generateLevel("rushlevel" + id);
