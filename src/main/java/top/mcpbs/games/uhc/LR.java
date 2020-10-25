@@ -2,6 +2,7 @@ package top.mcpbs.games.uhc;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
@@ -11,9 +12,12 @@ import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.entity.EntityRegainHealthEvent;
 import cn.nukkit.event.player.*;
+import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.form.response.FormResponseSimple;
 import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.item.Item;
+import cn.nukkit.level.Location;
+import cn.nukkit.level.Position;
 import cn.nukkit.network.protocol.PlayerActionPacket;
 import cn.nukkit.potion.Effect;
 import top.mcpbs.games.FormID;
@@ -210,6 +214,28 @@ public class LR implements Listener {
                     event.setDrops(new Item[]{Item.get(287,0,3),Item.get(260,0,1)});
                 }
             }
+            if (event.getBlock().getId() == 17 || event.getBlock().getId() == 162){//log
+                this.testLog(event.getPlayer(),event.getBlock().getLocation());
+            }
+        }
+    }
+
+    public void testLog(Player player, Location pos){
+        for(int i = -5;i <= 5;i++){
+            for(int j = -5;j <= 5;j++){
+                for(int z = -5;z <= 5;z++){
+                    Location tmppos = pos.clone().add(i,j,z);
+                    int blockid = tmppos.getLevelBlock().getId();
+                    if (blockid == 17 || blockid == 162){
+                        pos.level.setBlock(tmppos,Block.get(0));
+                        pos.level.dropItem(tmppos,Item.get(5,0,4));
+                    }
+                    if (blockid == 18 || blockid == 161){
+                        pos.level.setBlock(tmppos,Block.get(0));
+                        Server.getInstance().getPluginManager().callEvent(new BlockBreakEvent(player,tmppos.getLevelBlock(),null,null));
+                    }
+                }
+            }
         }
     }
 
@@ -266,16 +292,6 @@ public class LR implements Listener {
                     Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
                     Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"joinuhc");
                 }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onPlayerHealthBack(EntityRegainHealthEvent event){
-        if (Room.aplaying.containsKey(event.getEntity()) && Room.aplaying.get(event.getEntity()) instanceof UHCRoom){
-            Server.getInstance().broadcastMessage(String.valueOf(event.getRegainReason()));
-            if (event.getRegainReason() == 1){
-                event.setCancelled();
             }
         }
     }
