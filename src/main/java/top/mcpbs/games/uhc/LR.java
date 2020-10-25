@@ -256,7 +256,7 @@ public class LR implements Listener {
                 Form.potStore(event.getPlayer());
                 return;
             }
-            if (((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.containsKey(event.getPlayer()) || Room.aplaying.get(event.getPlayer()).isend == true) {
+            if (((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.get(event.getPlayer()) == true || Room.aplaying.get(event.getPlayer()).isend == true) {
                 if (event.getPlayer().getInventory().getItemInHand().getId() == 355) {
                     Server.getInstance().getCommandMap().dispatch(event.getPlayer(), "hub");
                     Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
@@ -273,14 +273,14 @@ public class LR implements Listener {
     @EventHandler
     public void onPlayerHealthBack(EntityRegainHealthEvent event){
         if (Room.aplaying.containsKey(event.getEntity()) && Room.aplaying.get(event.getEntity()) instanceof UHCRoom){
-            if (event.getRegainReason() == EntityRegainHealthEvent.CAUSE_REGEN){
-                event.setAmount(0F);
+            if (event.getRegainReason() == 1){
+                event.setCancelled();//test
             }
         }
     }
 
     @EventHandler
-    public void onPlayerMove(PlayerAnimationEvent event){
+    public void onPlayerMove(PlayerMoveEvent event){
         if (Room.awaiting.containsKey(event.getPlayer()) && Room.awaiting.get(event.getPlayer()) instanceof UHCRoom && ((UHCRoom) Room.awaiting.get(event.getPlayer())).waittime <= 15){
             event.setCancelled();
         }

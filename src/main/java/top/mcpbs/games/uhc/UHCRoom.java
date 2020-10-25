@@ -96,6 +96,8 @@ public class UHCRoom extends Room {
             eff.setDuration(10 * 20);
             eff.setAmplifier(255);
             player.addEffect(eff);
+
+            this.playerteam.get(player).cleanBlock();
         }
         this.playing.addAll(waiting);
         this.waiting.clear();

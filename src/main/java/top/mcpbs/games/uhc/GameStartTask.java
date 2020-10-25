@@ -21,11 +21,11 @@ public class GameStartTask extends PluginTask {
                 player.sendTitle("","§e游戏即将开始！\n§a" + room.waittime);
             }
             if (room.waittime <= 15){
-                if (room.waittime == 15){
-                    room.Gameprestart();
-                }
                 player.sendTitle("","§e游戏即将开始！\n§a" + room.waittime + "\n§6加载世界中...");
             }
+        }
+        if (room.waittime == 15){
+            room.Gameprestart();
         }
         this.test();
     }
