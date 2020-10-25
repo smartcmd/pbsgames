@@ -216,6 +216,7 @@ public class LR implements Listener {
             }
             if (event.getBlock().getId() == 17 || event.getBlock().getId() == 162){//log
                 this.testLog(event.getPlayer(),event.getBlock().getLocation());
+                event.setDrops(new Item[]{Item.get(5, 0, 4)});
             }
         }
     }
