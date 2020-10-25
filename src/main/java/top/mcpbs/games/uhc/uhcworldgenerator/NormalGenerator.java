@@ -445,28 +445,28 @@ public class NormalGenerator extends VanillaGenerator {
 
     protected static class BiomeHeight {
 
-        public static final BiomeHeight DEFAULT = new BiomeHeight(0.1d / 10,0.2d / 10);
-        public static final BiomeHeight FLAT_SHORE = new BiomeHeight(0d / 10, 0.025d / 10);
-        public static final BiomeHeight HIGH_PLATEAU = new BiomeHeight(1.5d / 10, 0.025d / 10);
-        public static final BiomeHeight FLATLANDS = new BiomeHeight(0.125d / 10,  0.05d / 10);
-        public static final BiomeHeight SWAMPLAND = new BiomeHeight(-0.2d / 10,  0.1d / 10);
-        public static final BiomeHeight MID_PLAINS = new BiomeHeight( 0.2d / 10,  0.2d / 10);
-        public static final BiomeHeight FLATLANDS_HILLS = new BiomeHeight(0.275d / 10, 0.25d / 10);
-        public static final BiomeHeight SWAMPLAND_HILLS = new BiomeHeight( -0.1d / 10, 0.3d / 10);
-        public static final BiomeHeight LOW_HILLS = new BiomeHeight(0.2d / 10, 0.3d / 10);
-        public static final BiomeHeight HILLS = new BiomeHeight(0.45d / 10, 0.3d / 10);
-        public static final BiomeHeight MID_HILLS2 = new BiomeHeight(0.1d / 10, 0.4d / 10);
-        public static final BiomeHeight DEFAULT_HILLS = new BiomeHeight( 0.2d / 10,  0.4d / 10);
-        public static final BiomeHeight MID_HILLS = new BiomeHeight( 0.3d / 10,  0.4d / 10);
-        public static final BiomeHeight BIG_HILLS = new BiomeHeight( 0.525d / 10, 0.55d / 10);
-        public static final BiomeHeight BIG_HILLS2 = new BiomeHeight( 0.55d / 10, 0.5d / 10);
-        public static final BiomeHeight EXTREME_HILLS = new BiomeHeight(1d / 10,  0.5d / 10);
-        public static final BiomeHeight ROCKY_SHORE = new BiomeHeight(0.1d / 10, 0.8d / 10);
-        public static final BiomeHeight LOW_SPIKES = new BiomeHeight(0.4125d / 10, 1.325d / 10);
-        public static final BiomeHeight HIGH_SPIKES = new BiomeHeight( 1.1d / 10,  1.3125d / 10);
-        public static final BiomeHeight RIVER = new BiomeHeight(-0.5d / 10,  0d / 10);
-        public static final BiomeHeight OCEAN = new BiomeHeight(-1d / 10,  0.1d / 10);
-        public static final BiomeHeight DEEP_OCEAN = new BiomeHeight( -1.8d / 10, 0.1d / 10);
+        public static final BiomeHeight DEFAULT = new BiomeHeight(0.1d / 100,0.2d / 100);
+        public static final BiomeHeight FLAT_SHORE = new BiomeHeight(0d / 100, 0.025d / 100);
+        public static final BiomeHeight HIGH_PLATEAU = new BiomeHeight(1.5d / 100, 0.025d / 100);
+        public static final BiomeHeight FLATLANDS = new BiomeHeight(0.125d / 100,  0.05d / 100);
+        public static final BiomeHeight SWAMPLAND = new BiomeHeight(-0.2d / 100,  0.1d / 100);
+        public static final BiomeHeight MID_PLAINS = new BiomeHeight( 0.2d / 100,  0.2d / 100);
+        public static final BiomeHeight FLATLANDS_HILLS = new BiomeHeight(0.275d / 100, 0.25d / 100);
+        public static final BiomeHeight SWAMPLAND_HILLS = new BiomeHeight( -0.1d / 100, 0.3d / 100);
+        public static final BiomeHeight LOW_HILLS = new BiomeHeight(0.2d / 100, 0.3d / 100);
+        public static final BiomeHeight HILLS = new BiomeHeight(0.45d / 100, 0.3d / 100);
+        public static final BiomeHeight MID_HILLS2 = new BiomeHeight(0.1d / 100, 0.4d / 100);
+        public static final BiomeHeight DEFAULT_HILLS = new BiomeHeight( 0.2d / 100,  0.4d / 100);
+        public static final BiomeHeight MID_HILLS = new BiomeHeight( 0.3d / 100,  0.4d / 100);
+        public static final BiomeHeight BIG_HILLS = new BiomeHeight( 0.525d / 100, 0.55d / 100);
+        public static final BiomeHeight BIG_HILLS2 = new BiomeHeight( 0.55d / 100, 0.5d / 100);
+        public static final BiomeHeight EXTREME_HILLS = new BiomeHeight(1d / 100,  0.5d / 100);
+        public static final BiomeHeight ROCKY_SHORE = new BiomeHeight(0.1d / 100, 0.8d / 100);
+        public static final BiomeHeight LOW_SPIKES = new BiomeHeight(0.4125d / 100, 1.325d / 100);
+        public static final BiomeHeight HIGH_SPIKES = new BiomeHeight( 1.1d / 100,  1.3125d / 100);
+        public static final BiomeHeight RIVER = new BiomeHeight(-0.5d / 100,  0d / 100);
+        public static final BiomeHeight OCEAN = new BiomeHeight(-1d / 100,  0.1d / 100);
+        public static final BiomeHeight DEEP_OCEAN = new BiomeHeight( -1.8d / 100, 0.1d / 100);
 
         protected final double height;
         protected final double scale;

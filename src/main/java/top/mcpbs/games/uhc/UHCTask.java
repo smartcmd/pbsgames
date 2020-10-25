@@ -51,20 +51,17 @@ public class UHCTask extends PluginTask {
                     ArrayList l = new ArrayList();
                     l.add("§7#" + DateUtil.getDate("yyyy/MM/dd"));
                     l.add(" ");
-                    l.add("剩余时间");
-                    l.add("§a" + room.gametime + "s");
-                    l.add("存活人数");
+                    l.add("剩余时间: §a" + room.gametime + "s");
                     int alive = 0;
                     for (boolean b : room.isdead.values()) {
                         if (b == false) {
                             alive += 1;
                         }
                     }
-                    l.add("§a" + alive + "§a人");
+                    l.add("存活: §a" + alive + "/" + room.playing.size());
                     Team team = room.playerteam.get(player);
                     l.add("  ");
-                    l.add("你的队伍");
-                    l.add(team.teamname);
+                    l.add("你的队伍: " + team.teamname);
                     l.add("队伍成员");
                     for (Player player1 : team.player){
                         if (room.isdead.get(player1) == true){
@@ -75,7 +72,7 @@ public class UHCTask extends PluginTask {
                     }
                     l.add("   ");
                     l.add("世界边界");
-                    l.add("§a+" + room.boundary + "§a,-" + room.boundary);
+                    l.add("§a±" + room.boundary);
                     l.add("    ");
                     l.add("§eplay.mcpbs.top");
                     Main.s.showScoreboard(player, "§l§e极限生存冠军", l);

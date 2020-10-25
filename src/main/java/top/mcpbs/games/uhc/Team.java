@@ -70,21 +70,23 @@ public class Team {
         this.spawnpos.level.loadChunk(this.spawnpos.getChunkX(),this.spawnpos.getChunkZ(),true);
         for (int i = -1;i <= 1;i++){
             for (int j = -1;j <= 1;j++){
-                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY(),this.spawnpos.getFloorZ() + j),Block.get(0));
-                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() + 1,this.spawnpos.getFloorZ() + j),Block.get(0));
-            }
-        }
-        for (int i = -1;i <= 1;i++){
-            for (int j = -1;j <= 1;j++){
                 this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() - 1,this.spawnpos.getFloorZ() + j),this.fillblock);
+                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY(),this.spawnpos.getFloorZ() + j),this.fillblock);
+                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() + 1,this.spawnpos.getFloorZ() + j),this.fillblock);
+                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() + 2,this.spawnpos.getFloorZ() + j),this.fillblock);
             }
         }
+        this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX(),this.spawnpos.getFloorY(),this.spawnpos.getFloorZ()),Block.get(0));
+        this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX(),this.spawnpos.getFloorY() + 1,this.spawnpos.getFloorZ()),Block.get(0));
     }
 
     public void cleanBlock(){
         for (int i = -1;i <= 1;i++){
             for (int j = -1;j <= 1;j++){
-                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() - 1,this.spawnpos.getFloorZ() + j),Block.get(BlockID.AIR));
+                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() - 1,this.spawnpos.getFloorZ() + j),Block.get(0));
+                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY(),this.spawnpos.getFloorZ() + j),Block.get(0));
+                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() + 1,this.spawnpos.getFloorZ() + j),Block.get(0));
+                this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() + 2,this.spawnpos.getFloorZ() + j),Block.get(0));
             }
         }
     }

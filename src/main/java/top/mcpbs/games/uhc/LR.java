@@ -273,16 +273,10 @@ public class LR implements Listener {
     @EventHandler
     public void onPlayerHealthBack(EntityRegainHealthEvent event){
         if (Room.aplaying.containsKey(event.getEntity()) && Room.aplaying.get(event.getEntity()) instanceof UHCRoom){
+            Server.getInstance().broadcastMessage(String.valueOf(event.getRegainReason()));
             if (event.getRegainReason() == 1){
-                event.setCancelled();//test
+                event.setCancelled();
             }
-        }
-    }
-
-    @EventHandler
-    public void onPlayerMove(PlayerMoveEvent event){
-        if (Room.awaiting.containsKey(event.getPlayer()) && Room.awaiting.get(event.getPlayer()) instanceof UHCRoom && ((UHCRoom) Room.awaiting.get(event.getPlayer())).waittime <= 15){
-            event.setCancelled();
         }
     }
 }
