@@ -68,22 +68,22 @@ public class Team {
         Random r = new Random();
         this.spawnpos = new Position((r.nextInt(2001) - 1000), 150D,(r.nextInt(2001) - 1000),level);
         this.spawnpos.level.loadChunk(this.spawnpos.getChunkX(),this.spawnpos.getChunkZ(),true);
-        for (int i = -1;i <= 1;i++){
-            for (int j = -1;j <= 1;j++){
+        for (int i = -2;i <= 2;i++){
+            for (int j = -2;j <= 2;j++){
                 this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY(),this.spawnpos.getFloorZ() + j),Block.get(0));
                 this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() + 1,this.spawnpos.getFloorZ() + j),Block.get(0));
             }
         }
-        for (int i = -1;i <= 1;i++){
-            for (int j = -1;j <= 1;j++){
+        for (int i = -2;i <= 2;i++){
+            for (int j = -2;j <= 2;j++){
                 this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() - 1,this.spawnpos.getFloorZ() + j),this.fillblock);
             }
         }
     }
 
     public void cleanBlock(){
-        for (int i = -1;i <= 1;i++){
-            for (int j = -1;j <= 1;j++){
+        for (int i = -2;i <= 2;i++){
+            for (int j = -2;j <= 2;j++){
                 this.spawnpos.level.setBlock(new Vector3(this.spawnpos.getFloorX() + i,this.spawnpos.getFloorY() - 1,this.spawnpos.getFloorZ() + j),Block.get(BlockID.AIR));
             }
         }

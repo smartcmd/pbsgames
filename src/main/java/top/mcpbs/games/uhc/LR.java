@@ -14,6 +14,7 @@ import cn.nukkit.event.player.*;
 import cn.nukkit.form.response.FormResponseSimple;
 import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.item.Item;
+import cn.nukkit.network.protocol.PlayerActionPacket;
 import cn.nukkit.potion.Effect;
 import top.mcpbs.games.FormID;
 import top.mcpbs.games.Main;
@@ -280,7 +281,7 @@ public class LR implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event){
-        if (Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom && ((UHCRoom) Room.aplaying.get(event.getPlayer())).waittime <= 15){
+        if (Room.awaiting.containsKey(event.getPlayer()) && Room.awaiting.get(event.getPlayer()) instanceof UHCRoom && ((UHCRoom) Room.awaiting.get(event.getPlayer())).waittime <= 15){
             event.setCancelled();
         }
     }

@@ -5,6 +5,7 @@ import cn.nukkit.Server;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.GameRule;
 import cn.nukkit.math.Vector3;
+import cn.nukkit.potion.Effect;
 import top.mcpbs.games.Main;
 import top.mcpbs.games.designation.SetName;
 import top.mcpbs.games.playerinfo.score.Score;
@@ -75,10 +76,6 @@ public class UHCRoom extends Room {
 
     @Override
     public void gameStart() {
-        for (Team t : this.team){
-            t.cleanBlock();
-        }
-
         for (Player player : waiting){
             player.getInventory().clearAll();
             Item compass = Item.get(345);
@@ -89,11 +86,16 @@ public class UHCRoom extends Room {
             Room.aplaying.put(player,this);
             Room.awaiting.remove(player,this);
             player.sendTitle("§a游戏开始!","§b努力存活下去吧!");
-            player.sendMessage("§a世界正在生成，如果出现一次回弹为正常现象~");
             player.setGamemode(0);
             player.setMaxHealth(40);
             player.setHealth(player.getMaxHealth());
             player.getFoodData().setLevel(20);
+
+            Effect eff = Effect.getEffect(Effect.DAMAGE_RESISTANCE);
+            eff.setVisible(false);
+            eff.setDuration(10 * 20);
+            eff.setAmplifier(255);
+            player.addEffect(eff);
         }
         this.playing.addAll(waiting);
         this.waiting.clear();
