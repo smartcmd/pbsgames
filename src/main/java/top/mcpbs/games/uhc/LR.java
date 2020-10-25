@@ -280,7 +280,7 @@ public class LR implements Listener {
     }
 
     @EventHandler
-    public void onPlayerMove(PlayerMoveEvent event){
+    public void onPlayerMove(PlayerAnimationEvent event){
         if (Room.awaiting.containsKey(event.getPlayer()) && Room.awaiting.get(event.getPlayer()) instanceof UHCRoom && ((UHCRoom) Room.awaiting.get(event.getPlayer())).waittime <= 15){
             event.setCancelled();
         }

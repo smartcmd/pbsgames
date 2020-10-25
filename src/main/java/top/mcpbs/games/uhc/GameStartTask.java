@@ -42,7 +42,7 @@ public class GameStartTask extends PluginTask {
                         t.player.clear();
                     }//清除队伍数据
                 }
-                room.waittime = 90;
+                room.waittime = 60;
                 room.isStartChemical = false;
                 this.cancel();
             }
