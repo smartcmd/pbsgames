@@ -233,9 +233,12 @@ public class LR implements Listener {
                     }
                     if (blockid == 18 || blockid == 161){
                         pos.level.setBlock(tmppos,Block.get(0));
-                        Block b = Block.get(18);
-                        b.position(tmppos);
-                        Server.getInstance().getPluginManager().callEvent(new BlockBreakEvent(player,b,null,null));
+                        Random r = new Random();
+                        int rnum = r.nextInt(100) + 1;
+                        if (rnum <= 5){
+                            pos.level.dropItem(tmppos,Item.get(287,0,3));
+                            pos.level.dropItem(tmppos,Item.get(260,0,1));
+                        }
                     }
                 }
             }
