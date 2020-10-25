@@ -3,6 +3,7 @@ package top.mcpbs.games.uhc;
 import cn.nukkit.Player;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.scheduler.PluginTask;
+import top.mcpbs.games.designation.SetName;
 
 public class GameStartTask extends PluginTask {
 
@@ -20,7 +21,9 @@ public class GameStartTask extends PluginTask {
                 player.sendTitle("","§e游戏即将开始！\n§a" + room.waittime);
             }
             if (room.waittime <= 15){
-                player.teleport(room.playerteam.get(player).spawnpos);
+                if (room.waittime == 15){
+                    room.Gameprestart();
+                }
                 player.sendTitle("","§e游戏即将开始！\n§a" + room.waittime + "\n§6加载世界中...");
             }
         }
@@ -32,7 +35,14 @@ public class GameStartTask extends PluginTask {
             for (Player player : room.waiting){
                 player.sendTitle("§c人数不足");
                 player.setSubtitle("§c已取消倒计时");
-                room.waittime = 60;
+                if (room.waittime <= 15){
+                    room.waitRoom.joinWaitRoom(player);
+                    SetName.ReloadToDefaultDesignation(player);
+                    for (Team t : room.team){
+                        t.player.clear();
+                    }//清除队伍数据
+                }
+                room.waittime = 90;
                 room.isStartChemical = false;
                 this.cancel();
             }

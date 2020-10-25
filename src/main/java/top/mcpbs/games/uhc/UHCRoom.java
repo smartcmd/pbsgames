@@ -26,7 +26,7 @@ public class UHCRoom extends Room {
     public HashMap<Player, Boolean>isdead = new HashMap<>();
     public ArrayList<Team> team = new ArrayList<>();
     public double boundary = 1000;
-    int waittime = 60;
+    int waittime = 90;
     int gametime = 60 * 25;
 
     public UHCRoom(){
@@ -67,10 +67,10 @@ public class UHCRoom extends Room {
         for (int i = 1;i <= 8;i++){
             Team team = new Team(new ArrayList<>(),i,this.roomlevel);
             this.team.add(i - 1,team);
-        }
+        }//加载队伍
 
         UHCRoom.uhcrooms.put(this.roomId,this);
-        this.waitRoom = new WaitRoom();
+        this.waitRoom = new WaitRoom();//创建等待房间~
     }
 
     @Override
@@ -78,16 +78,8 @@ public class UHCRoom extends Room {
         for (Team t : this.team){
             t.cleanBlock();
         }
-        int tmp = 0;
+
         for (Player player : waiting){
-            Team team = this.team.get(tmp);
-            team.player.add(player);
-            this.playerteam.put(player,team);
-            tmp += 1;
-            if (tmp == 8){
-                tmp = 0;
-            }
-            SetName.setName(player,this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "]" + player.getName());
             player.getInventory().clearAll();
             Item compass = Item.get(345);
             compass.setCustomName("§e最近的敌人");
@@ -108,7 +100,7 @@ public class UHCRoom extends Room {
         this.isPlaying = true;
         this.waittime = 60;
         this.isStartChemical = false;
-        this.waitRoom.remWaitRoom();
+        this.waitRoom.remWaitRoom();//删除等待屋
     }
 
     @Override
@@ -170,8 +162,8 @@ public class UHCRoom extends Room {
     }
 
     @Override
-    public boolean canJoin() {
-        if (this.isPlaying != true && this.waiting.size() < 32){
+    public boolean canJoin() {//只判定此房间是否可以进人，不考虑其他的~
+        if (this.isPlaying != true && this.waiting.size() < 32 && this.waittime > 15){
             return true;
         }else {
             return false;
@@ -192,5 +184,21 @@ public class UHCRoom extends Room {
             playing += room.playing.size();
         }
         return playing;
+    }
+
+    public void Gameprestart() {
+        int tmp = 0;//匹配队伍
+        for (Player player : this.waiting) {
+            Team team = this.team.get(tmp);
+            team.player.add(player);
+            this.playerteam.put(player, team);
+            tmp += 1;
+            if (tmp == 8) {
+                tmp = 0;
+            }
+            SetName.setName(player, this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "]" + player.getName());
+            player.teleport(team.spawnpos);
+            player.sendMessage("§a你加入了 " + team.teamname);
+        }
     }
 }
