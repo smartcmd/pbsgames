@@ -61,6 +61,20 @@ public class LotteryTool {
     }
 
     public static void givePrizes(Player player, DrawPrizeModel model){
+        for (Player p : player.getLevel().getPlayers().values()) {
+            if (model.type.equals("ch")) {
+                p.sendMessage("§e>>恭喜玩家 §b" + player.getName() + "§a获得了称号 §f" + "[" + model.prize + "]");
+            }
+            if (model.type.equals("p")){
+                p.sendMessage("§e>>恭喜玩家 §b" +player.getName() + "§a获得了粒子效果 §f" + model.prize);
+            }
+            if (model.type.equals("diamond")){
+                p.sendMessage("§e>>恭喜玩家 §b" +player.getName() + "§a获得了钻石 §f" + model.prize + " §a个");
+            }
+            if (model.type.equals("coin")){
+                p.sendMessage("§e>>恭喜玩家 §b" +player.getName() + "§a获得了硬币 §f" + model.prize + " §a个");
+            }
+        }
         switch(model.type){
             case "ch":
                 NameTool.PlayerAddDesignation(player, (String) model.prize);

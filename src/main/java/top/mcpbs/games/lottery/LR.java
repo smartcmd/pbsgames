@@ -42,23 +42,7 @@ public class LR implements Listener {
                         for (Player p : event.getPlayer().getLevel().getPlayers().values()){
                             p.sendMessage("§e>>玩家 §b" +event.getPlayer().getName() + " §a正在开启 §f" + lname);
                         }
-
-                        DrawPrizeModel prize = LotteryTool.drawPrize(lname);
-                        for (Player p : event.getPlayer().getLevel().getPlayers().values()) {
-                            if (prize.type.equals("ch")) {
-                                p.sendMessage("§e>>恭喜玩家 §b" + event.getPlayer().getName() + "§a获得了称号 §f" + "[" + prize.prize + "]");
-                            }
-                            if (prize.type.equals("p")){
-                                p.sendMessage("§e>>恭喜玩家 §b" +event.getPlayer().getName() + "§a获得了粒子效果 §f" + prize.prize);
-                            }
-                            if (prize.type.equals("diamond")){
-                                p.sendMessage("§e>>恭喜玩家 §b" +event.getPlayer().getName() + "§a获得了钻石 §f" + prize.prize + " §a个");
-                            }
-                            if (prize.type.equals("coin")){
-                                p.sendMessage("§e>>恭喜玩家 §b" +event.getPlayer().getName() + "§a获得了硬币 §f" + prize.prize + " §a个");
-                            }
-                        }
-                        LotteryTool.givePrizes(event.getPlayer(),prize);
+                        LotteryTool.givePrizes(event.getPlayer(),LotteryTool.drawPrize(lname));
                         event.getPlayer().sendMessage("§a>>快去个人中心启用吧!");
                 }
             }
