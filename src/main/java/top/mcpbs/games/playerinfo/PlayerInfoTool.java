@@ -23,12 +23,18 @@ public class PlayerInfoTool {
     }
 
     public static<T> void setInfo(Player p, String key,T info){
+        if (!playerdata.containsKey(p)){
+            joinPlayerDataMap(p);
+        }
         Config config = playerdata.get(p);
         config.set(key,info);
         config.save();
     }
 
     public static void remInfo(Player p,String key){
+        if (!playerdata.containsKey(p)){
+            joinPlayerDataMap(p);
+        }
         Config config = playerdata.get(p);
         config.remove(key);
         config.save();
