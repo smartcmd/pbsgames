@@ -14,12 +14,20 @@ public class Forms {
     public static void showLotteryBuyForm(String lname, Player player){
         String s = "§b此抽奖箱包含的奖品:";
         for(Map.Entry<String,String> e : LotteryTool.getLotteryAllPrize(lname).entrySet()){
-            if (e.getKey().equals("ch")){
-                s += "\n§a>>称号 - §f[" + e.getValue() + "§f]";
+            if (e.getValue().equals("ch")){
+                s += "\n§a>>称号 - §f[" + e.getKey() + "§f]";
                 continue;
             }
-            if (e.getKey().equals("p")){
-                s += "\n§a>>粒子特效 - §f" + e.getValue();
+            if (e.getValue().equals("p")){
+                s += "\n§a>>粒子特效 - §f" + e.getKey();
+                continue;
+            }
+            if (e.getValue().equals("diamond")){
+                s += "\n§a>>钻石 - §f" + e.getKey();
+                continue;
+            }
+            if (e.getValue().equals("coin")){
+                s += "\n§a>>硬币 - §f" + e.getKey();
                 continue;
             }
         }

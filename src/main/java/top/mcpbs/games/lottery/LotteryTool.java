@@ -3,6 +3,10 @@ package top.mcpbs.games.lottery;
 import cn.nukkit.Player;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
+import top.mcpbs.games.Name.NameTool;
+import top.mcpbs.games.particle.ParticleTool;
+import top.mcpbs.games.playerinfo.coin.Coin;
+import top.mcpbs.games.playerinfo.diamond.Diamond;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,17 +19,7 @@ public class LotteryTool {
     private static Random r = new Random();
 
     public static HashMap<String, String> getLotteryAllPrize(String lname){
-        HashMap<String, String> all = (HashMap) c.get(lname);
-        HashMap<String, String> result = new HashMap<>();
-        for (Map.Entry<String, String> e : all.entrySet()){
-            if (e.getKey().equals("ch")){
-                result.put("ch",e.getValue());
-            }
-            if (e.getKey().equals("p")){
-                result.put("p",e.getValue());
-            }
-        }
-        return result;
+        return (HashMap<String, String>) c.get(lname + ".things");
     }
 
     public static HashMap<String, Object> getLotteryPriceInfo(String lname){
@@ -70,10 +64,16 @@ public class LotteryTool {
     public static void givePrizes(Player player, DrawPrizeModel model){
         switch(model.type){
             case "ch":
-                //待更新
+                NameTool.PlayerAddDesignation(player, (String) model.prize);
                 break;
             case "p":
-                //待更新
+                ParticleTool.addPlayerParticle(player, (String) model.prize);
+                break;
+            case "diamond":
+                Diamond.addDiamond(player, (Integer) model.prize);
+                break;
+            case "coin":
+                Coin.addCoin(player, (Integer) model.prize);
                 break;
         }
     }
@@ -82,9 +82,9 @@ public class LotteryTool {
 class DrawPrizeModel{
 
     public String type;
-    public String prize;
+    public Object prize;
 
-    public DrawPrizeModel(String type, String prize){
+    public DrawPrizeModel(String type, Object prize){
         this.type = type;
         this.prize = prize;
     }
