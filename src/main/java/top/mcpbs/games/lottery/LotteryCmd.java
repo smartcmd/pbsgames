@@ -29,7 +29,7 @@ public class LotteryCmd extends Command {
             return true;
         }else{
             Player player = (Player)sender;
-
+            Forms.showLotteryMainForm(player);
         }
         return true;
     }
