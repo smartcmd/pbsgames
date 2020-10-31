@@ -1,6 +1,7 @@
 package top.mcpbs.games.playerinfo;
 
 import cn.nukkit.Player;
+import cn.nukkit.level.Position;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
 

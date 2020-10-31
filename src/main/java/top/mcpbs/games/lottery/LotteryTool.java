@@ -1,6 +1,7 @@
 package top.mcpbs.games.lottery;
 
 import cn.nukkit.Player;
+import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
 import top.mcpbs.games.Name.NameTool;
@@ -89,6 +90,9 @@ public class LotteryTool {
                 Coin.addCoin(player, (Integer) model.prize);
                 break;
         }
+        EntityLightning l = new EntityLightning(player.getPosition().getChunk(),EntityLightning.getDefaultNBT(player.getPosition()));
+        l.setEffect(false);
+        l.spawnToAll();
     }
 }
 

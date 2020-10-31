@@ -49,7 +49,7 @@ public class NameTool {
 
     public static HashMap<String,Boolean> getPlayerAllDesignation(Player player){
         HashMap tmp = new HashMap();
-        tmp.put("Player",true);
+        tmp.put("§ePlayer",true);
         return PlayerInfoTool.getInfo(player,"designation",tmp);
     }
 

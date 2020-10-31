@@ -48,10 +48,4 @@ public class LR implements Listener {
             }
         }
     }
-
-    public void Lightning(Position position) {
-        EntityLightning l = new EntityLightning(position.getChunk(),EntityLightning.getDefaultNBT(position));
-        l.setEffect(false);
-        l.spawnToAll();
-    }
 }

@@ -16,7 +16,7 @@ public class Designation extends Command {
         if (sender instanceof ConsoleCommandSender){
             sender.sendMessage("控制台不能使用。。。");
         }else{
-            Forms.showDesignationUseForm((Player) sender);
+            Forms.showDesignationUseForm((Player)sender);
         }
         return true;
     }

@@ -9,6 +9,7 @@ import top.mcpbs.games.FormID;
 import top.mcpbs.games.Name.NameTool;
 import top.mcpbs.games.util.SElementButton;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class LR implements Listener {
@@ -20,13 +21,13 @@ public class LR implements Listener {
                 return;
             }
             SElementButton button = (SElementButton) response.getClickedButton();
-            Map.Entry<String, Boolean> e = (Map.Entry<String, Boolean>)button.s;
-            if (e.getValue() == true){
+            HashMap<String, Object> s = (HashMap)button.s;
+            if ((boolean)s.get("used")){
                 event.getPlayer().sendMessage("§c>>你正在使用这个称号!");
                 return;
             }
-            NameTool.setPlayerUseDesignation(event.getPlayer(),e.getKey());
-            event.getPlayer().sendMessage("§a>>你的称号已变更为 " + e.getKey() + "!");
+            NameTool.setPlayerUseDesignation(event.getPlayer(), (String) s.get("d"));
+            event.getPlayer().sendMessage("§a>>你的称号已变更为 " + s.get("d") + "!");
         }
     }
 
