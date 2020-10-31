@@ -53,7 +53,7 @@ public class LotteryTool {
         String type = null;
         for (Map.Entry<String,String> e : prizes.entrySet()){
             if (e.getValue().equals(prize)){
-                type = e.getKey();
+                type = e.getValue();
                 break;
             }
         }
