@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class LotteryTool {
 
-    private static Config c = new Config(Main.plugin.getDataFolder() + "/lottery.yml");
+    public static Config c = new Config(Main.plugin.getDataFolder() + "/lottery.yml");
     private static Random r = new Random();
 
     public static HashMap<String, String> getLotteryAllPrize(String lname){
@@ -23,10 +23,9 @@ public class LotteryTool {
     }
 
     public static HashMap<String, Object> getLotteryPriceInfo(String lname){
-        HashMap<String, String> all = (HashMap) c.get(lname);
         HashMap<String, Object> result = new HashMap<>();
-        result.put("type",all.get("price.type"));
-        result.put("price",all.get("price.price"));
+        result.put("type",c.get(lname + ".price.type"));
+        result.put("price",c.get(lname + ".price.price"));
         return result;
     }
 

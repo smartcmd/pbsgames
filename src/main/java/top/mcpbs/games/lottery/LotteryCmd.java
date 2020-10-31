@@ -29,12 +29,7 @@ public class LotteryCmd extends Command {
             return true;
         }else{
             Player player = (Player)sender;
-            FormWindowSimple form = new FormWindowSimple("§b抽奖箱","快来开启一个抽奖箱吧！");
-            Config c = new Config(this.plugin.getDataFolder() + "/lottery.yml");
-            for (String ss : c.getAll().keySet()){
-                form.addButton(new SElementButton((String)((HashMap)c.get(ss)).get("name"),new ElementButtonImageData("path","textures/ui/gift_square"),ss));
-            }
-            player.showFormWindow(form, FormID.LOTTERY_LIST_FORM);
+
         }
         return true;
     }

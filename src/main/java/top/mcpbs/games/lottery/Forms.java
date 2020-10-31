@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.element.ElementButtonImageData;
 import cn.nukkit.form.window.FormWindowSimple;
+import cn.nukkit.utils.Config;
 import top.mcpbs.games.FormID;
 import top.mcpbs.games.util.SElementButton;
 
@@ -38,5 +39,14 @@ public class Forms {
         form.addButton(new SElementButton("§a开启此抽奖箱",new ElementButtonImageData("path","textures/ui/gift_square"), lname));
         form.addButton(new ElementButton("§c取消",new ElementButtonImageData("path","textures/ui/cancel")));
         player.showFormWindow(form, FormID.LOTTERY_BUY_FORM);
+    }
+
+    public static void showLotteryMainForm(Player player){
+        FormWindowSimple form = new FormWindowSimple("§b抽奖箱","快来开启一个抽奖箱吧！");
+        Config c = LotteryTool.c;
+        for (String ss : c.getAll().keySet()){
+            form.addButton(new SElementButton((String)((HashMap)c.get(ss)).get("name"),new ElementButtonImageData("path","textures/ui/gift_square"),ss));
+        }
+        player.showFormWindow(form, FormID.LOTTERY_LIST_FORM);
     }
 }
