@@ -48,7 +48,7 @@ public class LotteryTool {
     public static DrawPrizeModel drawPrize(String lname){
         HashMap<String, String> prizes = getLotteryAllPrize(lname);
         int count = prizes.size();
-        int rannum = r.nextInt(count) + 1;
+        int rannum = r.nextInt(count);
         String prize = prizes.values().toArray(new String[0])[rannum];
         String type = null;
         for (Map.Entry<String,String> e : prizes.entrySet()){

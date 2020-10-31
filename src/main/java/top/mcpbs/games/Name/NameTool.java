@@ -17,7 +17,7 @@ public class NameTool {
 
     public static String getPlayerUseDesignation(Player player){
         HashMap tmp = new HashMap();
-        tmp.put("Player",true);
+        tmp.put("§ePlayer",true);
         HashMap ch = PlayerInfoTool.getInfo(player,"designation",tmp);
         String sch = null;
         for (Object s : ch.keySet()){
