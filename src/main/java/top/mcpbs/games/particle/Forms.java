@@ -36,7 +36,7 @@ public class Forms {
     public static void showParticleSpeedForm(Player player){
         FormWindowCustom form = new FormWindowCustom("§e更改粒子发射时间间隔");
         form.addElement(new ElementLabel("§b数值范围在1-20之间"));
-        form.addElement(new ElementSlider("§6选择数值:",1,20,1));
+        form.addElement(new ElementSlider("§6选择数值",1,20,1));
         player.showFormWindow(form, FormID.PARTICLE_SPEED_FORM);
     }
 }
