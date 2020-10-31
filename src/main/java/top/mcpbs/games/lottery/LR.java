@@ -58,6 +58,7 @@ public class LR implements Listener {
                                 p.sendMessage("§e>>恭喜玩家 §b" +event.getPlayer().getName() + "§a获得了硬币 §f" + prize.prize + " §a个");
                             }
                         }
+                        LotteryTool.givePrizes(event.getPlayer(),prize);
                         event.getPlayer().sendMessage("§a>>快去个人中心启用吧!");
                 }
             }
