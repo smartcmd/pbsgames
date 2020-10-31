@@ -49,10 +49,10 @@ public class LotteryTool {
         HashMap<String, String> prizes = getLotteryAllPrize(lname);
         int count = prizes.size();
         int rannum = r.nextInt(count);
-        String prize = prizes.values().toArray(new String[0])[rannum];
+        String prize = prizes.keySet().toArray(new String[0])[rannum];
         String type = null;
         for (Map.Entry<String,String> e : prizes.entrySet()){
-            if (e.getValue().equals(prize)){
+            if (e.getKey().equals(prize)){
                 type = e.getValue();
                 break;
             }

@@ -29,7 +29,7 @@ public class LobbyTask extends PluginTask {
                 player.setHealth(player.getMaxHealth());
                 player.getFoodData().setLevel(20);
                 if (player.getY() <= 0) {
-                    player.sendMessage("§a已将你传送回主城!");
+                    player.sendMessage("§a>>已将你传送回主城!");
                     LobbyTool.returnToLobby(player);
                 }
                 if (new File(owner.getDataFolder() + "/playerdata/" + player.getName() + ".yml").exists()) {
