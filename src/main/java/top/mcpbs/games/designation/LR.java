@@ -3,6 +3,7 @@ package top.mcpbs.games.designation;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerFormRespondedEvent;
+import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.form.response.FormResponseSimple;
 import top.mcpbs.games.FormID;
 import top.mcpbs.games.Name.NameTool;
@@ -27,5 +28,10 @@ public class LR implements Listener {
             NameTool.setPlayerUseDesignation(event.getPlayer(),e.getKey());
             event.getPlayer().sendMessage("§a>>你的称号已变更为 " + e.getKey() + "!");
         }
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event){
+        NameTool.returnToDefaultName(event.getPlayer());
     }
 }
