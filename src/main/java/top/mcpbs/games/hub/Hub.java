@@ -4,16 +4,12 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.ConsoleCommandSender;
-import cn.nukkit.plugin.Plugin;
-import top.mcpbs.games.Main;
+import top.mcpbs.games.lobby.LobbyTool;
 
 public class Hub extends Command {
 
-    Plugin plugin;
-
-    public Hub(String name, String description, Plugin plugin) {
+    public Hub(String name, String description) {
         super(name, description);
-        this.plugin = plugin;
     }
 
     @Override
@@ -23,8 +19,7 @@ public class Hub extends Command {
             return true;
         } else if (sender.isPlayer()) {
             Player player = (Player) sender;
-            player.teleport(Main.lobby);
-            player.getInventory().clearAll();
+            LobbyTool.returnToLobby(player);
         }
         return true;
     }

@@ -1,7 +1,6 @@
 package top.mcpbs.games;
 
 import cn.nukkit.Player;
-import cn.nukkit.Server;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
@@ -10,10 +9,10 @@ import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.player.PlayerChatEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
-import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.ParticleEffect;
 import cn.nukkit.level.Position;
+import top.mcpbs.games.lobby.LobbyTool;
 import top.mcpbs.games.room.Room;
 
 public class LR implements Listener {
@@ -22,7 +21,7 @@ public class LR implements Listener {
         event.setJoinMessage("[§a+§f]" + "§e" + event.getPlayer().getName());
         event.getPlayer().setMaxHealth(20);
         event.getPlayer().setHealth(event.getPlayer().getMaxHealth());
-        this.Lightning(Main.lobby);
+        this.Lightning(LobbyTool.lobby);
     }
 
     public void Lightning(Position position) {

@@ -10,7 +10,7 @@ import cn.nukkit.item.Item;
 import top.mcpbs.games.FormID;
 import top.mcpbs.games.room.Room;
 
-public class Form {
+public class Forms {
     public static void potStore(Player player){
         int ynum = 0;
         if (!player.getInventory().getContents().isEmpty()) {

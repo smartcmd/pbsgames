@@ -14,7 +14,6 @@ import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.math.Vector3;
-import top.mcpbs.games.duel.DuelRoom;
 import top.mcpbs.games.room.Room;
 
 import java.util.ArrayList;

@@ -2,12 +2,9 @@ package top.mcpbs.games.uhc;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.form.element.ElementButton;
-import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.item.Item;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.scheduler.PluginTask;
-import top.mcpbs.games.FormID;
 import top.mcpbs.games.Main;
 import top.mcpbs.games.playerinfo.coin.Coin;
 import top.mcpbs.games.playerinfo.score.Score;

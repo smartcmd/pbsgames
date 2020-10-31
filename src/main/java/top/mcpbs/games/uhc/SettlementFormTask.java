@@ -17,6 +17,6 @@ public class SettlementFormTask extends PluginTask {
 
     @Override
     public void onRun(int i) {
-        Form.IncomeSettlementForm(player,iswinner);
+        Forms.IncomeSettlementForm(player,iswinner);
     }
 }

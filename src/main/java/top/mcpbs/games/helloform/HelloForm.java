@@ -1,12 +1,10 @@
 package top.mcpbs.games.helloform;
 
 import cn.nukkit.Player;
-import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.window.FormWindowModal;
-import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.utils.Config;
-import top.mcpbs.games.Main;
 import top.mcpbs.games.FormID;
+import top.mcpbs.games.Main;
 
 public class HelloForm{
 

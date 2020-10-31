@@ -1,22 +1,22 @@
-package top.mcpbs.games.particle;
+package top.mcpbs.games.designation;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.ConsoleCommandSender;
 
-public class Particle extends Command {
-    public Particle(String name, String description) {
+public class Designation extends Command {
+
+    public Designation(String name, String description) {
         super(name, description);
     }
 
     @Override
     public boolean execute(CommandSender sender, String s, String[] strings) {
         if (sender instanceof ConsoleCommandSender){
-            sender.sendMessage("不能在控制台使用此指令!");
+            sender.sendMessage("控制台不能使用。。。");
         }else{
-            Player player = (Player)sender;
-            Forms.showParticleSelectForm(player);
+            Forms.showDesignationUseForm((Player) sender);
         }
         return true;
     }

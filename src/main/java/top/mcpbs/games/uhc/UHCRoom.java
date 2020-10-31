@@ -6,8 +6,8 @@ import cn.nukkit.item.Item;
 import cn.nukkit.level.GameRule;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.potion.Effect;
-import top.mcpbs.games.Main;
-import top.mcpbs.games.designation.SetName;
+import top.mcpbs.games.Name.NameTool;
+import top.mcpbs.games.lobby.LobbyTool;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
 import top.mcpbs.games.uhc.uhcworldgenerator.NormalGenerator;
@@ -115,10 +115,9 @@ public class UHCRoom extends Room {
                 if (player.isOnline()) {
                     Room.aplaying.remove(player);
                     player.setGamemode(0);
-                    player.getInventory().clearAll();
-                    player.teleport(Main.lobby);
                     player.setMaxHealth(20);
-                    SetName.ReloadToDefaultDesignation(player);
+                    NameTool.returnToDefaultName(player);
+                    LobbyTool.returnToLobby(player);
                 }
             }
         }
@@ -162,7 +161,7 @@ public class UHCRoom extends Room {
         }
         player.setGamemode(0);
         player.setMaxHealth(20);
-        SetName.ReloadToDefaultDesignation(player);
+        NameTool.returnToDefaultName(player);
     }
 
     @Override
@@ -200,7 +199,7 @@ public class UHCRoom extends Room {
             if (tmp == 8) {
                 tmp = 0;
             }
-            SetName.setName(player, this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "]" + player.getName());
+            NameTool.setName(player, this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "]" + player.getName());
             player.teleport(team.spawnpos);
             player.sendMessage("§a你加入了 " + team.teamname);
         }

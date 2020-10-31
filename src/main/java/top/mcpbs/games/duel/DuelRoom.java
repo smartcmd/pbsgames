@@ -7,6 +7,7 @@ import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.level.Position;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
+import top.mcpbs.games.lobby.LobbyTool;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
 import top.mcpbs.games.util.FileUtil;
@@ -170,7 +171,7 @@ public class DuelRoom extends Room {
                     Room.aplaying.remove(player);
                     player.setGamemode(0);
                     player.getInventory().clearAll();
-                    player.teleport(Main.lobby);
+                    LobbyTool.returnToLobby(player);
                 }
             }
         }

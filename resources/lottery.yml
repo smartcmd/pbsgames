@@ -19,7 +19,9 @@
     §7PBS§a大家庭: ch
     §b流年如歌: ch
     §eMC§7BE§d万岁: ch
-  price: 50
+  price:
+    type: coin
+    price: 50
   description: §b开启此抽奖箱可获得称号哦~
 粒子抽奖箱:
   name: §b流星抽奖箱
@@ -29,5 +31,7 @@
     lavadrip: p
     angryvillager: p
     heart: p
-  price: 50
+  price:
+    type: coin
+    price: 50
   description: §b开启此抽奖箱可获得粒子哦~

@@ -9,19 +9,14 @@ public class Score {
     public static HashMap<Player, Integer> score = new HashMap();
 
     public static void addScore(Player player, int num){
-        PlayerInfoTool.setInfo(player,"score",PlayerInfoTool.getInfo(player,"score",0) + num);
-        score.put(player, PlayerInfoTool.getInfo(player,"score",0));
+        PlayerInfoTool.setInfo(player,"main_economic.score",PlayerInfoTool.getInfo(player,"score",0) + num);
     }
 
     public static void remScore(Player player, int num){
-        PlayerInfoTool.setInfo(player,"score",PlayerInfoTool.getInfo(player,"score",0) - num);
-        score.put(player, PlayerInfoTool.getInfo(player,"score",0));
+        PlayerInfoTool.setInfo(player,"main_economic.score",PlayerInfoTool.getInfo(player,"score",0) - num);
     }
 
     public static int getScore(Player player){
-        if (!score.containsKey(player)){
-            score.put(player,PlayerInfoTool.getInfo(player,"score",0));
-        }
-        return score.get(player);
+        return PlayerInfoTool.getInfo(player,"main_economic.score",0);
     }
 }

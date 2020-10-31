@@ -107,7 +107,7 @@ public class LR implements Listener {
                     Server.getInstance().getCommandMap().dispatch(player,"particle");
                     break;
                 case 1:
-                    Server.getInstance().getCommandMap().dispatch(player,"ch");
+                    Server.getInstance().getCommandMap().dispatch(player,"designation");
                     break;
             }
         }

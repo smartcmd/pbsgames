@@ -1,0 +1,15 @@
+main_economic:
+  score: 0
+  diamond: 0
+  coin: 0
+designation:
+  xxx: false
+  yyy: true
+particle:
+  list:
+    xxx: true
+    yyy: false
+  speed: 20
+
+
+

@@ -9,10 +9,10 @@ import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
+import top.mcpbs.games.lobby.LobbyTool;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
 import top.mcpbs.games.util.FileUtil;
-import top.mcpbs.games.waitroom.WaitRoom;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -120,8 +120,7 @@ public class RushRoom extends Room {
                 if (player.isOnline()) {
                     Room.aplaying.remove(player);
                     player.setGamemode(0);
-                    player.getInventory().clearAll();
-                    player.teleport(Main.lobby);
+                    LobbyTool.returnToLobby(player);
                 }
             }
         }

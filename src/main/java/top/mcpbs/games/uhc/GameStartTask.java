@@ -3,7 +3,7 @@ package top.mcpbs.games.uhc;
 import cn.nukkit.Player;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.scheduler.PluginTask;
-import top.mcpbs.games.designation.SetName;
+import top.mcpbs.games.Name.NameTool;
 
 public class GameStartTask extends PluginTask {
 
@@ -37,7 +37,7 @@ public class GameStartTask extends PluginTask {
                 player.setSubtitle("§c已取消倒计时");
                 if (room.waittime <= 15){
                     room.waitRoom.joinWaitRoom(player);
-                    SetName.ReloadToDefaultDesignation(player);
+                    NameTool.returnToDefaultName(player);
                     for (Team t : room.team){
                         t.player.clear();
                     }//清除队伍数据

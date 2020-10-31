@@ -10,19 +10,16 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
-import cn.nukkit.event.entity.EntityRegainHealthEvent;
-import cn.nukkit.event.player.*;
-import cn.nukkit.event.server.DataPacketReceiveEvent;
+import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
+import cn.nukkit.event.player.PlayerFormRespondedEvent;
+import cn.nukkit.event.player.PlayerInteractEvent;
+import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.form.response.FormResponseSimple;
-import cn.nukkit.form.window.FormWindowCustom;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Location;
-import cn.nukkit.level.Position;
-import cn.nukkit.network.protocol.PlayerActionPacket;
 import cn.nukkit.potion.Effect;
 import top.mcpbs.games.FormID;
 import top.mcpbs.games.Main;
-import top.mcpbs.games.duel.DuelRoom;
 import top.mcpbs.games.playerinfo.diamond.Diamond;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
@@ -285,7 +282,7 @@ public class LR implements Listener {
         if (Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom){
             if (event.getBlock().getId() == 117 && !((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.containsKey(event.getPlayer())){
                 event.setCancelled();
-                Form.potStore(event.getPlayer());
+                Forms.potStore(event.getPlayer());
                 return;
             }
             if (((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.get(event.getPlayer()) == true || Room.aplaying.get(event.getPlayer()).isend == true) {

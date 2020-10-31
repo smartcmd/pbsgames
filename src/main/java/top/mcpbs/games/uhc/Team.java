@@ -2,14 +2,10 @@ package top.mcpbs.games.uhc;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
-import cn.nukkit.block.BlockAir;
-import cn.nukkit.block.BlockID;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
-import cn.nukkit.level.format.generic.BaseFullChunk;
 import cn.nukkit.math.Vector3;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 

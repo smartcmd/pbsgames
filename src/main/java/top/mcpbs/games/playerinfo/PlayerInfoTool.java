@@ -4,29 +4,39 @@ import cn.nukkit.Player;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
 
-import java.io.File;
+import java.util.HashMap;
 
 public class PlayerInfoTool {
+
+    public static HashMap<Player, Config> playerdata = new HashMap<>();
+
     public static<T> T getInfo(Player p, String key, T definfo){
-        testFolder();
-        Config config = new Config(Main.plugin.getDataFolder() + "/playerdata/" + p.getName() + ".yml");
+        if (!playerdata.containsKey(p)){
+            joinPlayerDataMap(p);
+        }
+        Config config = playerdata.get(p);
         if (!config.exists(key)){
             config.set(key,definfo);
+            config.save();
         }
         return (T)config.get(key);
     }
 
     public static<T> void setInfo(Player p, String key,T info){
-        testFolder();
-        Config config = new Config(Main.plugin.getDataFolder() + "/playerdata/" + p.getName() + ".yml");
+        Config config = playerdata.get(p);
         config.set(key,info);
         config.save();
     }
 
-    public static void testFolder(){
-        File f = new File(Main.plugin.getDataFolder() + "/playerdata");
-        if (!f.exists()){
-            f.mkdir();
-        }
+    public static void remInfo(Player p,String key){
+        Config config = playerdata.get(p);
+        config.remove(key);
+        config.save();
+    }
+
+
+    public static void joinPlayerDataMap(Player player){
+        Config config = new Config(Main.plugin.getDataFolder() + "/playerdata/" + player.getName() + ".yml");
+        playerdata.put(player, config);
     }
 }

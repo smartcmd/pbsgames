@@ -3,42 +3,29 @@ package top.mcpbs.games.designation;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerFormRespondedEvent;
-import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.form.response.FormResponseSimple;
-import cn.nukkit.utils.Config;
-import top.mcpbs.games.Main;
 import top.mcpbs.games.FormID;
+import top.mcpbs.games.Name.NameTool;
+import top.mcpbs.games.util.SElementButton;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class LR implements Listener {
-
     @EventHandler
-    public void onPlayerFormRespondedEvent(PlayerFormRespondedEvent event){
+    public void onFormResponse(PlayerFormRespondedEvent event){
         if (event.getFormID() == FormID.CH_USE_FORM){
-            Config config = new Config(Main.plugin.getDataFolder() + "/playerdata/" + event.getPlayer().getName() + ".yml");
-            HashMap m = (HashMap)config.get("ch");
             FormResponseSimple response = (FormResponseSimple) event.getResponse();
             if (response == null){
                 return;
             }
-            if ((boolean)m.get((m.keySet().toArray())[response.getClickedButtonId()])){
-                event.getPlayer().sendMessage("§e你正在使用这个称号!");
-            }else{
-                for (Object s : m.keySet()){
-                    m.put(s,false);
-                }
-                m.put((m.keySet().toArray())[response.getClickedButtonId()],true);
-                config.set("ch",m);
-                config.save();
-                event.getPlayer().sendMessage("§a启用成功!");
-                SetName.ReloadToDefaultDesignation(event.getPlayer());
+            SElementButton button = (SElementButton) response.getClickedButton();
+            Map.Entry<String, Boolean> e = (Map.Entry<String, Boolean>)button.s;
+            if (e.getValue() == true){
+                event.getPlayer().sendMessage("§c>>你正在使用这个称号!");
+                return;
             }
+            NameTool.setPlayerUseDesignation(event.getPlayer(),e.getKey());
+            event.getPlayer().sendMessage("§a>>你的称号已变更为 " + e.getKey() + "!");
         }
-    }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event){
-        SetName.ReloadToDefaultDesignation(event.getPlayer());
     }
 }

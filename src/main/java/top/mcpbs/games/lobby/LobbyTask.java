@@ -2,7 +2,6 @@ package top.mcpbs.games.lobby;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.item.Item;
 import cn.nukkit.level.Level;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.scheduler.PluginTask;
@@ -25,29 +24,13 @@ public class LobbyTask extends PluginTask {
 
     @Override
     public void onRun(int i) {
-        Item sword = Item.get(276);
-        Item book = Item.get(403);
-        Item personality = Item.get(264);
-        Item head = Item.get(397,3,1);
-        Item chest = Item.get(130);
-        sword.setCustomName("§a小游戏列表");
-        book.setCustomName("§b个人信息");
-        personality.setCustomName("§c个性工坊");
-        head.setCustomName("§d好友系统");
-        chest.setCustomName("§e抽奖箱(在?来一发?)");
         for(Player player : lobby.getPlayers().values()) {
             if (player.isOnline()) {
                 player.setHealth(player.getMaxHealth());
                 player.getFoodData().setLevel(20);
-                if (player.getInventory().isEmpty()) {
-                    player.getInventory().setItem(1, sword);
-                    player.getInventory().setItem(2, personality);
-                    player.getInventory().setItem(3, head);
-                    player.getInventory().setItem(4, chest);
-                }
                 if (player.getY() <= 0) {
                     player.sendMessage("§a已将你传送回主城!");
-                    player.teleport(Main.lobby);
+                    LobbyTool.returnToLobby(player);
                 }
                 if (new File(owner.getDataFolder() + "/playerdata/" + player.getName() + ".yml").exists()) {
                     ArrayList l = new ArrayList();
