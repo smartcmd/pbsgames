@@ -13,6 +13,7 @@
       <element id="file-copy" path="$PROJECT_DIR$/resources/chao.yml" />
       <element id="file-copy" path="$PROJECT_DIR$/resources/timemessage.yml" />
       <element id="file-copy" path="$PROJECT_DIR$/resources/duelmode.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/resources/duellevel.yml" />
     </root>
   </artifact>
 </component>
