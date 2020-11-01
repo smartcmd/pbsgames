@@ -18,6 +18,8 @@ import cn.nukkit.potion.Effect;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.FormID;
 import top.mcpbs.games.Main;
+import top.mcpbs.games.playerinfo.PlayerInfoTool;
+import top.mcpbs.games.playerinfo.coin.Coin;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
 
@@ -41,64 +43,32 @@ public class LR implements Listener {
     public void onPlayerDamage(EntityDamageEvent event){
         if (event.getEntity() instanceof Player && event.getCause() == EntityDamageEvent.DamageCause.FALL && Chao.players.containsKey(event.getEntity())){
             event.setCancelled();
-            return;
+            return;//fall cancelled
         }
-        if (event.getEntity() instanceof Player && Chao.players.containsKey(event.getEntity()) && Chao.players.get(event.getEntity()) == false){
+
+        if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK){
+            EntityDamageByEntityEvent eventd = (EntityDamageByEntityEvent)event;
+            if (Chao.players.containsKey(eventd.getEntity()) && Chao.players.containsKey(eventd.getDamager())){
+
+                if (!Chao.players.get(eventd.getEntity()) || !Chao.players.get(eventd.getDamager())){
+                    event.setCancelled();
+                    return;//如果pvp未开启就撤回
+                }
+
+                eventd.setKnockBack(eventd.getKnockBack() * 3);//knockback set
+
+                if ((eventd.getEntity().getHealth() - eventd.getFinalDamage()) < 1){//kill by player
+                    event.setCancelled();
+                    playerDead((Player)eventd.getEntity(),(Player)eventd.getDamager());
+                    return;
+                }
+            }
+        }
+
+        if ((event.getEntity().getHealth() - event.getFinalDamage()) < 1){//kill by player
             event.setCancelled();
+            playerDead((Player)event.getEntity(),null);
             return;
-        }
-        if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK && Chao.players.containsKey(event.getEntity())) {
-            Player damager = (Player) ((EntityDamageByEntityEvent)event).getDamager();
-            if (damager.getName().equals(event.getEntity().getName())) {
-                event.setCancelled();
-                return;
-            }
-            if (event.getEntity() instanceof Player && (event.getEntity().getHealth() - event.getFinalDamage()) < 1 && Chao.players.containsKey(event.getEntity()) && Chao.players.get(event.getEntity()) == true) {
-                event.setCancelled();
-                Player player = ((Player) event.getEntity()).getPlayer();
-                player.sendTitle("§c你阵亡了!");
-                Chao.chaoplayerinfo.get(player).put("death", (int) Chao.chaoplayerinfo.get(player).get("death") + 1);
-                Config config1 = new Config(Main.plugin.getDataFolder() + "/playerdata/" + player.getName() + ".yml");
-                config1.set("chao", Chao.chaoplayerinfo.get(player));
-                config1.save();
-                for (Player p : Chao.chao.getPlayers().values()) {
-                    p.sendMessage("§6玩家 §e" + player.getName() + " §d被玩家 §e" + damager.getName() + " §a击败了!");
-                }
-                player.setGamemode(3);
-                player.setHealth(player.getMaxHealth());
-                damager.getInventory().addItem(Item.get(322, 0, 1));
-                Chao.chaoplayerinfo.get(damager).put("kill", (int) Chao.chaoplayerinfo.get(damager).get("kill") + 1);
-                Chao.chaoplayerinfo.get(damager).put("coin", Double.valueOf(String.format("%.2f", (double) Chao.chaoplayerinfo.get(damager).get("coin") + 2 * (double) Chao.chaoplayerinfo.get(damager).get("draw rate"))));
-                damager.sendMessage("§a你获得了 §e2 * " + Chao.chaoplayerinfo.get(damager).get("draw rate") + " §6的乱斗币!,§a输入§b/chaostore即可打开大乱斗商店!");
-                Score.addScore(player,1);
-                damager.sendMessage("§a你获得了 §e1 §6XP！");
-                Effect eff = Effect.getEffect(Effect.REGENERATION);
-                eff.setAmplifier(2);
-                eff.setDuration(10 * 20);
-                damager.addEffect(eff);
-                Config config = new Config(Main.plugin.getDataFolder() + "/playerdata/" + damager.getName() + ".yml");
-                config.set("chao", Chao.chaoplayerinfo.get(damager));
-                config.save();
-                Server.getInstance().getScheduler().scheduleDelayedTask(new TeleportTask(Main.plugin, player), 20 * 5);
-            }
-        }else if (Chao.players.containsKey(event.getEntity()) && event.getCause() != EntityDamageEvent.DamageCause.FALL){
-            if (event.getEntity() instanceof Player && (event.getEntity().getHealth() - event.getFinalDamage()) < 1 && Chao.players.containsKey(event.getEntity()) && Chao.players.get(event.getEntity()) == true) {
-                event.setCancelled();
-                Player player = ((Player) event.getEntity()).getPlayer();
-                player.sendTitle("§c你阵亡了!");
-                player.sendMessage("§e你失去了1分数");
-                Score.remScore(player,1);
-                Chao.chaoplayerinfo.get(player).put("death", (int) Chao.chaoplayerinfo.get(player).get("death") + 1);
-                Config config1 = new Config(Main.plugin.getDataFolder() + "/playerdata/" + player.getName() + ".yml");
-                config1.set("chao", Chao.chaoplayerinfo.get(player));
-                config1.save();
-                for (Player p : Chao.chao.getPlayers().values()) {
-                    p.sendMessage("§6玩家 §e" + player.getName() + " §6不知怎么的就死了!");
-                }
-                player.setGamemode(3);
-                player.setHealth(player.getMaxHealth());
-                Server.getInstance().getScheduler().scheduleDelayedTask(new TeleportTask(Main.plugin, player), 20 * 5);
-            }
         }
     }
 
@@ -147,13 +117,11 @@ public class LR implements Listener {
             }
             switch(response.getClickedButtonId()){
                 case 0:
-                    if ((double) Chao.chaoplayerinfo.get(event.getPlayer()).get("coin") < 50){
+                    if (Chao.getCoin(event.getPlayer()) < 50){
                         event.getPlayer().sendMessage("§c你的乱斗币不足!");
                     }else{
-                        Chao.chaoplayerinfo.get(event.getPlayer()).put("coin",((double) Chao.chaoplayerinfo.get(event.getPlayer()).get("coin")) - 50);
-                        Chao.chaoplayerinfo.get(event.getPlayer()).put("draw rate", ((double) Chao.chaoplayerinfo.get(event.getPlayer()).get("draw rate") + 0.2));
-                        Config config0 = new Config(Main.plugin.getDataFolder() + "/playerdata/" + event.getPlayer().getName() + ".yml");
-                        config0.set("chao", Chao.chaoplayerinfo.get(event.getPlayer()));
+                        Chao.remCoin(event.getPlayer(),50);
+                        Chao.addDrawRate(event.getPlayer(),0.2);
                         event.getPlayer().sendMessage("§a购买成功！");
                     }
                     break;
@@ -161,12 +129,10 @@ public class LR implements Listener {
                     if ((double) Chao.chaoplayerinfo.get(event.getPlayer()).get("coin") < 60){
                         event.getPlayer().sendMessage("§c你的乱斗币不足!");
                     }else{
-                        Chao.chaoplayerinfo.get(event.getPlayer()).put("coin",(double) Chao.chaoplayerinfo.get(event.getPlayer()).get("coin") - 60);
-                        Chao.chaoplayerinfo.get(event.getPlayer()).put("health", ((int)(Chao.chaoplayerinfo.get(event.getPlayer()).get("health")) + 2));
-                        Config config0 = new Config(Main.plugin.getDataFolder() + "/playerdata/" + event.getPlayer().getName() + ".yml");
-                        config0.set("chao", Chao.chaoplayerinfo.get(event.getPlayer()));
+                        Chao.remCoin(event.getPlayer(),60);
+                        Chao.addHealth(event.getPlayer(),2);
                         event.getPlayer().sendMessage("§a购买成功！");
-                        event.getPlayer().setMaxHealth((int) ((int)(Chao.chaoplayerinfo.get(event.getPlayer()).get("health")) + 2));
+                        event.getPlayer().setMaxHealth(Chao.getHealth(event.getPlayer()));
                         event.getPlayer().setHealth(event.getPlayer().getMaxHealth());
                     }
                     break;
@@ -179,6 +145,36 @@ public class LR implements Listener {
         if (Chao.players.containsKey(event.getPlayer()) && Chao.players.get(event.getPlayer()) == false && event.getPlayer().getInventory().getItemInHand().getId() == 355){
             Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
             Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(),"/hub"));
+        }
+    }
+
+    public void playerDead(Player dead,Player killer){
+        if (killer != null){
+            dead.getInventory().clearAll();
+            dead.setGamemode(3);
+            dead.sendTitle("§c>>你阵亡了!");
+            dead.sendMessage("§c>>你失去了0.25大乱斗币!");
+            Chao.remCoin(dead,0.25);
+            Server.getInstance().getScheduler().scheduleDelayedTask(new TeleportTask(Main.plugin, dead), 20 * 5);//dead
+
+            killer.sendMessage("§a>>你杀死了玩家 " + dead.getName());
+            killer.sendMessage("§a>>你获得了1 * " + Chao.getdrawRate(killer));
+            Chao.addCoin(killer,1 * Chao.getdrawRate(killer));
+
+            for (Player player : killer.getLevel().getPlayers().values()){
+                player.sendMessage("§e>>玩家 " + killer.getName() + " 杀死了玩家 " + dead.getName());
+            }
+        }else if (killer == null){
+            dead.getInventory().clearAll();
+            dead.setGamemode(3);
+            dead.sendTitle("§c>>你阵亡了!");
+            dead.sendMessage("§c>>你失去了0.25大乱斗币!");
+            Chao.remCoin(dead,0.25);
+            Server.getInstance().getScheduler().scheduleDelayedTask(new TeleportTask(Main.plugin, dead), 20 * 5);//dead
+
+            for (Player player : killer.getLevel().getPlayers().values()){
+                player.sendMessage("§e>>玩家 " + dead.getName() + " 不知怎么的就死了...");
+            }
         }
     }
 }

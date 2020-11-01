@@ -2,6 +2,8 @@ package top.mcpbs.games.uhc;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.item.Item;
+import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.level.Position;
 import cn.nukkit.network.protocol.SetSpawnPositionPacket;
 import cn.nukkit.plugin.Plugin;
@@ -115,6 +117,14 @@ public class UHCTask extends PluginTask {
                             pk.z = spawn.getFloorZ();
                             player.dataPacket(pk);
                         }
+                    }
+                    Item hand = player.getInventory().getItemInHand();
+                    if (hand.isTool() == true && !hand.hasEnchantment(Enchantment.ID_DURABILITY) && !hand.hasEnchantment(Enchantment.ID_EFFICIENCY)){
+                        Enchantment durable = Enchantment.get(Enchantment.ID_DURABILITY);
+                        durable.setLevel(3);
+                        Enchantment efficienct = Enchantment.get(Enchantment.ID_EFFICIENCY);
+                        efficienct.setLevel(5);
+                        hand.addEnchantment(durable,efficienct);
                     }
                 }
             }

@@ -10,6 +10,13 @@ particle:
     xxx: true
     yyy: false
   speed: 20
+chao:
+  kill:
+  death:
+  coin:
+  health:
+  draw_rate:
+
 
 
 

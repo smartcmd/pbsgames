@@ -63,3 +63,6 @@ potpvp:
       place: boots
 handpvp:
   modename: §l§e空手决斗
+  item:
+    [364,0,64]:
+      name: 好吃的牛肉~
