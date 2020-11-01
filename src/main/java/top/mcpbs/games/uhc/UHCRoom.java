@@ -98,6 +98,8 @@ public class UHCRoom extends Room {
             player.addEffect(eff);
 
             this.playerteam.get(player).cleanBlock();
+
+            player.setGamemode(0);
         }
         this.playing.addAll(waiting);
         this.waiting.clear();
@@ -202,6 +204,7 @@ public class UHCRoom extends Room {
             NameTool.setName(player, this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "]" + player.getName());
             player.teleport(team.spawnpos);
             player.sendMessage("§a你加入了 " + team.teamname);
+            player.setGamemode(2);
         }
     }
 }
