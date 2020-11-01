@@ -73,7 +73,7 @@ public class LR implements Listener {
             Player player = (Player)event.getEntity();
             Player damager = (Player)event.getDamager();
             if (damager.getInventory().getItemInHand().getId() == 280){
-                event.setKnockBack(0.5F);
+                event.setKnockBack(event.getKnockBack() * 5);
             }
         }
     }

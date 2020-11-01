@@ -3,6 +3,7 @@ package top.mcpbs.games;
 import cn.nukkit.Player;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
+import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
@@ -38,13 +39,6 @@ public class LR implements Listener {
     }
 
     @EventHandler
-    public void onPlayerDamage(EntityDamageEvent event){
-        if (event.getEntity() instanceof Player && Room.awaiting.containsKey(event.getEntity())){
-            event.setCancelled();
-        }
-    }
-
-    @EventHandler
     public void onPlayerChat(PlayerChatEvent event){
         event.setCancelled();
         Level level = event.getPlayer().getLevel();
@@ -58,5 +52,10 @@ public class LR implements Listener {
         if (event.getDamager() instanceof Player && event.getEntity() instanceof Player){
             event.getEntity().getLevel().addParticleEffect(event.getEntity().getPosition(), ParticleEffect.CRITICAL_HIT);
         }
+    }
+
+    @EventHandler(priority = EventPriority.LOW)
+    public void onPlayerDamage(EntityDamageByEntityEvent event){
+        event.setKnockBack(event.getKnockBack() * 2);
     }
 }

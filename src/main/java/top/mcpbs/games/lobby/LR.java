@@ -17,7 +17,7 @@ import cn.nukkit.form.element.ElementButtonImageData;
 import cn.nukkit.form.response.FormResponseSimple;
 import cn.nukkit.form.window.FormWindowSimple;
 import top.mcpbs.games.FormID;
-import top.mcpbs.games.chao.ChaoTask;
+import top.mcpbs.games.chao.Chao;
 import top.mcpbs.games.duel.DuelRoom;
 import top.mcpbs.games.rush.RushRoom;
 import top.mcpbs.games.uhc.UHCRoom;
@@ -46,7 +46,7 @@ public class LR implements Listener {
                     xyx.addButton(new ElementButton("§l§6战桥" + "\n§l§f游戏中: §a" + RushRoom.getAllPlaying() + " §f等待中: §a" + RushRoom.getAllWaiting(),new ElementButtonImageData("path","textures/blocks/cake_top")));
                     xyx.addButton(new ElementButton("§l§a归心似箭" + "\n§l§f游戏中: §a" + DuelRoom.getModePlaying("bowpvp") + " §f等待中: §a" + DuelRoom.getModeWaiting("bowpvp"),new ElementButtonImageData("path","textures/items/bow_pulling_2")));
                     xyx.addButton(new ElementButton("§l§b空手决斗" + "\n§l§f游戏中: §a" + DuelRoom.getModePlaying("handpvp") + " §f等待中: §a" + DuelRoom.getModeWaiting("handpvp"),new ElementButtonImageData("path","textures/items/bone")));
-                    xyx.addButton(new ElementButton("§l§c天坑大乱斗" + "\n§l§f游戏中: §a" + ChaoTask.getPlaying(),new ElementButtonImageData("path","textures/items/stone_sword")));
+                    xyx.addButton(new ElementButton("§l§c天坑大乱斗" + "\n§l§f游戏中: §a" + Chao.getPlaying(),new ElementButtonImageData("path","textures/items/stone_sword")));
                     xyx.addButton(new ElementButton("§l§e极限生存冠军" + "\n§l§f游戏中: §a" + UHCRoom.getAllPlaying() + " §f等待中: §a" + UHCRoom.getAllWaiting(),new ElementButtonImageData("path","textures/items/diamond_pickaxe")));
                     player.showFormWindow(xyx, FormID.LOBBY_GAMESLIST_FORM);
                     break;

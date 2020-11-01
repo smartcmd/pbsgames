@@ -15,14 +15,14 @@ import top.mcpbs.games.util.DateUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ChaoTask extends PluginTask {
+public class Chao extends PluginTask {
 
     public static Level chao;
     public static HashMap<Player, Boolean> players = new HashMap();
     public static HashMap<Player, HashMap<String, Number>> chaoplayerinfo = new HashMap();
     public static Config chaoconfig;
 
-    public ChaoTask(Plugin owner) {
+    public Chao(Plugin owner) {
         super(owner);
         chaoconfig = new Config(owner.getDataFolder() + "/chao.yml");
         Server.getInstance().loadLevel((String) chaoconfig.get("world"));
@@ -32,7 +32,7 @@ public class ChaoTask extends PluginTask {
 
     @Override
     public void onRun(int i) {
-        for (Player player : ChaoTask.players.keySet()){
+        for (Player player : Chao.players.keySet()){
             player.getFoodData().setLevel(20);
             if (player.getY() <= (int)this.chaoconfig.get("line") && players.get(player) == false){
                 player.sendTitle("§cPVP模式§e开启！","§a努力击杀其他玩家吧！");
@@ -105,6 +105,6 @@ public class ChaoTask extends PluginTask {
     }
 
     public static int getPlaying(){
-        return ChaoTask.players.size();
+        return Chao.players.size();
     }
 }

@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.plugin.PluginBase;
+import top.mcpbs.games.chao.Chao;
 import top.mcpbs.games.duel.LoadCmd;
 import top.mcpbs.games.getid.GetBlockID;
 import top.mcpbs.games.hpandscoreshow.HPAndScoreShow;
@@ -91,7 +92,7 @@ public class Main extends PluginBase {
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.rush.RushTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.particle.ParticleTask(this),1);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.lobby.BossBarTask(this),1);
-        this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.chao.ChaoTask(this),5);
+        this.getServer().getScheduler().scheduleRepeatingTask(new Chao(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.timemessage.MessageTask(this),20);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.uhc.TimeTask(this),20);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.uhc.UHCTask(this),20);

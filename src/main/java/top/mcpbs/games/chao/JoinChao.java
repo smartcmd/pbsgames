@@ -26,14 +26,14 @@ public class JoinChao extends Command {
             sender.sendMessage("控制台不能使用此指令!");
             return true;
         }else{
-            ArrayList l = (ArrayList) ChaoTask.chaoconfig.get("spawn");
+            ArrayList l = (ArrayList) Chao.chaoconfig.get("spawn");
             Player player = (Player)sender;
             if (!Room.awaiting.containsKey(player) && !Room.aplaying.containsKey(player)) {
-                if (!Server.getInstance().isLevelLoaded((String) ChaoTask.chaoconfig.get("world"))){
-                    Server.getInstance().loadLevel((String) ChaoTask.chaoconfig.get("world"));
+                if (!Server.getInstance().isLevelLoaded((String) Chao.chaoconfig.get("world"))){
+                    Server.getInstance().loadLevel((String) Chao.chaoconfig.get("world"));
                 }
                 player.sendMessage("§a成功加入大乱斗");
-                player.teleport(new Position((double) l.get(0), (double) l.get(1), (double) l.get(2), Server.getInstance().getLevelByName((String) ChaoTask.chaoconfig.get("world"))));
+                player.teleport(new Position((double) l.get(0), (double) l.get(1), (double) l.get(2), Server.getInstance().getLevelByName((String) Chao.chaoconfig.get("world"))));
                 player.getInventory().clearAll();
                 Config pc = new Config(Main.plugin.getDataFolder() + "/playerdata/" + player.getName() + ".yml");
                 HashMap<String, Number> pi = new HashMap();
@@ -44,8 +44,8 @@ public class JoinChao extends Command {
                 pi.put("health", (int) ((HashMap)pc.get("chao")).get("health"));
                 player.setMaxHealth((int)pi.get("health"));
                 player.setHealth(player.getMaxHealth());
-                ChaoTask.chaoplayerinfo.put(player,pi);
-                ChaoTask.players.put(player, false);
+                Chao.chaoplayerinfo.put(player,pi);
+                Chao.players.put(player, false);
                 Room.aplaying.put(player,null);
                 Item hub = Item.get(355,0,1);
                 hub.setCustomName("退出等待");
