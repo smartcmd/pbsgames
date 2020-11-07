@@ -42,7 +42,9 @@ public class FriendTool {
 
     public static boolean addFriendApplication(String respondent,String applicant){
         if (PlayerInfoTool.isHasConfig(respondent) == true){
-            PlayerInfoTool.setOfflinePlayerInfo(respondent,"friend.application",PlayerInfoTool.getOfflinePlayerInfo(respondent,"friend.application",new HashMap()).put(applicant, DateUtil.getDate("yyyy/MM/dd")));
+            HashMap tmp = PlayerInfoTool.getOfflinePlayerInfo(respondent,"friend.application",new HashMap());
+            tmp.put(applicant, DateUtil.getDate("yyyy/MM/dd"));
+            PlayerInfoTool.setOfflinePlayerInfo(respondent,"friend.application",tmp);
             return true;
         }
         return false;
@@ -50,16 +52,16 @@ public class FriendTool {
 
     public static boolean remFriendApplication(String player,String applicant){
         if (PlayerInfoTool.isHasConfig(player) == true){
-            PlayerInfoTool.setOfflinePlayerInfo(player,"friend.application",PlayerInfoTool.getOfflinePlayerInfo(player,"friend.application",new HashMap()).remove(applicant));
+            HashMap tmp = PlayerInfoTool.getOfflinePlayerInfo(player,"friend.application",new HashMap());
+            tmp.remove(applicant, DateUtil.getDate("yyyy/MM/dd"));
+            PlayerInfoTool.setOfflinePlayerInfo(player,"friend.application",tmp);
             return true;
         }
         return false;
     }
 
     public static HashMap<String,String> getPlayerAllApplication(Player player){
-        HashMap<String,String> application = new HashMap<>();
-        application = PlayerInfoTool.getInfo(player,"friend.application",new HashMap<>());
-        return application;
+        return PlayerInfoTool.getInfo(player,"friend.application",new HashMap());
     }
 
     public static void changePlayerPD(Player player,String newPD){
