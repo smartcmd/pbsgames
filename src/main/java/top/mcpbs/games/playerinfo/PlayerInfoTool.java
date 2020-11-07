@@ -76,6 +76,7 @@ public class PlayerInfoTool {
 
     public static void joinPlayerDataMap(Player player){
         Config config = new Config(Main.plugin.getDataFolder() + "/playerdata/" + player.getName() + ".yml");
+        config.save();
         playerdata.put(player, config);
     }
 
