@@ -1,10 +1,12 @@
 package top.mcpbs.games.playerinfo;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class PlayerInfoTool {
@@ -24,6 +26,10 @@ public class PlayerInfoTool {
     }
 
     public static<T> boolean setOfflinePlayerInfo(String p, String key,T info){
+        if (Server.getInstance().getOnlinePlayers().values().contains(Server.getInstance().getPlayer(p))){
+            setInfo(Server.getInstance().getPlayer(p),key,info);
+            return true;
+        }
         if(isHasConfig(p) == false){
             return false;
         }
@@ -34,6 +40,10 @@ public class PlayerInfoTool {
     }
 
     public static boolean remOfflinePlayerInfo(String p,String key){
+        if (Server.getInstance().getOnlinePlayers().values().contains(Server.getInstance().getPlayer(p))){
+            remInfo(Server.getInstance().getPlayer(p),key);
+            return true;
+        }
         if(isHasConfig(p) == false){
             return false;
         }
@@ -44,6 +54,10 @@ public class PlayerInfoTool {
     }
 
     public static<T> T getOfflinePlayerInfo(String p, String key, T definfo){//can null
+        if (Server.getInstance().getOnlinePlayers().values().contains(Server.getInstance().getPlayer(p))){
+            getInfo(Server.getInstance().getPlayer(p),key,definfo);
+            return null;
+        }
         if(isHasConfig(p) == false){
             return null;
         }
@@ -75,9 +89,14 @@ public class PlayerInfoTool {
 
 
     public static void joinPlayerDataMap(Player player){
-        Config config = new Config(Main.plugin.getDataFolder() + "/playerdata/" + player.getName() + ".yml");
-
-        playerdata.put(player, config);
+        File config = new File(Main.plugin.getDataFolder() + "/playerdata/" + player.getName() + ".yml");
+        try {
+            config.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Config config1 = new Config(Main.plugin.getDataFolder() + "/playerdata/" + player.getName() + ".yml");
+        playerdata.put(player, config1);
     }
 
     public static boolean isHasConfig(String player){

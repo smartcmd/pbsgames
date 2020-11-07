@@ -55,8 +55,6 @@ public class LR implements Listener {
                     return;//如果pvp未开启就撤回
                 }
 
-                eventd.setKnockBack(eventd.getKnockBack() * 3);//knockback set
-
                 if ((eventd.getEntity().getHealth() - eventd.getFinalDamage()) < 1){//kill by player
                     event.setCancelled();
                     playerDead((Player)eventd.getEntity(),(Player)eventd.getDamager());

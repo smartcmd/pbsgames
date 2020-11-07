@@ -75,11 +75,4 @@ public class LR implements Listener {
             }
         }
     }
-
-    @EventHandler
-    public void onPlayerDamage(EntityDamageByEntityEvent event){
-        if (event.getEntity() instanceof Player && Room.aplaying.containsKey(event.getEntity()) && Room.aplaying.get(event.getEntity()) instanceof DuelRoom){
-
-        }
-    }
 }
