@@ -144,11 +144,11 @@ public class Chao extends PluginTask {
     }
 
     public static void addCoin(Player player,double num){
-        PlayerInfoTool.setInfo(player,"chao.coin",PlayerInfoTool.getInfo(player,"chao.coin",0) + num);
+        PlayerInfoTool.setInfo(player,"chao.coin",PlayerInfoTool.getInfo(player,"chao.coin",0.0) + num);
     }
 
     public static void remCoin(Player player,double num){
-        PlayerInfoTool.setInfo(player,"chao.coin",PlayerInfoTool.getInfo(player,"chao.coin",0) - num);
+        PlayerInfoTool.setInfo(player,"chao.coin",PlayerInfoTool.getInfo(player,"chao.coin",0.0) - num);
     }
 
     public static void addKill(Player player,int num){
@@ -168,11 +168,11 @@ public class Chao extends PluginTask {
     }
 
     public static void addDrawRate(Player player,double num){
-        PlayerInfoTool.setInfo(player,"chao.draw_rate",PlayerInfoTool.getInfo(player,"chao.draw_rate",0) + num);
+        PlayerInfoTool.setInfo(player,"chao.draw_rate",PlayerInfoTool.getInfo(player,"chao.draw_rate",1.0) + num);
     }
 
     public static void remDrawRateth(Player player,double num){
-        PlayerInfoTool.setInfo(player,"chao.draw_rate",PlayerInfoTool.getInfo(player,"chao.draw_rate",0) - num);
+        PlayerInfoTool.setInfo(player,"chao.draw_rate",PlayerInfoTool.getInfo(player,"chao.draw_rate",1.0) - num);
     }
 
     public static double getdrawRate(Player player){

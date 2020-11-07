@@ -56,11 +56,6 @@ public class LR implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.LOW)
-    public void onPlayerDamage(EntityDamageByEntityEvent event){
-        event.setKnockBack(event.getKnockBack() * 2);
-    }
-
     @EventHandler
     public void onServerReload(ServerCommandEvent event){
         if (event.getCommand().equals("reload")){
