@@ -2,7 +2,6 @@ package top.mcpbs.games.friend;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.utils.Hash;
 import top.mcpbs.games.playerinfo.PlayerInfoTool;
 import top.mcpbs.games.util.DateUtil;
 
@@ -26,7 +25,9 @@ public class FriendTool {
     }
 
     public static void playerAddFriend(String player,String name){
-        PlayerInfoTool.setOfflinePlayerInfo(player,"friend.list",PlayerInfoTool.getOfflinePlayerInfo(player,"friend.list",new ArrayList()).add(name));
+        ArrayList tmp = PlayerInfoTool.getOfflinePlayerInfo(player,"friend.list",new ArrayList());
+        tmp.add(name);
+        PlayerInfoTool.setOfflinePlayerInfo(player,"friend.list",tmp);
     }
 
     public static boolean playerRemFriend(String player,String name){
@@ -53,7 +54,7 @@ public class FriendTool {
     public static boolean remFriendApplication(String player,String applicant){
         if (PlayerInfoTool.isHasConfig(player) == true){
             HashMap tmp = PlayerInfoTool.getOfflinePlayerInfo(player,"friend.application",new HashMap());
-            tmp.remove(applicant, DateUtil.getDate("yyyy/MM/dd"));
+            tmp.remove(applicant);
             PlayerInfoTool.setOfflinePlayerInfo(player,"friend.application",tmp);
             return true;
         }
