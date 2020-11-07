@@ -131,8 +131,8 @@ public class Chao extends PluginTask {
         return PlayerInfoTool.getInfo(player,"chao.health",20);
     }
 
-    public static int getCoin(Player player){
-        return PlayerInfoTool.getInfo(player,"chao.coin",0);
+    public static double getCoin(Player player){
+        return PlayerInfoTool.getInfo(player,"chao.coin",0.0);
     }
 
     public static int getkill(Player player){

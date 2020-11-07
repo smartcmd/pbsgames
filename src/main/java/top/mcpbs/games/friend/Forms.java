@@ -73,5 +73,6 @@ public class Forms {
     public static void showChangePDForm(Player player){
         FormWindowCustom form = new FormWindowCustom("§e更改个人描述");
         form.addElement(new ElementInput("§a输入新的描述"));
+        player.showFormWindow(form,FormID.FRIEND_CHANGEPD_FORM);
     }
 }
