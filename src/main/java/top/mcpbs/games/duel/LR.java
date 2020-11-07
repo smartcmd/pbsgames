@@ -6,6 +6,7 @@ import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
+import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
 import cn.nukkit.event.player.PlayerInteractEvent;
@@ -72,6 +73,13 @@ public class LR implements Listener {
                 Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
                 Server.getInstance().getCommandMap().dispatch(event.getPlayer(),((DuelRoom) Room.aplaying.get(event.getPlayer())).mode);
             }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerDamage(EntityDamageByEntityEvent event){
+        if (event.getEntity() instanceof Player && Room.aplaying.containsKey(event.getEntity()) && Room.aplaying.get(event.getEntity()) instanceof DuelRoom){
+
         }
     }
 }
