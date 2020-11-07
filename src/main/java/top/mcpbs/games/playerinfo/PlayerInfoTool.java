@@ -55,8 +55,7 @@ public class PlayerInfoTool {
 
     public static<T> T getOfflinePlayerInfo(String p, String key, T definfo){//can null
         if (Server.getInstance().getOnlinePlayers().values().contains(Server.getInstance().getPlayer(p))){
-            getInfo(Server.getInstance().getPlayer(p),key,definfo);
-            return null;
+            return getInfo(Server.getInstance().getPlayer(p),key,definfo);
         }
         if(isHasConfig(p) == false){
             return null;
