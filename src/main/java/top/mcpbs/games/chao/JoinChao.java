@@ -9,6 +9,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.level.Position;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
+import top.mcpbs.games.Name.NameTool;
 import top.mcpbs.games.playerinfo.PlayerInfoTool;
 import top.mcpbs.games.room.Room;
 
@@ -31,6 +32,8 @@ public class JoinChao extends Command {
             if (!Room.awaiting.containsKey(player) && !Room.aplaying.containsKey(player)) {
                 player.sendMessage("§a>>成功加入大乱斗");
                 player.teleport(Chao.spawn);//tp
+
+                NameTool.setDisplayAndTagName(player,"§6" + player.getName());
 
                 player.setHealth(PlayerInfoTool.getInfo(player, "chao.health", 20));//sethealth
 

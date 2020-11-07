@@ -8,13 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NameTool {
-
-    public static void returnToDefaultName(Player player){
-        String ch = getPlayerUseDesignation(player);
-        player.setNameTag("§f[" + ch + "§f]" + player.getName());
-        player.setDisplayName("§f[" + ch + "§f]" + player.getName());
-    }
-
     public static String getPlayerUseDesignation(Player player){
         HashMap tmp = new HashMap();
         tmp.put("§ePlayer",true);
@@ -38,11 +31,10 @@ public class NameTool {
             ch.put(e.getKey(),false);
         }
         ch.put(designation,true);
-        returnToDefaultName(player);
         return true;
     }
 
-    public static void setName(Player player,String name){
+    public static void setDisplayAndTagName(Player player, String name){
         player.setNameTag(name);
         player.setDisplayName(name);//重新封装的方法
     }

@@ -30,9 +30,4 @@ public class LR implements Listener {
             event.getPlayer().sendMessage("§a>>你的称号已变更为 " + s.get("d") + "!");
         }
     }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event){
-        NameTool.returnToDefaultName(event.getPlayer());
-    }
 }

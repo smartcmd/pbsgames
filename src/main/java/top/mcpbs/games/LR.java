@@ -1,6 +1,7 @@
 package top.mcpbs.games;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.EventPriority;
@@ -8,8 +9,10 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.event.player.PlayerChatEvent;
+import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
+import cn.nukkit.event.server.ServerCommandEvent;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.ParticleEffect;
 import cn.nukkit.level.Position;
@@ -19,9 +22,7 @@ import top.mcpbs.games.room.Room;
 public class LR implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
-        event.setJoinMessage("[§a+§f]" + "§e" + event.getPlayer().getName());
-        event.getPlayer().setMaxHealth(20);
-        event.getPlayer().setHealth(event.getPlayer().getMaxHealth());
+        event.setJoinMessage("§a登入 » §7 " + event.getPlayer().getName() + " 登入了服务器 " + "§8[在线：" + Server.getInstance().getOnlinePlayers().size() + "]");
         this.Lightning(LobbyTool.lobby);
     }
 
@@ -34,7 +35,7 @@ public class LR implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event){
         Main.s.delCache(event.getPlayer());
-        event.getQuitMessage().setText("[§c-§f]" + "§e" + event.getPlayer().getName());
+        event.getQuitMessage().setText("§c登出 » §7 " + event.getPlayer().getName() + " 登出了服务器 " + "§8[在线：" + Server.getInstance().getOnlinePlayers().size() + "]");
         event.getPlayer().getInventory().clearAll();
     }
 
@@ -43,7 +44,7 @@ public class LR implements Listener {
         event.setCancelled();
         Level level = event.getPlayer().getLevel();
         for (Player p : level.getPlayers().values()){
-            p.sendMessage(event.getPlayer().getDisplayName() + ": §7" + event.getMessage());
+            p.sendMessage(event.getPlayer().getDisplayName() + "§f » " + event.getMessage());
         }
     }
 
@@ -57,5 +58,27 @@ public class LR implements Listener {
     @EventHandler(priority = EventPriority.LOW)
     public void onPlayerDamage(EntityDamageByEntityEvent event){
         event.setKnockBack(event.getKnockBack() * 2);
+    }
+
+    @EventHandler
+    public void onServerReload(ServerCommandEvent event){
+        if (event.getCommand().equals("reload")){
+            for (Player p : Server.getInstance().getOnlinePlayers().values()){
+                for (Long l : p.getDummyBossBars().keySet()){
+                    p.removeBossBar(l);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerReload(PlayerCommandPreprocessEvent event){
+        if (event.getMessage().equals("/reload")){
+            for (Player p : Server.getInstance().getOnlinePlayers().values()){
+                for (Long l : p.getDummyBossBars().keySet()){
+                    p.removeBossBar(l);
+                }
+            }
+        }
     }
 }

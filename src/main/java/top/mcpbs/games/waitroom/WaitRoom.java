@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
+import top.mcpbs.games.Name.NameTool;
 import top.mcpbs.games.util.FileUtil;
 
 import java.io.File;
@@ -54,6 +55,7 @@ public class WaitRoom {
 
     public void joinWaitRoom(Player player){
         player.teleport(this.pos);
+        NameTool.setDisplayAndTagName(player,player.getName());
     }
 
     public void remWaitRoom(){

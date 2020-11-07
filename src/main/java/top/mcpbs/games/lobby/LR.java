@@ -133,26 +133,4 @@ public class LR implements Listener {
             event.setCancelled();
         }
     }
-
-    @EventHandler
-    public void onServerReload(ServerCommandEvent event){
-        if (event.getCommand().equals("reload")){
-            for (Player p : Server.getInstance().getOnlinePlayers().values()){
-                for (Long l : p.getDummyBossBars().keySet()){
-                    p.removeBossBar(l);
-                }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onPlayerReload(PlayerCommandPreprocessEvent event){
-        if (event.getMessage().equals("/reload")){
-            for (Player p : Server.getInstance().getOnlinePlayers().values()){
-                for (Long l : p.getDummyBossBars().keySet()){
-                    p.removeBossBar(l);
-                }
-            }
-        }
-    }
 }

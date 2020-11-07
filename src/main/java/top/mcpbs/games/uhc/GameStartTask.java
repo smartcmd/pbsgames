@@ -37,7 +37,6 @@ public class GameStartTask extends PluginTask {
                 player.setSubtitle("§c已取消倒计时");
                 if (room.waittime <= 15){
                     room.waitRoom.joinWaitRoom(player);
-                    NameTool.returnToDefaultName(player);
                     for (Team t : room.team){
                         t.player.clear();
                     }//清除队伍数据

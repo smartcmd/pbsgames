@@ -118,7 +118,6 @@ public class UHCRoom extends Room {
                     Room.aplaying.remove(player);
                     player.setGamemode(0);
                     player.setMaxHealth(20);
-                    NameTool.returnToDefaultName(player);
                     LobbyTool.returnToLobby(player);
                 }
             }
@@ -163,7 +162,6 @@ public class UHCRoom extends Room {
         }
         player.setGamemode(0);
         player.setMaxHealth(20);
-        NameTool.returnToDefaultName(player);
     }
 
     @Override
@@ -201,7 +199,7 @@ public class UHCRoom extends Room {
             if (tmp == 8) {
                 tmp = 0;
             }
-            NameTool.setName(player, this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "]" + player.getName());
+            NameTool.setDisplayAndTagName(player, this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "]" + player.getName());
             player.teleport(team.spawnpos);
             player.sendMessage("§a你加入了 " + team.teamname);
             player.setGamemode(2);
