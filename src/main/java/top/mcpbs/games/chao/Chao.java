@@ -22,7 +22,6 @@ public class Chao extends PluginTask {
 
     public static Level chaolevel = null;
     public static HashMap<Player, Boolean> players = new HashMap();
-    public static HashMap<Player, HashMap<String, Number>> chaoplayerinfo = new HashMap();
     public static int determination = 0;
     public static Position spawn = null;
 

@@ -119,7 +119,23 @@ public class UHCTask extends PluginTask {
                         }
                     }
                     Item hand = player.getInventory().getItemInHand();
-                    if (hand.isTool() == true && !hand.hasEnchantment(Enchantment.ID_DURABILITY) && !hand.hasEnchantment(Enchantment.ID_EFFICIENCY)){
+                    ArrayList<Integer> id = new ArrayList();
+                    id.add(256);
+                    id.add(257);
+                    id.add(258);
+                    id.add(269);
+                    id.add(270);
+                    id.add(271);
+                    id.add(273);
+                    id.add(274);
+                    id.add(275);
+                    id.add(277);
+                    id.add(278);
+                    id.add(279);
+                    id.add(284);
+                    id.add(285);
+                    id.add(286);
+                    if (id.contains(hand.getId()) && !hand.hasEnchantment(Enchantment.ID_DURABILITY) && !hand.hasEnchantment(Enchantment.ID_EFFICIENCY)){
                         Enchantment durable = Enchantment.get(Enchantment.ID_DURABILITY);
                         durable.setLevel(3);
                         Enchantment efficienct = Enchantment.get(Enchantment.ID_EFFICIENCY);

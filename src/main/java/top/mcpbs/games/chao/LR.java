@@ -63,7 +63,7 @@ public class LR implements Listener {
             }
         }
 
-        if ((event.getEntity().getHealth() - event.getFinalDamage()) < 1){//kill by player
+        if ((event.getEntity().getHealth() - event.getFinalDamage()) < 1 && Chao.players.containsKey(event.getEntity())){//dead by nothing...
             event.setCancelled();
             playerDead((Player)event.getEntity(),null);
             return;
@@ -86,7 +86,6 @@ public class LR implements Listener {
 
     public void PlayerAccidentQuit(Player player){
         Chao.players.remove(player);
-        Chao.chaoplayerinfo.remove(player);
         Room.aplaying.remove(player);
         player.setMaxHealth(20);
         player.setHealth(player.getMaxHealth());
@@ -125,7 +124,7 @@ public class LR implements Listener {
                     }
                     break;
                 case 1:
-                    if ((double) Chao.chaoplayerinfo.get(event.getPlayer()).get("coin") < 60){
+                    if (Chao.getCoin(event.getPlayer()) < 60){
                         event.getPlayer().sendMessage("§c你的乱斗币不足!");
                     }else{
                         Chao.remCoin(event.getPlayer(),60);
