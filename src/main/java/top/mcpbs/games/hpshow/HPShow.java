@@ -26,6 +26,7 @@ public class HPShow extends PluginTask {
             }
             String name = p.getNameTag();
             String name2 = name.replace(hp.get(p) + " §c❤",(int)p.getHealth() + " §c❤");
+            p.setNameTag(name2);
             hp.put(p, (int) p.getHealth());
             /**
              * setNameTag()是指玩家头上那个东西
