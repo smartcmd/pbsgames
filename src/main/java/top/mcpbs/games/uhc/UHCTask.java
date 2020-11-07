@@ -17,6 +17,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UHCTask extends PluginTask {
+
+    public static ArrayList<Integer> toolid = new ArrayList<>();
+
+    static {
+        toolid.add(256);toolid.add(257);toolid.add(258);toolid.add(269);toolid.add(270);
+        toolid.add(271);toolid.add(273);toolid.add(274);toolid.add(275);toolid.add(277);
+        toolid.add(278);toolid.add(279);toolid.add(284);toolid.add(285);toolid.add(286);
+    }
+
     public UHCTask(Plugin owner) {
         super(owner);
     }
@@ -119,28 +128,13 @@ public class UHCTask extends PluginTask {
                         }
                     }
                     Item hand = player.getInventory().getItemInHand();
-                    ArrayList<Integer> id = new ArrayList();
-                    id.add(256);
-                    id.add(257);
-                    id.add(258);
-                    id.add(269);
-                    id.add(270);
-                    id.add(271);
-                    id.add(273);
-                    id.add(274);
-                    id.add(275);
-                    id.add(277);
-                    id.add(278);
-                    id.add(279);
-                    id.add(284);
-                    id.add(285);
-                    id.add(286);
-                    if (id.contains(hand.getId()) && !hand.hasEnchantment(Enchantment.ID_DURABILITY) && !hand.hasEnchantment(Enchantment.ID_EFFICIENCY)){
+                    if (toolid.contains(hand.getId()) && !hand.hasEnchantment(Enchantment.ID_DURABILITY) && !hand.hasEnchantment(Enchantment.ID_EFFICIENCY)){
                         Enchantment durable = Enchantment.get(Enchantment.ID_DURABILITY);
                         durable.setLevel(3);
                         Enchantment efficienct = Enchantment.get(Enchantment.ID_EFFICIENCY);
                         efficienct.setLevel(5);
                         hand.addEnchantment(durable,efficienct);
+                        player.getInventory().setItemInHand(hand);
                     }
                 }
             }

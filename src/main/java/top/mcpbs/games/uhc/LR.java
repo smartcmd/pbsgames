@@ -55,7 +55,7 @@ public class LR implements Listener {
             if (event.getEntity() instanceof Player && event1.getDamager() instanceof Player && Room.aplaying.get(event1.getDamager()) instanceof UHCRoom) {
                 Player damager = (Player) event1.getDamager();
                 Player entity = (Player) event.getEntity();
-                if (((UHCRoom) Room.aplaying.get(damager)).gametime > 60 * 15) {
+                if (((UHCRoom) Room.aplaying.get(damager)).gametime > (60 * 15 + 75)) {
                     event.setCancelled();
                     damager.sendMessage("§e现在是发育阶段，PVP暂未开启哦");
                     return;
@@ -82,12 +82,6 @@ public class LR implements Listener {
                     Score.remScore(entity,5);
                     entity.setHealth(entity.getMaxHealth());
                     entity.getInventory().clearAll();
-                    Item hub = Item.get(355,0,1);
-                    hub.setCustomName("返回主城");
-                    Item again = Item.get(339,0,1);
-                    again.setCustomName("再来一局");
-                    entity.getInventory().setItem(2,hub);
-                    entity.getInventory().setItem(5,again);
 
                     UHCRoom room = (UHCRoom) Room.aplaying.get(entity);
                     int killnum = room.killnum.get(entity);
@@ -137,12 +131,6 @@ public class LR implements Listener {
                 }
 
                 entity.getInventory().clearAll();
-                Item hub = Item.get(355,0,1);
-                hub.setCustomName("返回主城");
-                Item again = Item.get(339,0,1);
-                again.setCustomName("再来一局");
-                entity.getInventory().setItem(2,hub);
-                entity.getInventory().setItem(5,again);
 
                 ((UHCRoom)Room.aplaying.get(entity)).isdead.put(entity,true);
                 Score.remScore(entity,5);
@@ -207,7 +195,7 @@ public class LR implements Listener {
             if (event.getBlock().getId() == 18 || event.getBlock().getId() == 161){//leave
                 Random r = new Random();
                 int rnum = r.nextInt(100) + 1;
-                if (rnum <= 5){
+                if (rnum <= 2){
                     event.setDrops(new Item[]{Item.get(287,0,3),Item.get(260,0,1)});
                 }
             }
@@ -232,7 +220,7 @@ public class LR implements Listener {
                         pos.level.setBlock(tmppos,Block.get(0));
                         Random r = new Random();
                         int rnum = r.nextInt(100) + 1;
-                        if (rnum <= 5){
+                        if (rnum <= 2){
                             pos.level.dropItem(tmppos,Item.get(287,0,3));
                             pos.level.dropItem(tmppos,Item.get(260,0,1));
                         }
@@ -284,17 +272,6 @@ public class LR implements Listener {
                 event.setCancelled();
                 Forms.potStore(event.getPlayer());
                 return;
-            }
-            if (((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.get(event.getPlayer()) == true || Room.aplaying.get(event.getPlayer()).isend == true) {
-                if (event.getPlayer().getInventory().getItemInHand().getId() == 355) {
-                    Server.getInstance().getCommandMap().dispatch(event.getPlayer(), "hub");
-                    Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
-                }
-                if (event.getPlayer().getInventory().getItemInHand().getId() == 339){
-                    Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
-                    Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(), "/hub"));
-                    Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"joinuhc");
-                }
             }
         }
     }

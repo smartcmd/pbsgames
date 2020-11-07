@@ -30,12 +30,6 @@ public class TestWinTask extends PluginTask {
                 if (winteam.player.containsAll(aliveplayer)) {
                     for (Player g : aliveplayer){
                         g.getInventory().clearAll();
-                        Item hub = Item.get(355,0,1);
-                        hub.setCustomName("返回主城");
-                        Item again = Item.get(339,0,1);
-                        again.setCustomName("再来一局");
-                        g.getInventory().setItem(2,hub);
-                        g.getInventory().setItem(5,again);
                     }
                     String s = "";
                     for (Player p : winteam.player){
@@ -56,7 +50,7 @@ public class TestWinTask extends PluginTask {
                         }
                     }
                     room.isend = true;
-                    Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(owner, room), 20 * 15);
+                    Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(owner, room), 20 * 5);
                 }
             }
         }

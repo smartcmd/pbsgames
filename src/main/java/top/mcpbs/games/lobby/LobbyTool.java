@@ -23,7 +23,7 @@ public class LobbyTool {
         personality.setCustomName("§c个性工坊");
         head.setCustomName("§d好友系统");
         chest.setCustomName("§e抽奖箱(在?来一发?)");
-        lobby = new Position(-5, 27, 19, Server.getInstance().getLevelByName("world"));
+        lobby = new Position(-5, 25, 19, Server.getInstance().getLevelByName("world"));
     }
     public static void returnToLobby(Player player){
         player.getInventory().clearAll();

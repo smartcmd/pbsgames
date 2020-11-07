@@ -29,14 +29,6 @@ public class TestWinTask extends PluginTask {
                     Score.addScore(player, 10);
                     Coin.addCoin(player, 2);
 
-                    Item hub = Item.get(355,0,1);
-                    hub.setCustomName("返回主城");
-                    Item again = Item.get(339,0,1);
-                    again.setCustomName("再来一局");
-
-                    player.getInventory().setItem(2,hub);
-                    player.getInventory().setItem(5,again);
-
                     ArrayList<Player> tmp = (ArrayList<Player>) room.playing.clone();
                     tmp.remove(player);
                     tmp.get(0).sendTitle("§c你输了!", "§e再接再厉!");
@@ -46,18 +38,15 @@ public class TestWinTask extends PluginTask {
 
                     tmp.get(0).getInventory().clearAll();
 
-                    tmp.get(0).getInventory().setItem(2,hub);
-                    tmp.get(0).getInventory().setItem(5,again);
-
                     Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(Main.plugin, room),20 * 15);
                     room.isend = true;
                 }
             }
-            if (room.playing.size() == 1 && room.isPlaying){
+            if (room.playing.size() == 1 && room.isPlaying && room.isend == false){
                 Player player = room.playing.get(0);
                 player.sendMessage("§e对方意外退出，本次游戏无收益...");
                 room.isend = true;
-                Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(Main.plugin, room),20 * 15);
+                Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(Main.plugin, room),20 * 5);
             }
         }
     }

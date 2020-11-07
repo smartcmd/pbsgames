@@ -44,24 +44,12 @@ public class TestWinTask extends PluginTask {
                         Score.addScore(winner,10);
                         Coin.addCoin(winner,2);
                         winner.getInventory().clearAll();
-                        Item hub = Item.get(355,0,1);
-                        hub.setCustomName("返回主城");
-                        Item again = Item.get(339,0,1);
-                        again.setCustomName("再来一局");
-                        winner.getInventory().setItem(2,hub);
-                        winner.getInventory().setItem(5,again);
                     }
                     if (loser != null && loser.isOnline()){
                         loser.sendTitle("§c你输了!","§e再接再厉!");
                         loser.sendMessage("§e你失去了5分数!");
                         Score.remScore(loser,5);
                         loser.getInventory().clearAll();
-                        Item hub = Item.get(355,0,1);
-                        hub.setCustomName("返回主城");
-                        Item again = Item.get(339,0,1);
-                        again.setCustomName("再来一局");
-                        loser.getInventory().setItem(2,hub);
-                        loser.getInventory().setItem(5,again);
                     }
                     room.isend = true;
                     Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 15);
@@ -71,14 +59,8 @@ public class TestWinTask extends PluginTask {
                 Player player = room.playing.get(0);
                 player.sendMessage("§e对方意外退出，本次游戏无收益...");
                 player.getInventory().clearAll();
-                Item hub = Item.get(355,0,1);
-                hub.setCustomName("返回主城");
-                Item again = Item.get(339,0,1);
-                again.setCustomName("再来一局");
-                player.getInventory().setItem(2,hub);
-                player.getInventory().setItem(5,again);
                 room.isend = true;
-                Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 15);
+                Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 5);
             }
         }
     }

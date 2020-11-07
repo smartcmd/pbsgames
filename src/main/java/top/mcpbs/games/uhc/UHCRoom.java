@@ -28,7 +28,7 @@ public class UHCRoom extends Room {
     public ArrayList<Team> team = new ArrayList<>();
     public double boundary = 1000;
     int waittime = 60;
-    int gametime = 60 * 25;
+    int gametime = 60 * 25 + 75;
 
     public UHCRoom(){
         int id = 0;
