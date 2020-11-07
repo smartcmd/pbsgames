@@ -92,6 +92,7 @@ public class LR implements Listener {
         Room.aplaying.remove(player);
         player.setMaxHealth(20);
         player.setHealth(player.getMaxHealth());
+        player.removeAllEffects();
     }
 
     @EventHandler

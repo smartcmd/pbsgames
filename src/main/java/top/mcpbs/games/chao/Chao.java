@@ -46,7 +46,7 @@ public class Chao extends PluginTask {
         for (Player player : Chao.players.keySet()){
             player.getFoodData().setLevel(20);
             Effect n = Effect.getEffect(Effect.NIGHT_VISION);
-            n.setDuration(10*20);
+            n.setDuration(20*20);
             player.addEffect(n);
 
             if (player.getY() <= determination && players.get(player) == false){
