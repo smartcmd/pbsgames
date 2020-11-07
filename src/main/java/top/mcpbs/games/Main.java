@@ -72,6 +72,7 @@ public class Main extends PluginBase {
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.duel.LR(), this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.waitroom.LR(), this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.designation.LR(), this);
+        Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.hpshow.LR(), this);
         LoadCmd.loadCmd();
         Server.getInstance().getCommandMap().register("",new Hub("hub","返回主城"));
         Server.getInstance().getCommandMap().register("",new AddPBC("addpbc","增加一个屏蔽词 <屏蔽词> <replace to>",this));
