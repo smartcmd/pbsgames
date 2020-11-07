@@ -25,7 +25,7 @@ public class Forms {
 
     public static void showPlayerHomepage(Player player,String another){
         if (PlayerInfoTool.isHasConfig(another) == false)return;
-        FormWindowSimple form = new FormWindowSimple("§e" + another,"个人介绍: " + FriendTool.getPlayerPD(another));
+        FormWindowSimple form = new FormWindowSimple("§e" + another,"个人介绍: " + FriendTool.getPlayerPD(another) + "\n\n\n\n\n\n\n\n\n\n");
         form.addButton(new SElementButton("§a添加好友",new ElementButtonImageData("path","textures/ui/color_plus"),another));
         player.showFormWindow(form,FormID.PLAYER_PH_FORM);
     }

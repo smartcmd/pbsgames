@@ -156,6 +156,7 @@ public class LR implements Listener {
             dead.sendTitle("§c»你阵亡了!");
             dead.sendMessage("§c»你失去了0.25大乱斗币!");
             Chao.remCoin(dead,0.25);
+            Chao.players.put(dead,false);
             Server.getInstance().getScheduler().scheduleDelayedTask(new TeleportTask(Main.plugin, dead), 20 * 5);//dead
 
             killer.sendMessage("§a»你杀死了玩家 " + dead.getName());
@@ -171,6 +172,7 @@ public class LR implements Listener {
             dead.sendTitle("§c»你阵亡了!");
             dead.sendMessage("§c»你失去了0.25大乱斗币!");
             Chao.remCoin(dead,0.25);
+            Chao.players.put(dead,false);
             Server.getInstance().getScheduler().scheduleDelayedTask(new TeleportTask(Main.plugin, dead), 20 * 5);//dead
 
             for (Player player : killer.getLevel().getPlayers().values()){
