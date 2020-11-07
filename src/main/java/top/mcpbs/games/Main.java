@@ -96,7 +96,7 @@ public class Main extends PluginBase {
         this.getServer().getScheduler().scheduleRepeatingTask(new Chao(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.timemessage.MessageTask(this),20);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.uhc.TimeTask(this),20);
-        this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.uhc.UHCTask(this),20);
+        this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.uhc.UHCTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.uhc.TestWinTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.duel.TestWinTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.duel.DuelTask(this),5);

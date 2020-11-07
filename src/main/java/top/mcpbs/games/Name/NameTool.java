@@ -9,13 +9,13 @@ import java.util.Map;
 
 public class NameTool {
     public static String getPlayerUseDesignation(Player player){
-        HashMap tmp = new HashMap();
+        HashMap<String,Boolean> tmp = new HashMap();
         tmp.put("§ePlayer",true);
-        HashMap ch = PlayerInfoTool.getInfo(player,"designation",tmp);
+        HashMap<String,Boolean> ch = PlayerInfoTool.getInfo(player,"designation",tmp);
         String sch = null;
-        for (Object s : ch.keySet()){
-            if ((boolean)ch.get(s)){
-                sch = (String)s;
+        for (String s : ch.keySet()){
+            if (ch.get(s)){
+                sch = s;
             }
         }
         return sch;

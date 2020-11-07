@@ -55,6 +55,10 @@ public class LR implements Listener {
             }
             if (response.getClickedButtonId() == 0){
                 String another = (String) ((SElementButton)response.getClickedButton()).s;
+                if (FriendTool.getPlayerAllFriend(event.getPlayer()).contains(another)){
+                    event.getPlayer().sendMessage("§e好友 §7» §c你已经有他/她的好友了");
+                    return;
+                }
                 FriendTool.addFriendApplication(another,event.getPlayer().getName());
                 event.getPlayer().sendMessage("§e好友 §7» §a成功发送好友申请,等待对方同意");
             }

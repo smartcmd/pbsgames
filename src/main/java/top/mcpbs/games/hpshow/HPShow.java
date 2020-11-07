@@ -14,7 +14,9 @@ public class HPShow extends PluginTask {
     @Override
     public void onRun(int i) {
         for(Player p : Server.getInstance().getOnlinePlayers().values()){
-            p.setNameTag(p.getDisplayName() + "\n" + (int)p.getHealth() + " §c❤");
+            String name = p.getNameTag();
+            String name2 = name.substring(0,name.length() - 8);
+            p.setNameTag(name2 + (int)p.getHealth() + " §c❤");
             /**
              * setNameTag()是指玩家头上那个东西
              * setDisplayName()是指玩家聊天栏显示的名字...
