@@ -2,6 +2,7 @@ package top.mcpbs.games;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.entity.item.EntityFishingHook;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.EventPriority;

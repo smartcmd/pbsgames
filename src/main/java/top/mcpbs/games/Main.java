@@ -6,6 +6,7 @@ import cn.nukkit.plugin.Plugin;
 import cn.nukkit.plugin.PluginBase;
 import top.mcpbs.games.chao.Chao;
 import top.mcpbs.games.duel.LoadCmd;
+import top.mcpbs.games.friend.LR2;
 import top.mcpbs.games.getid.GetBlockID;
 import top.mcpbs.games.hpshow.HPShow;
 import top.mcpbs.games.hub.Hub;
@@ -64,7 +65,7 @@ public class Main extends PluginBase {
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.LR(), this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.lobby.LR(), this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.particle.LR(), this);
-        Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.friend.LR(), this);
+        Server.getInstance().getPluginManager().registerEvents(new LR2(), this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.lottery.LR(), this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.chao.LR(), this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.uhc.LR(), this);

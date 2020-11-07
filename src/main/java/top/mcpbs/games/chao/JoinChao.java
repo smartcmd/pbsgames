@@ -30,7 +30,7 @@ public class JoinChao extends Command {
         } else {
             Player player = (Player) sender;
             if (!Room.awaiting.containsKey(player) && !Room.aplaying.containsKey(player)) {
-                player.sendMessage("§a>>成功加入大乱斗");
+                player.sendMessage("§a»成功加入大乱斗");
                 player.teleport(Chao.spawn);//tp
 
                 NameTool.setDisplayAndTagName(player,"§6" + player.getName());
@@ -47,7 +47,7 @@ public class JoinChao extends Command {
 
                 return true;
             }
-            player.sendMessage("§c>>你目前不能加入大乱斗");
+            player.sendMessage("§c»你目前不能加入大乱斗");
             return true;
         }
     }

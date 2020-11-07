@@ -56,6 +56,9 @@ public class WaitRoom {
     public void joinWaitRoom(Player player){
         player.teleport(this.pos);
         NameTool.setDisplayAndTagName(player,player.getName());
+        for (Player p : this.roomlevel.getPlayers().values()){
+            p.sendMessage("§a加入 §7» " + player.getName() + " 加入了游戏 " + "§8[等待人数:" + this.roomlevel.getPlayers().size() + "]");
+        }
     }
 
     public void remWaitRoom(){

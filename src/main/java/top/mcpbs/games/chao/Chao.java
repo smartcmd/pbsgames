@@ -49,7 +49,7 @@ public class Chao extends PluginTask {
             n.setDuration(5*20);
             player.addEffect(n);
 
-            if (player.getY() <= determination){
+            if (player.getY() <= determination && players.get(player) == false){
                 player.sendTitle("§cPVP模式§e开启！","§a努力击杀其他玩家吧！");
 
                 player.getInventory().clearAll();//give items

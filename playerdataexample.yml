@@ -16,7 +16,11 @@ chao:
   coin:
   health:
   draw_rate:
-
+friend:
+  list: [xxx,yyy,zzz]
+  application:
+    xxx: time
+  pd: xxxxxxx
 
 
 

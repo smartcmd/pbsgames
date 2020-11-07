@@ -23,11 +23,11 @@ public class LR implements Listener {
             SElementButton button = (SElementButton) response.getClickedButton();
             HashMap<String, Object> s = (HashMap)button.s;
             if ((boolean)s.get("used")){
-                event.getPlayer().sendMessage("§c>>你正在使用这个称号!");
+                event.getPlayer().sendMessage("§c»你正在使用这个称号!");
                 return;
             }
             NameTool.setPlayerUseDesignation(event.getPlayer(), (String) s.get("d"));
-            event.getPlayer().sendMessage("§a>>你的称号已变更为 " + s.get("d") + "!");
+            event.getPlayer().sendMessage("§a»你的称号已变更为 " + s.get("d") + "!");
         }
     }
 }
