@@ -53,8 +53,9 @@ public class Main extends PluginBase {
         File f = new File(Main.plugin.getDataFolder() + "/playerdata");
         if (!f.exists()){
             f.mkdir();
-        }//检查文件夹情况
+        }//检查playerdata文件夹情况
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.reward.LR(),this);
+        Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.friend.LR(),this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.playerinfo.LR(),this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.report.LR(),this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.pbc.LR(),this);

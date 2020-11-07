@@ -36,7 +36,7 @@ public class LR implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event){
         Main.s.delCache(event.getPlayer());
-        event.getQuitMessage().setText("§c登出 » §7 " + event.getPlayer().getName() + " 登出了服务器 " + "§8[在线：" + Server.getInstance().getOnlinePlayers().size() + "]");
+        event.getQuitMessage().setText("§c登出 » §7 " + event.getPlayer().getName() + " 登出了服务器 " + "§8[在线：" + (Server.getInstance().getOnlinePlayers().size() - 1) + "]");
         event.getPlayer().getInventory().clearAll();
     }
 
