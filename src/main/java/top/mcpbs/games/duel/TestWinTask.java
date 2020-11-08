@@ -52,7 +52,7 @@ public class TestWinTask extends PluginTask {
                         loser.getInventory().clearAll();
                     }
                     room.isend = true;
-                    Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 15);
+                    Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 5);
                 }
             }
             if (room.isPlaying == true && room.playing.size() == 1 && room.isend == false){

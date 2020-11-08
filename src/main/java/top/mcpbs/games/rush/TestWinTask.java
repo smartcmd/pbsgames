@@ -38,7 +38,7 @@ public class TestWinTask extends PluginTask {
 
                     tmp.get(0).getInventory().clearAll();
 
-                    Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(Main.plugin, room),20 * 15);
+                    Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(Main.plugin, room),20 * 5);
                     room.isend = true;
                 }
             }

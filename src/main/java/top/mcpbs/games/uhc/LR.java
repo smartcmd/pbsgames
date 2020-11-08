@@ -268,7 +268,7 @@ public class LR implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event){
         if (Room.aplaying.containsKey(event.getPlayer()) && Room.aplaying.get(event.getPlayer()) instanceof UHCRoom){
-            if (event.getBlock().getId() == 117 && !((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.containsKey(event.getPlayer())){
+            if (event.getBlock().getId() == 117 && ((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.containsKey(event.getPlayer()) && ((UHCRoom) Room.aplaying.get(event.getPlayer())).isdead.get(event.getPlayer()) == false){
                 event.setCancelled();
                 Forms.potStore(event.getPlayer());
                 return;

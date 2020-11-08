@@ -1,15 +1,20 @@
 package top.mcpbs.games.friend;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.player.PlayerFormRespondedEvent;
+import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.form.response.FormResponseCustom;
 import cn.nukkit.form.response.FormResponseSimple;
 import top.mcpbs.games.FormID;
+import top.mcpbs.games.helloform.HelloForm;
 import top.mcpbs.games.playerinfo.PlayerInfoTool;
 import top.mcpbs.games.util.SElementButton;
+
+import java.util.ArrayList;
 
 public class LR implements Listener {
     @EventHandler
@@ -18,6 +23,7 @@ public class LR implements Listener {
             Player player = (Player)event.getEntity();
             Player player1 = (Player)event.getDamager();
             if (player.getLevel().getName().equals("world")){
+                event.setCancelled();
                 Forms.showPlayerHomepage(player1,player.getName());
             }
         }
@@ -57,6 +63,10 @@ public class LR implements Listener {
                 String another = (String) ((SElementButton)response.getClickedButton()).s;
                 if (FriendTool.getPlayerAllFriend(event.getPlayer()).contains(another)){
                     event.getPlayer().sendMessage("§e好友 §7» §c你已经有他/她的好友了");
+                    return;
+                }
+                if (FriendTool.getPlayerAllApplication(event.getPlayer()).containsKey(another)){
+                    event.getPlayer().sendMessage("§e好友 §7» §c你已经向他发送过好友申请了");
                     return;
                 }
                 FriendTool.addFriendApplication(another,event.getPlayer().getName());
@@ -103,6 +113,18 @@ public class LR implements Listener {
             String pd = response.getInputResponse(0);
             FriendTool.changePlayerPD(event.getPlayer(),pd);
             event.getPlayer().sendMessage("§e好友 §7» §a更改个人描述成功");
+        }
+    }
+
+    @EventHandler
+    public void onPlayerJoinPacket(DataPacketReceiveEvent event){
+        if (event.getPacket().pid() == 113){
+            ArrayList<String> friend = FriendTool.getPlayerAllFriend(event.getPlayer());
+            for (Player player : Server.getInstance().getOnlinePlayers().values()){
+                if (friend.contains(player.getName())){
+                    player.sendMessage("§e好友 §7» §a你的好友 " + event.getPlayer().getName() + " 上线了!");
+                }
+            }
         }
     }
 }

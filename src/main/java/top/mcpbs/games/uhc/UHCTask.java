@@ -94,7 +94,7 @@ public class UHCTask extends PluginTask {
                             player.sendTitle("", "§c你超出边界了，快回来！");
                             Effect wither = Effect.getEffect(Effect.WITHER);
                             wither.setAmplifier(1);
-                            wither.setDuration(40);
+                            wither.setDuration(20 * 5);
                             player.addEffect(wither);
                         }
                         if (room.boundary - x <= 25 || room.boundary - z <= 25){
