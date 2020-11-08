@@ -26,7 +26,8 @@ public class JoinChao extends Command {
                 player.sendMessage("§a»成功加入大乱斗");
                 player.teleport(Chao.spawn);//tp
 
-                NameTool.setDisplayAndTagName(player,"§7" + player.getName());
+                NameTool.setPlayerDisplayName(player,"§7" + "(name)");
+                NameTool.setPlayerNameTag(player,"§7" + "(name)" + "\n" + "(health)" + " §c❤");
 
                 player.setHealth(PlayerInfoTool.getInfo(player, "chao.health", 20));//sethealth
 
