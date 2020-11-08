@@ -97,8 +97,8 @@ public class UHCTask extends PluginTask {
                             wither.setDuration(20 * 5);
                             player.addEffect(wither);
                         }
-                        if (room.boundary - x <= 25 || room.boundary - z <= 25){
-                            player.sendTitle("","§c接近边界!");
+                        if ((room.boundary - x <= 25 || room.boundary - z <= 25) && room.gametime != 0){
+                            player.sendTitle("","§c接近边界!",1,20,5);
                         }
                     }
                     if (player.getInventory().getItemInHand().getId() == 345) {
