@@ -3,7 +3,7 @@ package top.mcpbs.games.designation;
 import cn.nukkit.Player;
 import cn.nukkit.form.window.FormWindowSimple;
 import top.mcpbs.games.FormID;
-import top.mcpbs.games.Name.NameTool;
+import top.mcpbs.games.name.NameTool;
 import top.mcpbs.games.util.SElementButton;
 import java.util.HashMap;
 import java.util.Map;

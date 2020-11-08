@@ -1,4 +1,4 @@
-package top.mcpbs.games.Name;
+package top.mcpbs.games.name;
 
 import cn.nukkit.Player;
 import cn.nukkit.utils.Config;
@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NameTool {
+
+    public static HashMap<Player,String> playernametag = new HashMap<>();
+    public static HashMap<Player,String> playerdisplayname = new HashMap<>();
+
     public static String getPlayerUseDesignation(Player player){
         HashMap<String,Boolean> tmp = new HashMap();
         tmp.put("§ePlayer",true);
@@ -34,11 +38,6 @@ public class NameTool {
         return true;
     }
 
-    public static void setDisplayAndTagName(Player player, String name){
-        player.setNameTag(name);
-        player.setDisplayName(name);//重新封装的方法
-    }
-
     public static HashMap<String,Boolean> getPlayerAllDesignation(Player player){
         HashMap tmp = new HashMap();
         tmp.put("§ePlayer",true);
@@ -61,4 +60,21 @@ public class NameTool {
         PlayerInfoTool.setInfo(player,"designation",tmp);
         return true;
     }
+
+    public static void setPlayerNameTag(Player player,String nametag){
+        playernametag.put(player,nametag);
+    }
+
+    public static void setPlayerDisplayName(Player player,String displayname){
+        playerdisplayname.put(player,displayname);
+    }
+    /**
+     * (coin)
+     * (score)
+     * (diamond)
+     * (health)
+     * (ch)
+     * (name)
+     * (maxhealth)
+     */
 }

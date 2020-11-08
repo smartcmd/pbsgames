@@ -4,7 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
-import top.mcpbs.games.Name.NameTool;
+import top.mcpbs.games.name.NameTool;
 import top.mcpbs.games.util.FileUtil;
 
 import java.io.File;
@@ -55,7 +55,8 @@ public class WaitRoom {
 
     public void joinWaitRoom(Player player){
         player.teleport(this.pos);
-        NameTool.setDisplayAndTagName(player,player.getName());
+        NameTool.setPlayerNameTag(player,"(name)");
+        NameTool.setPlayerDisplayName(player,"(name)");
         for (Player p : this.roomlevel.getPlayers().values()){
             p.sendMessage("§a游戏 §7» " + player.getName() + " 加入了游戏 " + "§8[等待人数:" + this.roomlevel.getPlayers().size() + "]");
         }

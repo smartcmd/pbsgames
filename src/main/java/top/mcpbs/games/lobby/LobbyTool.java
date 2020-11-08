@@ -4,9 +4,9 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Position;
-import top.mcpbs.games.playerinfo.score.Score;
+import top.mcpbs.games.name.NameTool;
 
-import static top.mcpbs.games.Name.NameTool.getPlayerUseDesignation;
+import static top.mcpbs.games.name.NameTool.getPlayerUseDesignation;
 
 public class LobbyTool {
 
@@ -32,8 +32,8 @@ public class LobbyTool {
         player.getInventory().setItem(3, head);
         player.getInventory().setItem(4, chest);
         String ch = getPlayerUseDesignation(player);
-        player.setNameTag("§7" + player.getName() + "\n" + ch);
-        player.setDisplayName("§7" + player.getName());
+        NameTool.setPlayerNameTag(player,"§7" + "(name)" + "\n" + "(ch)");
+        NameTool.setPlayerDisplayName(player,"§7" + "(name)");
         player.teleport(LobbyTool.lobby);
     }
 }

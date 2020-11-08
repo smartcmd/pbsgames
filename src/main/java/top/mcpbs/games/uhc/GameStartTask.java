@@ -3,7 +3,6 @@ package top.mcpbs.games.uhc;
 import cn.nukkit.Player;
 import cn.nukkit.plugin.Plugin;
 import cn.nukkit.scheduler.PluginTask;
-import top.mcpbs.games.Name.NameTool;
 
 public class GameStartTask extends PluginTask {
 

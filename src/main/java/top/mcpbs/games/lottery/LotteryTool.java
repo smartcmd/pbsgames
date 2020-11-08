@@ -4,7 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.entity.weather.EntityLightning;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
-import top.mcpbs.games.Name.NameTool;
+import top.mcpbs.games.name.NameTool;
 import top.mcpbs.games.particle.ParticleTool;
 import top.mcpbs.games.playerinfo.coin.Coin;
 import top.mcpbs.games.playerinfo.diamond.Diamond;

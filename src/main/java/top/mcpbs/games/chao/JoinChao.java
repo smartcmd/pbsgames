@@ -1,20 +1,13 @@
 package top.mcpbs.games.chao;
 
 import cn.nukkit.Player;
-import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.ConsoleCommandSender;
 import cn.nukkit.item.Item;
-import cn.nukkit.level.Position;
-import cn.nukkit.utils.Config;
-import top.mcpbs.games.Main;
-import top.mcpbs.games.Name.NameTool;
+import top.mcpbs.games.name.NameTool;
 import top.mcpbs.games.playerinfo.PlayerInfoTool;
 import top.mcpbs.games.room.Room;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class JoinChao extends Command {
 

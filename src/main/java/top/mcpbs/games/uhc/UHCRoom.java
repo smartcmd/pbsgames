@@ -6,7 +6,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.level.GameRule;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.potion.Effect;
-import top.mcpbs.games.Name.NameTool;
+import top.mcpbs.games.name.NameTool;
 import top.mcpbs.games.lobby.LobbyTool;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
@@ -199,7 +199,8 @@ public class UHCRoom extends Room {
             if (tmp == 8) {
                 tmp = 0;
             }
-            NameTool.setDisplayAndTagName(player, this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "]" + player.getName());
+            NameTool.setPlayerNameTag(player,this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "] " + "(name)" + "\n" + "(health)" + " §c❤");
+            NameTool.setPlayerDisplayName(player,this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "] " + "(name)");
             player.teleport(team.spawnpos);
             player.sendMessage("§a你加入了 " + team.teamname);
             player.setGamemode(2);

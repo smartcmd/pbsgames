@@ -9,7 +9,7 @@ import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
-import top.mcpbs.games.Name.NameTool;
+import top.mcpbs.games.name.NameTool;
 import top.mcpbs.games.lobby.LobbyTool;
 import top.mcpbs.games.playerinfo.score.Score;
 import top.mcpbs.games.room.Room;
@@ -148,7 +148,8 @@ public class RushRoom extends Room {
         player.sendMessage("§a输入/hub即可退出当前房间!");
         player.sendTitle("§e地图名称: " + this.mapname);
         player.setGamemode(0);
-        NameTool.setDisplayAndTagName(player,player.getName());
+        NameTool.setPlayerNameTag(player,"(name)");
+        NameTool.setPlayerDisplayName(player,"(name)");
     }
 
     @Override
