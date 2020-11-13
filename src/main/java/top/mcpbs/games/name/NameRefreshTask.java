@@ -33,13 +33,13 @@ public class NameRefreshTask extends PluginTask {
                 NameTool.playerdisplayname.put(player,player.getName());
             }
             String sourcedisplayname = NameTool.playerdisplayname.get(player);
-            sourcedisplayname.replaceAll("(score)", String.valueOf(Score.getScore(player)));
-            sourcedisplayname.replaceAll("(coin)", String.valueOf(Coin.getCoinNum(player)));
-            sourcedisplayname.replaceAll("(diamond)", String.valueOf(Diamond.getDiamondNum(player)));
-            sourcedisplayname.replaceAll("(health)", String.valueOf((int)player.getHealth()));
-            sourcedisplayname.replaceAll("(maxhealth)", String.valueOf((int)player.getMaxHealth()));
-            sourcedisplayname.replaceAll("(ch)", NameTool.getPlayerUseDesignation(player));
-            sourcedisplayname.replaceAll("(name)", player.getName());
+            sourcedisplayname = sourcedisplayname.replaceAll("(score)", String.valueOf(Score.getScore(player)));
+            sourcedisplayname = sourcedisplayname.replaceAll("(coin)", String.valueOf(Coin.getCoinNum(player)));
+            sourcedisplayname = sourcedisplayname.replaceAll("(diamond)", String.valueOf(Diamond.getDiamondNum(player)));
+            sourcedisplayname = sourcedisplayname.replaceAll("(health)", String.valueOf((int)player.getHealth()));
+            sourcedisplayname = sourcedisplayname.replaceAll("(maxhealth)", String.valueOf(player.getMaxHealth()));
+            sourcedisplayname = sourcedisplayname.replaceAll("(ch)", NameTool.getPlayerUseDesignation(player));
+            sourcedisplayname = sourcedisplayname.replaceAll("(name)", player.getName());
             player.setDisplayName(sourcedisplayname);
         }
     }

@@ -43,25 +43,29 @@ public class BossBarTask extends PluginTask {
                     player.createBossBar(bossbar);
                     bossbar.setLength(100F);
                 }
-                if (1 <= tick && tick <= 100) {
+                if (tick == 1) {
                     bossbarmap.get(player).setText("§a你正在游玩§bPBS§cgames§d小游戏服务器!");
+                    bossbarmap.get(player).reshow();
                 }
-                if (101 <= tick && tick <= 200) {
+                if (tick == 100) {
                     bossbarmap.get(player).setText("§eplay.mcpbs.top");
+                    bossbarmap.get(player).reshow();
                 }
-                if (201 <= tick && tick <= 300) {
+                if (tick == 200) {
                     bossbarmap.get(player).setText("§6你目前拥有的diamond: §a" + Diamond.getDiamondNum(player));
+                    bossbarmap.get(player).reshow();
                 }
-                if (301 <= tick && tick <= 400) {
+                if (tick == 300) {
                     bossbarmap.get(player).setText("§b你的分数: §c" + Score.getScore(player));
+                    bossbarmap.get(player).reshow();
                 }
-                if (401 <= tick && tick <= 500) {
+                if (tick == 400) {
                     bossbarmap.get(player).setText("§b你的硬币: §c" + Coin.getCoinNum(player));
+                    bossbarmap.get(player).reshow();
                 }
-                bossbarmap.get(player).reshow();
             }
         }
-        if (tick >= 500){
+        if (tick == 500){
             tick = 0;
         }
     }
