@@ -20,13 +20,13 @@ public class NameRefreshTask extends PluginTask {
                 NameTool.playernametag.put(player,player.getName());
             }
             String sourcenametag = NameTool.playernametag.get(player);
-            sourcenametag.replaceAll("(score)", String.valueOf(Score.getScore(player)));
-            sourcenametag.replaceAll("(coin)", String.valueOf(Coin.getCoinNum(player)));
-            sourcenametag.replaceAll("(diamond)", String.valueOf(Diamond.getDiamondNum(player)));
-            sourcenametag.replaceAll("(health)", String.valueOf((int)player.getHealth()));
-            sourcenametag.replaceAll("(maxhealth)", String.valueOf((int)player.getMaxHealth()));
-            sourcenametag.replaceAll("(ch)", NameTool.getPlayerUseDesignation(player));
-            sourcenametag.replaceAll("(name)", player.getName());
+            sourcenametag = sourcenametag.replaceAll("(score)", String.valueOf(Score.getScore(player)));
+            sourcenametag = sourcenametag.replaceAll("(coin)", String.valueOf(Coin.getCoinNum(player)));
+            sourcenametag = sourcenametag.replaceAll("(diamond)", String.valueOf(Diamond.getDiamondNum(player)));
+            sourcenametag = sourcenametag.replaceAll("(health)", String.valueOf((int)player.getHealth()));
+            sourcenametag = sourcenametag.replaceAll("(maxhealth)", String.valueOf((int)player.getMaxHealth()));
+            sourcenametag = sourcenametag.replaceAll("(ch)", NameTool.getPlayerUseDesignation(player));
+            sourcenametag = sourcenametag.replaceAll("(name)", player.getName());
             player.setNameTag(sourcenametag);
 
             if (!NameTool.playerdisplayname.containsKey(player)){
