@@ -164,22 +164,22 @@ public class NormalGenerator extends VanillaGenerator {
         this.generationPopulators = ImmutableList.of(new PopulatorCaves());
 
         ArrayList<UHCOreType> ore = new ArrayList<>();
-        ore.add(new UHCOreType(COAL_ORE,10,64,0));
-        ore.add(new UHCOreType(IRON_ORE,10,64,0));
-        ore.add(new UHCOreType(REDSTONE_ORE,10,64,0));
-        ore.add(new UHCOreType(LAPIS_ORE,10,64,0));
-        ore.add(new UHCOreType(GOLD_ORE,10,64,0));
-        ore.add(new UHCOreType(DIAMOND_ORE,10,64,0));
-        ore.add(new UHCOreType(EMERALD_ORE,10,64,0));
+        ore.add(new UHCOreType(COAL_ORE,200,64,0));
+        ore.add(new UHCOreType(IRON_ORE,200,64,0));
+        ore.add(new UHCOreType(REDSTONE_ORE,200,64,0));
+        ore.add(new UHCOreType(LAPIS_ORE,200,64,0));
+        ore.add(new UHCOreType(GOLD_ORE,200,64,0));
+        ore.add(new UHCOreType(DIAMOND_ORE,200,64,0));
+        ore.add(new UHCOreType(EMERALD_ORE,200,64,0));
 
         this.populators = ImmutableList.of(
-                new PopulatorUHCOre(STONE,ore),
-                new PopulatorOre(STONE, new OreType[]{new OreType(Block.get(EMERALD_ORE), 4 * 30, 8, 0, 16),
-                        new OreType(Block.get(DIRT), 10, 33, 0, 128),
-                        new OreType(Block.get(GRAVEL), 8 * 10, 33, 0, 128),
-                        new OreType(Block.get(STONE, BlockStone.GRANITE), 10, 33, 0, 80),
-                        new OreType(Block.get(STONE, BlockStone.DIORITE), 10, 33, 0, 80),
-                        new OreType(Block.get(STONE, BlockStone.ANDESITE), 10, 33, 0, 80)
+                new PopulatorUHCOre(ore),
+                new PopulatorOre(STONE, new OreType[]{
+                        new OreType(Block.get(DIRT), 5, 33, 0, 128),
+                        new OreType(Block.get(GRAVEL), 50, 33, 0, 128),
+                        new OreType(Block.get(STONE, BlockStone.GRANITE), 5, 33, 0, 80),
+                        new OreType(Block.get(STONE, BlockStone.DIORITE), 5, 33, 0, 80),
+                        new OreType(Block.get(STONE, BlockStone.ANDESITE), 5, 33, 0, 80)
                 }),
                 new PopulatorSnowLayers()
         );
@@ -315,7 +315,7 @@ public class NormalGenerator extends VanillaGenerator {
                                 // this can be flipped if the mode is negative, so lower or equal to is ground, and higher is air/water and, then data can be shifted by afill the order is air by default, ground, then water.
                                 // they can shift places within each if statement the target is densityOffset + 0, since the default target is 0, so don't get too confused by the naming.
                                 if (afill == 1 || afill == 10 || afill == 13 || afill == 16) {
-                                    chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), BlockID.GLASS);
+                                    chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STILL_WATER);
                                 } else if (afill == 2 || afill == 9 || afill == 12 || afill == 15) {
                                     chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STONE);
                                 }
@@ -323,11 +323,11 @@ public class NormalGenerator extends VanillaGenerator {
                                     if (afill == 0 || afill == 3 || afill == 6 || afill == 9 || afill == 12) {
                                         chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STONE);
                                     } else if (afill == 2 || afill == 7 || afill == 10 || afill == 16) {
-                                        chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), BlockID.GLASS);
+                                        chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STILL_WATER);
                                     }
                                 } else if (l + (k << 3) < SEA_LEVEL - 1 && seaFill == 0 || l + (k << 3) >= SEA_LEVEL - 1 && seaFill == 1) {
                                     if (afill == 0 || afill == 3 || afill == 7 || afill == 10 || afill == 13) {
-                                        chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), BlockID.GLASS);
+                                        chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STILL_WATER);
                                     } else if (afill == 1 || afill == 6 || afill == 9 || afill == 15) {
                                         chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STONE);
                                     }
