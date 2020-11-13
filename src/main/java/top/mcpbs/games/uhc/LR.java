@@ -200,16 +200,16 @@ public class LR implements Listener {
                 }
             }
             if (event.getBlock().getId() == 17 || event.getBlock().getId() == 162){//log
-                this.testLog(event.getPlayer(),event.getBlock().getLocation());
+                this.testLog(event.getBlock().getLocation());
                 event.setDrops(new Item[]{Item.get(5, 0, 4)});
             }
         }
     }
 
-    public void testLog(Player player, Location pos){
-        for(int i = -5;i <= 5;i++){
-            for(int j = -5;j <= 5;j++){
-                for(int z = -5;z <= 5;z++){
+    public void testLog(Location pos){
+        for(int i = -4;i <= 4;i++){
+            for(int j = -4;j <= 4;j++){
+                for(int z = -4;z <= 4;z++){
                     Location tmppos = pos.clone().add(i,j,z);
                     int blockid = tmppos.getLevelBlock().getId();
                     if (blockid == 17 || blockid == 162){

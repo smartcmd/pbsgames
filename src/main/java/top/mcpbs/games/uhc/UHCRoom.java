@@ -166,7 +166,7 @@ public class UHCRoom extends Room {
 
     @Override
     public boolean canJoin() {//只判定此房间是否可以进人，不考虑其他的~
-        if (this.isPlaying != true && this.waiting.size() < 32 && this.waittime > 15){
+        if (this.isPlaying != true && this.waiting.size() < 32 && this.waittime > 16){//设置成16是防止线程冲突...
             return true;
         }else {
             return false;

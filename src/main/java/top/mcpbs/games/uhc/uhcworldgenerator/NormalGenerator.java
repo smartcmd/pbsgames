@@ -1,6 +1,7 @@
 package top.mcpbs.games.uhc.uhcworldgenerator;
 
 import cn.nukkit.block.Block;
+import cn.nukkit.block.BlockID;
 import cn.nukkit.block.BlockStone;
 import cn.nukkit.level.ChunkManager;
 import cn.nukkit.level.biome.Biome;
@@ -21,9 +22,12 @@ import top.mcpbs.games.uhc.uhcworldgenerator.noise.SimplexOctaveGenerator;
 import top.mcpbs.games.uhc.uhcworldgenerator.noise.bukkit.OctaveGenerator;
 import top.mcpbs.games.uhc.uhcworldgenerator.object.OreType;
 import top.mcpbs.games.uhc.uhcworldgenerator.populator.PopulatorOre;
+import top.mcpbs.games.uhc.uhcworldgenerator.populator.PopulatorUHCOre;
+import top.mcpbs.games.uhc.uhcworldgenerator.populator.UHCOreType;
 import top.mcpbs.games.uhc.uhcworldgenerator.populator.overworld.PopulatorCaves;
 import top.mcpbs.games.uhc.uhcworldgenerator.populator.overworld.PopulatorSnowLayers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
@@ -159,15 +163,18 @@ public class NormalGenerator extends VanillaGenerator {
 
         this.generationPopulators = ImmutableList.of(new PopulatorCaves());
 
+        ArrayList<UHCOreType> ore = new ArrayList<>();
+        ore.add(new UHCOreType(COAL_ORE,10,64,0));
+        ore.add(new UHCOreType(IRON_ORE,10,64,0));
+        ore.add(new UHCOreType(REDSTONE_ORE,10,64,0));
+        ore.add(new UHCOreType(LAPIS_ORE,10,64,0));
+        ore.add(new UHCOreType(GOLD_ORE,10,64,0));
+        ore.add(new UHCOreType(DIAMOND_ORE,10,64,0));
+        ore.add(new UHCOreType(EMERALD_ORE,10,64,0));
+
         this.populators = ImmutableList.of(
-                new PopulatorOre(STONE, new OreType[]{
-                        new OreType(Block.get(COAL_ORE), 20 * 30, 17, 0, 128),
-                        new OreType(Block.get(IRON_ORE), 20 * 30, 9, 0, 64),
-                        new OreType(Block.get(REDSTONE_ORE), 8 * 30, 8, 0, 16),
-                        new OreType(Block.get(LAPIS_ORE), 8 * 30, 7, 0, 16),
-                        new OreType(Block.get(GOLD_ORE), 16 * 30, 9, 0, 32),
-                        new OreType(Block.get(DIAMOND_ORE), 4 * 30, 8, 0, 16),
-                        new OreType(Block.get(EMERALD_ORE), 4 * 30, 8, 0, 16),
+                new PopulatorUHCOre(STONE,ore),
+                new PopulatorOre(STONE, new OreType[]{new OreType(Block.get(EMERALD_ORE), 4 * 30, 8, 0, 16),
                         new OreType(Block.get(DIRT), 10, 33, 0, 128),
                         new OreType(Block.get(GRAVEL), 8 * 10, 33, 0, 128),
                         new OreType(Block.get(STONE, BlockStone.GRANITE), 10, 33, 0, 80),
@@ -308,7 +315,7 @@ public class NormalGenerator extends VanillaGenerator {
                                 // this can be flipped if the mode is negative, so lower or equal to is ground, and higher is air/water and, then data can be shifted by afill the order is air by default, ground, then water.
                                 // they can shift places within each if statement the target is densityOffset + 0, since the default target is 0, so don't get too confused by the naming.
                                 if (afill == 1 || afill == 10 || afill == 13 || afill == 16) {
-                                    chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STILL_WATER);
+                                    chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), BlockID.GLASS);
                                 } else if (afill == 2 || afill == 9 || afill == 12 || afill == 15) {
                                     chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STONE);
                                 }
@@ -316,11 +323,11 @@ public class NormalGenerator extends VanillaGenerator {
                                     if (afill == 0 || afill == 3 || afill == 6 || afill == 9 || afill == 12) {
                                         chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STONE);
                                     } else if (afill == 2 || afill == 7 || afill == 10 || afill == 16) {
-                                        chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STILL_WATER);
+                                        chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), BlockID.GLASS);
                                     }
                                 } else if (l + (k << 3) < SEA_LEVEL - 1 && seaFill == 0 || l + (k << 3) >= SEA_LEVEL - 1 && seaFill == 1) {
                                     if (afill == 0 || afill == 3 || afill == 7 || afill == 10 || afill == 13) {
-                                        chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STILL_WATER);
+                                        chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), BlockID.GLASS);
                                     } else if (afill == 1 || afill == 6 || afill == 9 || afill == 15) {
                                         chunkData.setBlock(m + (i << 2), l + (k << 3), n + (j << 2), STONE);
                                     }
@@ -444,29 +451,30 @@ public class NormalGenerator extends VanillaGenerator {
     }
 
     protected static class BiomeHeight {
-
-        public static final BiomeHeight DEFAULT = new BiomeHeight(0.1d / 10,0.2d / 10);
-        public static final BiomeHeight FLAT_SHORE = new BiomeHeight(0d / 10, 0.025d / 10);
-        public static final BiomeHeight HIGH_PLATEAU = new BiomeHeight(1.5d / 10, 0.025d / 10);
-        public static final BiomeHeight FLATLANDS = new BiomeHeight(0.125d / 10,  0.05d / 10);
-        public static final BiomeHeight SWAMPLAND = new BiomeHeight(-0.2d / 10,  0.1d / 10);
-        public static final BiomeHeight MID_PLAINS = new BiomeHeight( 0.2d / 10,  0.2d / 10);
-        public static final BiomeHeight FLATLANDS_HILLS = new BiomeHeight(0.275d / 10, 0.25d / 10);
-        public static final BiomeHeight SWAMPLAND_HILLS = new BiomeHeight( -0.1d / 10, 0.3d / 10);
-        public static final BiomeHeight LOW_HILLS = new BiomeHeight(0.2d / 10, 0.3d / 10);
-        public static final BiomeHeight HILLS = new BiomeHeight(0.45d / 10, 0.3d / 10);
-        public static final BiomeHeight MID_HILLS2 = new BiomeHeight(0.1d / 10, 0.4d / 10);
-        public static final BiomeHeight DEFAULT_HILLS = new BiomeHeight( 0.2d / 10,  0.4d / 10);
-        public static final BiomeHeight MID_HILLS = new BiomeHeight( 0.3d / 10,  0.4d / 10);
-        public static final BiomeHeight BIG_HILLS = new BiomeHeight( 0.525d / 10, 0.55d / 10);
-        public static final BiomeHeight BIG_HILLS2 = new BiomeHeight( 0.55d / 10, 0.5d / 10);
-        public static final BiomeHeight EXTREME_HILLS = new BiomeHeight(1d / 10,  0.5d / 10);
-        public static final BiomeHeight ROCKY_SHORE = new BiomeHeight(0.1d / 10, 0.8d / 10);
-        public static final BiomeHeight LOW_SPIKES = new BiomeHeight(0.4125d / 10, 1.325d / 10);
-        public static final BiomeHeight HIGH_SPIKES = new BiomeHeight( 1.1d / 10,  1.3125d / 10);
-        public static final BiomeHeight RIVER = new BiomeHeight(-0.5d / 10,  0d / 10);
-        public static final BiomeHeight OCEAN = new BiomeHeight(-1d / 10,  0.1d / 10);
-        public static final BiomeHeight DEEP_OCEAN = new BiomeHeight( -1.8d / 10, 0.1d / 10);
+        public static int nheight = 100;
+        public static int nscale = 100;
+        public static final BiomeHeight DEFAULT = new BiomeHeight(0.1d / nheight,0.2d / nscale);
+        public static final BiomeHeight FLAT_SHORE = new BiomeHeight(0d / nheight, 0.025d / nscale);
+        public static final BiomeHeight HIGH_PLATEAU = new BiomeHeight(1.5d / nheight, 0.025d / nscale);
+        public static final BiomeHeight FLATLANDS = new BiomeHeight(0.125d / nheight,  0.05d / nscale);
+        public static final BiomeHeight SWAMPLAND = new BiomeHeight(-0.2d / nheight,  0.1d / nscale);
+        public static final BiomeHeight MID_PLAINS = new BiomeHeight( 0.2d / nheight,  0.2d / nscale);
+        public static final BiomeHeight FLATLANDS_HILLS = new BiomeHeight(0.275d / nheight, 0.25d / nscale);
+        public static final BiomeHeight SWAMPLAND_HILLS = new BiomeHeight( -0.1d / nheight, 0.3d / nscale);
+        public static final BiomeHeight LOW_HILLS = new BiomeHeight(0.2d / nheight, 0.3d / nscale);
+        public static final BiomeHeight HILLS = new BiomeHeight(0.45d / nheight, 0.3d / nscale);
+        public static final BiomeHeight MID_HILLS2 = new BiomeHeight(0.1d / nheight, 0.4d / nscale);
+        public static final BiomeHeight DEFAULT_HILLS = new BiomeHeight( 0.2d / nheight,  0.4d / nscale);
+        public static final BiomeHeight MID_HILLS = new BiomeHeight( 0.3d / nheight,  0.4d / nscale);
+        public static final BiomeHeight BIG_HILLS = new BiomeHeight( 0.525d / nheight, 0.55d / nscale);
+        public static final BiomeHeight BIG_HILLS2 = new BiomeHeight( 0.55d / nheight, 0.5d / nscale);
+        public static final BiomeHeight EXTREME_HILLS = new BiomeHeight(1d / nheight,  0.5d / nscale);
+        public static final BiomeHeight ROCKY_SHORE = new BiomeHeight(0.1d / nheight, 0.8d / nscale);
+        public static final BiomeHeight LOW_SPIKES = new BiomeHeight(0.4125d / nheight, 1.325d / nscale);
+        public static final BiomeHeight HIGH_SPIKES = new BiomeHeight( 1.1d / nheight,  1.3125d / nscale);
+        public static final BiomeHeight RIVER = new BiomeHeight(-0.5d / nheight,  0d / nscale);
+        public static final BiomeHeight OCEAN = new BiomeHeight(-1d / nheight,  0.1d / nscale);
+        public static final BiomeHeight DEEP_OCEAN = new BiomeHeight( -1.8d / nheight, 0.1d / nscale);
 
         protected final double height;
         protected final double scale;
