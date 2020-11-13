@@ -197,8 +197,8 @@ public class DuelRoom extends Room {
         player.sendMessage("§a输入/hub即可退出当前房间!");
         player.sendTitle("§e地图名称: " + this.mapname);
         player.setGamemode(0);
-        NameTool.setPlayerNameTag(player,"(name)" + "\n" + "(health)" + " §c❤");
-        NameTool.setPlayerDisplayName(player,"(name)");
+        NameTool.setPlayerNameTag(player,"/name/" + "\n" + "/health/" + " §c❤");
+        NameTool.setPlayerDisplayName(player,"/name/");
     }
 
     @Override

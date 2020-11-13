@@ -32,8 +32,8 @@ public class LobbyTool {
         player.getInventory().setItem(3, head);
         player.getInventory().setItem(4, chest);
         String ch = getPlayerUseDesignation(player);
-        NameTool.setPlayerNameTag(player,"§7" + "(name)" + "\n" + "(ch)");
-        NameTool.setPlayerDisplayName(player,"§7" + "(name)");
+        NameTool.setPlayerNameTag(player,"§7" + "/name/" + "\n" + "/ch/");
+        NameTool.setPlayerDisplayName(player,"§7" + "/name/");
         player.teleport(LobbyTool.lobby);
     }
 }

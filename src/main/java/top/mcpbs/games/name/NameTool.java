@@ -69,12 +69,12 @@ public class NameTool {
         playerdisplayname.put(player,displayname);
     }
     /**
-     * (coin)
-     * (score)
-     * (diamond)
-     * (health)
-     * (ch)
-     * (name)
-     * (maxhealth)
+     * /coin/
+     * /score/
+     * /diamond/
+     * /health/
+     * /ch/
+     * /name/
+     * /maxhealth/
      */
 }

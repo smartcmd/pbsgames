@@ -55,8 +55,8 @@ public class WaitRoom {
 
     public void joinWaitRoom(Player player){
         player.teleport(this.pos);
-        NameTool.setPlayerNameTag(player,"(name)");
-        NameTool.setPlayerDisplayName(player,"(name)");
+        NameTool.setPlayerNameTag(player,"/name/");
+        NameTool.setPlayerDisplayName(player,"/name/");
         for (Player p : this.roomlevel.getPlayers().values()){
             p.sendMessage("§a游戏 §7» " + player.getName() + " 加入了游戏 " + "§8[等待人数:" + this.roomlevel.getPlayers().size() + "]");
         }
