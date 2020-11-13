@@ -451,8 +451,8 @@ public class NormalGenerator extends VanillaGenerator {
     }
 
     protected static class BiomeHeight {
-        public static int nheight = 100;
-        public static int nscale = 100;
+        public static int nheight = 20;
+        public static int nscale = 20;
         public static final BiomeHeight DEFAULT = new BiomeHeight(0.1d / nheight,0.2d / nscale);
         public static final BiomeHeight FLAT_SHORE = new BiomeHeight(0d / nheight, 0.025d / nscale);
         public static final BiomeHeight HIGH_PLATEAU = new BiomeHeight(1.5d / nheight, 0.025d / nscale);
