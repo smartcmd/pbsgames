@@ -164,13 +164,13 @@ public class NormalGenerator extends VanillaGenerator {
         this.generationPopulators = ImmutableList.of(new PopulatorCaves());
 
         ArrayList<UHCOreType> ore = new ArrayList<>();
-        ore.add(new UHCOreType(COAL_ORE,200,64,0));
-        ore.add(new UHCOreType(IRON_ORE,200,64,0));
-        ore.add(new UHCOreType(REDSTONE_ORE,200,64,0));
-        ore.add(new UHCOreType(LAPIS_ORE,200,64,0));
-        ore.add(new UHCOreType(GOLD_ORE,200,64,0));
-        ore.add(new UHCOreType(DIAMOND_ORE,200,64,0));
-        ore.add(new UHCOreType(EMERALD_ORE,200,64,0));
+        ore.add(new UHCOreType(COAL_ORE,1000,64,0));
+        ore.add(new UHCOreType(IRON_ORE,1000,64,0));
+        ore.add(new UHCOreType(REDSTONE_ORE,1000,64,0));
+        ore.add(new UHCOreType(LAPIS_ORE,1000,64,0));
+        ore.add(new UHCOreType(GOLD_ORE,1000,64,0));
+        ore.add(new UHCOreType(DIAMOND_ORE,1000,64,0));
+        ore.add(new UHCOreType(EMERALD_ORE,1000,64,0));
 
         this.populators = ImmutableList.of(
                 new PopulatorUHCOre(ore),

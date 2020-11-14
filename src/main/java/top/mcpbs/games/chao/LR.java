@@ -116,20 +116,20 @@ public class LR implements Listener {
             switch(response.getClickedButtonId()){
                 case 0:
                     if (Chao.getCoin(event.getPlayer()) < 50){
-                        event.getPlayer().sendMessage("§c你的乱斗币不足!");
+                        event.getPlayer().sendMessage("§b游戏 §7» §c你的乱斗币不足!");
                     }else{
                         Chao.remCoin(event.getPlayer(),50);
                         Chao.addDrawRate(event.getPlayer(),0.2);
-                        event.getPlayer().sendMessage("§a购买成功！");
+                        event.getPlayer().sendMessage("§b游戏 §7» §a购买成功！");
                     }
                     break;
                 case 1:
                     if (Chao.getCoin(event.getPlayer()) < 60){
-                        event.getPlayer().sendMessage("§c你的乱斗币不足!");
+                        event.getPlayer().sendMessage("§b游戏 §7» §c你的乱斗币不足!");
                     }else{
                         Chao.remCoin(event.getPlayer(),60);
                         Chao.addHealth(event.getPlayer(),2);
-                        event.getPlayer().sendMessage("§a购买成功！");
+                        event.getPlayer().sendMessage("§b游戏 §7» §a购买成功！");
                         event.getPlayer().setMaxHealth(Chao.getHealth(event.getPlayer()));
                         event.getPlayer().setHealth(event.getPlayer().getMaxHealth());
                     }

@@ -50,6 +50,7 @@ public class Chao extends PluginTask {
 
             if (player.getY() <= determination && players.get(player) == false){
                 player.sendTitle("§cPVP模式§e开启！","§a努力击杀其他玩家吧！");
+                player.sendMessage("§b游戏 §7» §cPVP模式§e开启！§a努力击杀其他玩家吧！");
 
                 player.getInventory().clearAll();//give items
                 if (player.getInventory().getHelmet().isNull()){
@@ -114,22 +115,22 @@ public class Chao extends PluginTask {
             Item d = Item.get(272,0,1);
             Item e = Item.get(346,0,1);
             Item f = Item.get(332,0,16);
-            if (player.getInventory().contains(bow)){
+            if (!player.getInventory().contains(bow)){
                 player.getInventory().addItem(bow);
             }
-            if (player.getInventory().contains(a)){
+            if (!player.getInventory().contains(a)){
                 player.getInventory().addItem(a);
             }
-            if (player.getInventory().contains(c)){
+            if (!player.getInventory().contains(c)){
                 player.getInventory().addItem(c);
             }
-            if (player.getInventory().contains(d)){
+            if (!player.getInventory().contains(d)){
                 player.getInventory().addItem(d);
             }
-            if (player.getInventory().contains(e)){
+            if (!player.getInventory().contains(e)){
                 player.getInventory().addItem(e);
             }
-            if (player.getInventory().contains(f)){
+            if (!player.getInventory().contains(f)){
                 player.getInventory().addItem(f);
             }
 
