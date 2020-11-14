@@ -54,28 +54,22 @@ public class Chao extends PluginTask {
                 player.getInventory().clearAll();//give items
                 if (player.getInventory().getHelmet().isNull()){
                     Item hel = Item.get(302,0);
-                    hel.addEnchantment(Enchantment.get(17).setLevel(32767,false));
                     player.getInventory().setHelmet(hel);
                 }
                 if (player.getInventory().getChestplate().isNull()){
                     Item che = Item.get(303,0);
-                    che.addEnchantment(Enchantment.get(17).setLevel(32767,false));
                     player.getInventory().setChestplate(che);
                 }
                 if (player.getInventory().getLeggings().isNull()){
                     Item leg = Item.get(304,0);
-                    leg.addEnchantment(Enchantment.get(17).setLevel(32767,false));
                     player.getInventory().setLeggings(leg);
                 }
                 if (player.getInventory().getBoots().isNull()){
                     Item boo = Item.get(305,0);
-                    boo.addEnchantment(Enchantment.get(17).setLevel(32767,false));
                     player.getInventory().setBoots(boo);
                 }
 
                 Item bow = Item.get(261);
-                bow.addEnchantment(Enchantment.get(22).setLevel(1));
-                bow.addEnchantment(Enchantment.get(17).setLevel(32767,false));
                 player.getInventory().addItem(bow);
 
                 Item a = Item.get(262,0,64);
@@ -85,12 +79,10 @@ public class Chao extends PluginTask {
                 player.getInventory().addItem(c);
 
                 Item d = Item.get(272,0,1);
-                d.addEnchantment(Enchantment.get(17).setLevel(32767,false));
 
                 player.getInventory().addItem(d);
 
                 Item e = Item.get(346,0,1);
-                e.addEnchantment(Enchantment.get(17).setLevel(32767,false));
                 player.getInventory().addItem(e);
 
                 Item f = Item.get(332,0,16);
@@ -98,6 +90,49 @@ public class Chao extends PluginTask {
 
                 players.put(player,true);//ok
             }
+
+            if (player.getInventory().getHelmet().isNull()){//test null (on play)
+                Item hel = Item.get(302,0);
+                player.getInventory().setHelmet(hel);
+            }
+            if (player.getInventory().getChestplate().isNull()){
+                Item che = Item.get(303,0);
+                player.getInventory().setChestplate(che);
+            }
+            if (player.getInventory().getLeggings().isNull()){
+                Item leg = Item.get(304,0);
+                player.getInventory().setLeggings(leg);
+            }
+            if (player.getInventory().getBoots().isNull()){
+                Item boo = Item.get(305,0);
+                player.getInventory().setBoots(boo);
+            }
+
+            Item bow = Item.get(261);
+            Item a = Item.get(262,0,64);
+            Item c = Item.get(322,0,1);
+            Item d = Item.get(272,0,1);
+            Item e = Item.get(346,0,1);
+            Item f = Item.get(332,0,16);
+            if (player.getInventory().contains(bow)){
+                player.getInventory().addItem(bow);
+            }
+            if (player.getInventory().contains(a)){
+                player.getInventory().addItem(a);
+            }
+            if (player.getInventory().contains(c)){
+                player.getInventory().addItem(c);
+            }
+            if (player.getInventory().contains(d)){
+                player.getInventory().addItem(d);
+            }
+            if (player.getInventory().contains(e)){
+                player.getInventory().addItem(e);
+            }
+            if (player.getInventory().contains(f)){
+                player.getInventory().addItem(f);
+            }
+
             ArrayList l = new ArrayList();
             l.add("击杀: " + "§a" + getkill(player));
             l.add("死亡: " + "§a" + getDeath(player));
@@ -120,6 +155,7 @@ public class Chao extends PluginTask {
 
     public static void addHealth(Player player,int num){
         PlayerInfoTool.setInfo(player,"chao.health",PlayerInfoTool.getInfo(player,"chao.health",20) + num);
+        player.sendMessage("§d血量 §7» §a最高血量增加了!当前:" + getHealth(player));
     }
 
     public static void remHealth(Player player,int num){
@@ -144,10 +180,12 @@ public class Chao extends PluginTask {
 
     public static void addCoin(Player player,double num){
         PlayerInfoTool.setInfo(player,"chao.coin",PlayerInfoTool.getInfo(player,"chao.coin",0.0) + num);
+        player.sendMessage("§e硬币 §7» §a你增加了" + num + "个大乱斗币");
     }
 
     public static void remCoin(Player player,double num){
         PlayerInfoTool.setInfo(player,"chao.coin",PlayerInfoTool.getInfo(player,"chao.coin",0.0) - num);
+        player.sendMessage("§e硬币 §7» §6你扣除了" + num + "个大乱斗币");
     }
 
     public static void addKill(Player player,int num){
@@ -168,6 +206,7 @@ public class Chao extends PluginTask {
 
     public static void addDrawRate(Player player,double num){
         PlayerInfoTool.setInfo(player,"chao.draw_rate",PlayerInfoTool.getInfo(player,"chao.draw_rate",1.0) + num);
+        player.sendMessage("§a金币倍率 §7» §e你的金币倍率增加了!当前" + getdrawRate(player));
     }
 
     public static void remDrawRateth(Player player,double num){

@@ -150,30 +150,30 @@ public class LR implements Listener {
         if (killer != null){
             dead.getInventory().clearAll();
             dead.setGamemode(3);
-            dead.sendTitle("§c»你阵亡了!");
-            dead.sendMessage("§c»你失去了0.25大乱斗币!");
+            dead.sendTitle("§b游戏 §7» §c你阵亡了!");
+            dead.setHealth(dead.getMaxHealth());
             Chao.remCoin(dead,0.25);
             Chao.players.put(dead,false);
             Server.getInstance().getScheduler().scheduleDelayedTask(new TeleportTask(Main.plugin, dead), 20 * 5);//dead
 
-            killer.sendMessage("§a»你杀死了玩家 " + dead.getName());
-            killer.sendMessage("§a»你获得了1 * " + Chao.getdrawRate(killer));
+            killer.sendMessage("§b游戏 §7» §a你杀死了玩家 " + dead.getName());
+            killer.sendMessage("§b游戏 §7» §a你获得了1 * " + Chao.getdrawRate(killer));
             Chao.addCoin(killer,1 * Chao.getdrawRate(killer));
 
             for (Player player : killer.getLevel().getPlayers().values()){
-                player.sendMessage("§e»玩家 " + killer.getName() + " 杀死了玩家 " + dead.getName());
+                player.sendMessage("§b游戏 §7» §e玩家 " + killer.getName() + " 杀死了玩家 " + dead.getName());
             }
         }else if (killer == null){
             dead.getInventory().clearAll();
             dead.setGamemode(3);
-            dead.sendTitle("§c»你阵亡了!");
-            dead.sendMessage("§c»你失去了0.25大乱斗币!");
+            dead.sendTitle("§b游戏 §7» §c你阵亡了!");
+            dead.setHealth(dead.getMaxHealth());
             Chao.remCoin(dead,0.25);
             Chao.players.put(dead,false);
             Server.getInstance().getScheduler().scheduleDelayedTask(new TeleportTask(Main.plugin, dead), 20 * 5);//dead
 
             for (Player player : killer.getLevel().getPlayers().values()){
-                player.sendMessage("§e»玩家 " + dead.getName() + " 不知怎么的就死了...");
+                player.sendMessage("§b游戏 §7» §e玩家 " + dead.getName() + " 不知怎么的就死了...");
             }
         }
     }
