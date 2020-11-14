@@ -27,7 +27,7 @@ public class PopulatorUHCOre extends Populator {
                         for (int zz = -1;zz <= 1;zz++){
                             int id = chunk.getBlockId(x + xx,y + yy,z + zz);
                             if (id == BlockID.STONE){
-                                level.setBlockFullIdAt(x + xx,y + yy,z + zz,o.blockid);
+                                chunk.setBlock(x + xx,y + yy,z + zz,o.blockid);
                             }
                         }
                     }
