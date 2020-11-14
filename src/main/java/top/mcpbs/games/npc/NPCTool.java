@@ -2,14 +2,19 @@ package top.mcpbs.games.npc;
 
 import cn.nukkit.Server;
 import cn.nukkit.entity.Entity;
+import cn.nukkit.entity.data.Skin;
 import cn.nukkit.level.Level;
+import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
+import cn.nukkit.math.Vector3;
+import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.utils.Config;
 import top.mcpbs.games.Main;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 public class NPCTool {
 
@@ -19,7 +24,6 @@ public class NPCTool {
         Config config = new Config(Main.plugin.getDataFolder() + "/npc.yml");
         HashMap<String, Object> option = new HashMap<>();
         option.put("cmd",npc.cmd);
-        option.put("skin",npc.skin);
         ArrayList l = new ArrayList();
         l.add(npc.getPosition().getX());
         l.add(npc.getPosition().getY());
@@ -64,12 +68,18 @@ public class NPCTool {
     public static void loadConfigAllNPC(){
         HashMap<Long,HashMap> all = (HashMap) config.getAll();
         HashMap tmp = getAllNPC();
-        HashSet set = (HashSet) tmp.keySet();
+        Set set = tmp.keySet();
         for(Map.Entry<Long,HashMap> e : all.entrySet()){
             if (!set.contains(e.getKey())){
                 ArrayList l = (ArrayList) e.getValue().get("position");
                 Position pos = new Position((double)l.get(0),(double)l.get(1),(double)l.get(2),Server.getInstance().getLevelByName(String.valueOf(l.get(3))));
-                NPC npc = new NPC(pos.getChunk(),NPC.getDefaultNBT(pos),String.valueOf(e.getKey()),true,true,String.valueOf(e.getValue().get("cmd")),null);
+                Skin skin = new Skin();
+                try {
+                    skin.setSkinData(ImageIO.read(new File(Main.plugin.getDataFolder() + "/npcskin/steve.png")));
+                } catch (IOException ee) {
+                    ee.printStackTrace();
+                }
+                new NPC(pos.getChunk(), NPCTool.getTag(pos).putCompound("Skin", (new CompoundTag()).putByteArray("Data", skin.getSkinData().data).putString("ModelId", skin.getSkinId())),String.valueOf(e.getKey()),true,true,String.valueOf(e.getValue().get("cmd")));
             }else{
                 NPC.npc.put(e.getKey(), (NPC) tmp.get(e.getKey()));
             }
@@ -95,5 +105,10 @@ public class NPCTool {
     public static void remNPCFromConfig(long id){
         config.remove(String.valueOf(id));
         config.save();
+    }
+
+    public static CompoundTag getTag(Position pos) {
+        CompoundTag tag = Entity.getDefaultNBT(new Vector3(pos.x, pos.y, pos.z));
+        return tag;
     }
 }

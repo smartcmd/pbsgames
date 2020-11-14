@@ -2,17 +2,11 @@ package top.mcpbs.games.npc;
 
 import cn.nukkit.Player;
 import cn.nukkit.entity.EntityHuman;
-import cn.nukkit.entity.data.Skin;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.nbt.tag.CompoundTag;
 import cn.nukkit.network.protocol.MobArmorEquipmentPacket;
 import cn.nukkit.network.protocol.MobEquipmentPacket;
-import top.mcpbs.games.Main;
-
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,9 +21,8 @@ public class NPC extends EntityHuman{
     boolean alwayssave;
     String cmd;
     long id;
-    String skin;
 
-    public NPC(FullChunk chunk, CompoundTag nbt, String name,boolean alwayssave,boolean keepface,String cmd,String skin1) {
+    public NPC(FullChunk chunk, CompoundTag nbt, String name,boolean alwayssave,boolean keepface,String cmd) {
         super(chunk, nbt);
         this.setNameTagAlwaysVisible();
         this.setNameTagVisible();
@@ -44,26 +37,7 @@ public class NPC extends EntityHuman{
         if (alwayssave){
             NPCTool.saveNPCToConfig(this);
         }
-        if (skin1 != null){
-            this.skin = skin1;
-            Skin skin = new Skin();
-            try {
-                skin.setSkinData(ImageIO.read(new File(Main.plugin.getDataFolder() + "/npcskin/" + skin1 + ".png")));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            this.setSkin(skin);
-        }
-        if (skin1 == null) {
-            this.skin = skin1;
-            Skin skin = new Skin();
-            try {
-                skin.setSkinData(ImageIO.read(new File(Main.plugin.getDataFolder() + "/npcskin/steve.png")));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            this.setSkin(skin);
-        }
+        this.spawnToAll();
         npc.put(this.id,this);
     }
 
@@ -151,13 +125,5 @@ public class NPC extends EntityHuman{
     public void reload(){
         HashMap<String,Object> option = NPCTool.getConfigNPCOption(this.id);
         this.cmd = (String) option.get("cmd");
-        this.skin = (String) option.get("skin");
-        Skin skin = new Skin();
-        try {
-            skin.setSkinData(ImageIO.read(new File(Main.plugin.getDataFolder() + "/npcskin/" + this.skin + ".png")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.setSkin(skin);
     }
 }

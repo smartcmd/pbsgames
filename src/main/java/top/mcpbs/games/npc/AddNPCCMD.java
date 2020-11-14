@@ -4,7 +4,15 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.ConsoleCommandSender;
+import cn.nukkit.entity.Entity;
+import cn.nukkit.entity.data.Skin;
 import cn.nukkit.level.Position;
+import cn.nukkit.nbt.tag.CompoundTag;
+import top.mcpbs.games.Main;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public class AddNPCCMD extends Command {
     public AddNPCCMD(String name, String description) {
@@ -17,7 +25,13 @@ public class AddNPCCMD extends Command {
             sender.sendMessage("控制台不能使用此指令");
         }else{
             Position pos = new Position(Double.valueOf(strings[0]),Double.valueOf(strings[1]),Double.valueOf(strings[2]),((Player)sender).getLevel());
-            new NPC(pos.getChunk(),NPC.getDefaultNBT(pos),strings[3],Boolean.valueOf(strings[4]),Boolean.valueOf(strings[5]),strings[6],strings[7]);
+            Skin skin = new Skin();
+            try {
+                skin.setSkinData(ImageIO.read(new File(Main.plugin.getDataFolder() + "/npcskin/steve.png")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            new NPC(pos.getChunk(), NPCTool.getTag(pos).putCompound("Skin", (new CompoundTag()).putByteArray("Data", skin.getSkinData().data).putString("ModelId", skin.getSkinId())),strings[3],Boolean.valueOf(strings[4]),Boolean.valueOf(strings[5]),strings[6]);
             sender.sendMessage("§asuccessful create");
         }
         return true;
