@@ -12,14 +12,12 @@ public class LobbyTool {
 
     public static Position lobby;
     public static Item sword = Item.get(276);
-    public static Item book = Item.get(403);
     public static Item personality = Item.get(264);
     public static Item head = Item.get(397,3,1);
     public static Item chest = Item.get(130);
 
     static {
         sword.setCustomName("§a小游戏列表");
-        book.setCustomName("§b个人信息");
         personality.setCustomName("§c个性工坊");
         head.setCustomName("§d好友系统");
         chest.setCustomName("§e抽奖箱(在?来一发?)");
@@ -35,5 +33,6 @@ public class LobbyTool {
         NameTool.setPlayerNameTag(player,"§7" + "/name/" + "\n" + "/ch/");
         NameTool.setPlayerDisplayName(player,"§7" + "/name/");
         player.teleport(LobbyTool.lobby);
+        player.sendMessage("§a主城 §7» §e成功返回主城");
     }
 }

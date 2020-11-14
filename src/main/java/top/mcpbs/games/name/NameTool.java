@@ -48,6 +48,7 @@ public class NameTool {
         HashMap tmp = PlayerInfoTool.getInfo(player,"designation",new HashMap());
         tmp.put(d,false);
         PlayerInfoTool.setInfo(player,"designation",tmp);
+        player.sendMessage("§e称号 §7» §a你获得了一个新称号!");
     }
 
     @Deprecated//this method is not used very often~

@@ -144,8 +144,8 @@ public class RushRoom extends Room {
         this.waiting.add(player);
         Room.awaiting.put(player, this);
         player.teleport(this.pos1);
-        player.sendMessage("§a成功加入房间 §erush-" + this.roomId + "!");
-        player.sendMessage("§a输入/hub即可退出当前房间!");
+        player.sendMessage("§b游戏 §7» §a成功加入房间 §erush-" + this.roomId + "!");
+        player.sendMessage("§b游戏 §7» §a输入/hub即可退出当前房间!");
         player.sendTitle("§e地图名称: " + this.mapname);
         player.setGamemode(0);
         NameTool.setPlayerNameTag(player,"/name/");
@@ -162,7 +162,7 @@ public class RushRoom extends Room {
             this.playing.remove(player);
             Room.aplaying.remove(player);
             for (Player p : this.roomlevel.getPlayers().values()){
-                p.sendMessage("§c玩家 §e" + player.getName() + " §c消极比赛，已被扣除分数5!");
+                p.sendMessage("§b游戏 §7» §c玩家 §e" + player.getName() + " §c消极比赛，已被扣除分数5!");
             }
             Score.remScore(player,5);
         }

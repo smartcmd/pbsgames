@@ -40,11 +40,11 @@ public class LR implements Listener {
             Config c = new Config(Main.plugin.getDataFolder() + "/report.yml");
             c.set(berp + " is reported by " + event.getPlayer().getName(),m);
             c.save();
-            event.getPlayer().sendMessage("§a举报成功！等待管理员处理！感谢你的举报！");
+            event.getPlayer().sendMessage("§c举报 §7» §a举报成功！等待管理员处理！感谢你的举报！");
             for(Player opss : Server.getInstance().getOnlinePlayers().values()){
                 if (opss.isOp()){
-                    opss.sendMessage("§a玩家 " + event.getPlayer().getName() + " §a提交了一个举报，请及时处理！");
-                    opss.sendMessage("§6内容如下: §e" + m);
+                    opss.sendMessage("§c举报 §7» §a玩家 " + event.getPlayer().getName() + " §a提交了一个举报，请及时处理！");
+                    opss.sendMessage("§c举报 §7» §6内容如下: §e" + m);
                 }
             }
         }

@@ -22,17 +22,15 @@ public class TestWinTask extends PluginTask {
             for (Player player : room.playing) {
                 if (room.playing.size() == 2 && room.scores.get(player) >= 5 && room.isend == false) {
                     for (Player p : room.playing) {
-                        p.sendMessage("§c[战桥]§e玩家 §a" + player.getName() + "§e胜利了!");
+                        p.sendMessage("§b游戏 §7» §c[战桥]§e玩家 §a" + player.getName() + "§e胜利了!");
                     }
                     player.sendTitle("§a你胜利了!");
-                    player.sendMessage("§6你的收益: §escore+10 §bcoin+2");
                     Score.addScore(player, 10);
                     Coin.addCoin(player, 2);
 
                     ArrayList<Player> tmp = (ArrayList<Player>) room.playing.clone();
                     tmp.remove(player);
                     tmp.get(0).sendTitle("§c你输了!", "§e再接再厉!");
-                    tmp.get(0).sendMessage("§e你失去了5分数！");
                     Score.remScore(tmp.get(0), 5);
                     tmp.get(0).setGamemode(3);
 
@@ -44,7 +42,7 @@ public class TestWinTask extends PluginTask {
             }
             if (room.playing.size() == 1 && room.isPlaying && room.isend == false){
                 Player player = room.playing.get(0);
-                player.sendMessage("§e对方意外退出，本次游戏无收益...");
+                player.sendMessage("§b游戏 §7» §e对方意外退出，本次游戏无收益...");
                 room.isend = true;
                 Server.getInstance().getScheduler().scheduleDelayedTask(new GameEndTask(Main.plugin, room),20 * 5);
             }

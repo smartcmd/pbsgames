@@ -57,10 +57,10 @@ public class LR implements Listener {
                     player.showFormWindow(gx, FormID.PERSONALITY_FORM);
                     break;
                 case 397:
-                    Server.getInstance().getCommandMap().dispatch(player,"friend");
+                    Server.getInstance().dispatchCommand(player,"friend");
                     break;
                 case 130:
-                    Server.getInstance().getCommandMap().dispatch(player,"lottery");
+                    Server.getInstance().dispatchCommand(player,"lottery");
                     break;
             }
         }
@@ -75,25 +75,25 @@ public class LR implements Listener {
             }
             switch (response.getClickedButtonId()) {
                 case 0:
-                    Server.getInstance().getCommandMap().dispatch(player,"potpvp");
+                    Server.getInstance().dispatchCommand(player,"potpvp");
                     break;
                 case 1:
-                    Server.getInstance().getCommandMap().dispatch(player,"builduhc");
+                    Server.getInstance().dispatchCommand(player,"builduhc");
                     break;
                 case 2:
-                    Server.getInstance().getCommandMap().dispatch(player,"joinrush");
+                    Server.getInstance().dispatchCommand(player,"joinrush");
                     break;
                 case 3:
-                    Server.getInstance().getCommandMap().dispatch(player,"bowpvp");
+                    Server.getInstance().dispatchCommand(player,"bowpvp");
                     break;
                 case 4:
-                    Server.getInstance().getCommandMap().dispatch(player,"handpvp");
+                    Server.getInstance().dispatchCommand(player,"handpvp");
                     break;
                 case 5:
-                    Server.getInstance().getCommandMap().dispatch(player,"chao");
+                    Server.getInstance().dispatchCommand(player,"chao");
                     break;
                 case 6:
-                    Server.getInstance().getCommandMap().dispatch(player,"joinuhc");
+                    Server.getInstance().dispatchCommand(player,"joinuhc");
                     break;
             }
         }
@@ -104,10 +104,10 @@ public class LR implements Listener {
             }
             switch (response.getClickedButtonId()){
                 case 0:
-                    Server.getInstance().getCommandMap().dispatch(player,"particle");
+                    Server.getInstance().dispatchCommand(player,"particle");
                     break;
                 case 1:
-                    Server.getInstance().getCommandMap().dispatch(player,"designation");
+                    Server.getInstance().dispatchCommand(player,"designation");
                     break;
             }
         }

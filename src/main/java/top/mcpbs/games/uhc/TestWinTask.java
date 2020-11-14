@@ -38,8 +38,8 @@ public class TestWinTask extends PluginTask {
                         }
                     }
                     for (Player player : room.playing) {
-                        player.sendTitle("§l§e>> §c游戏结束 §e<<", winteam.teamname + s + " §e是最后的胜利者！");
-                        player.sendMessage(winteam.teamname + s + " §e是最后的胜利者！");
+                        player.sendTitle("§c游戏结束", winteam.teamname + s + " §e是最后的胜利者！");
+                        player.sendMessage("§b游戏 §7» " + winteam.teamname + s + " §e是最后的胜利者！");
                     }
                     for (Player p : winteam.player) {
                         if (room.playing.contains(p)) {

@@ -8,6 +8,7 @@ import top.mcpbs.games.chao.Chao;
 import top.mcpbs.games.duel.LoadCmd;
 import top.mcpbs.games.getid.GetBlockID;
 import top.mcpbs.games.hub.Hub;
+import top.mcpbs.games.npc.NPCTool;
 import top.mcpbs.games.pbc.AddPBC;
 import top.mcpbs.games.pbc.RemPBC;
 import top.mcpbs.games.report.Report;
@@ -49,10 +50,16 @@ public class Main extends PluginBase {
         this.saveResource(this.getDataFolder() + "/chao.yml",false);
         this.saveResource(this.getDataFolder() + "/rushlevel.yml",false);
         this.saveResource(this.getDataFolder() + "/timemessage.yml",false);
+        this.saveResource(this.getDataFolder() + "/npc.yml",false);
         File f = new File(Main.plugin.getDataFolder() + "/playerdata");
         if (!f.exists()){
             f.mkdir();
         }//检查playerdata文件夹情况
+        File f1 = new File(Main.plugin.getDataFolder() + "/npcskin");
+        if (!f1.exists()){
+            f1.mkdir();
+        }//检查npcskin文件夹情况
+        NPCTool.loadConfigAllNPC();
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.reward.LR(),this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.friend.LR(),this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.playerinfo.LR(),this);
@@ -71,6 +78,7 @@ public class Main extends PluginBase {
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.waitroom.LR(), this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.designation.LR(), this);
         Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.name.LR(), this);
+        Server.getInstance().getPluginManager().registerEvents(new top.mcpbs.games.npc.LR(), this);
         LoadCmd.loadCmd();
         Server.getInstance().getCommandMap().register("",new Hub("hub","返回主城"));
         Server.getInstance().getCommandMap().register("",new AddPBC("addpbc","增加一个屏蔽词 <屏蔽词> <replace to>",this));
@@ -87,6 +95,8 @@ public class Main extends PluginBase {
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.chao.ChaoStore("chaostore","大乱斗商店",this));
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.uhc.JoinRoom("joinuhc","UHC"));
         Server.getInstance().getCommandMap().register("",new top.mcpbs.games.designation.Designation("designation","designation"));
+        Server.getInstance().getCommandMap().register("",new top.mcpbs.games.npc.AddNPCCMD("addnpc","addnpc"));
+        Server.getInstance().getCommandMap().register("",new top.mcpbs.games.npc.RemNPCCMD("remnpc","remnpc"));
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.lobby.LobbyTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.rush.RushTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.particle.ParticleTask(this),1);

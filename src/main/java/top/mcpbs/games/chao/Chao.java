@@ -135,15 +135,18 @@ public class Chao extends PluginTask {
 
             ArrayList l = new ArrayList();
             l.add("击杀: " + "§a" + getkill(player));
+            l.add(" ");
             l.add("死亡: " + "§a" + getDeath(player));
+            l.add("  ");
             l.add("乱斗币: " + "§a" + String.format("%.2f", getCoin(player)));
+            l.add("   ");
             int death = (int) getDeath(player);
             if (death == 0){
                 death = 1;
             }
             double kdr = (double)getkill(player) / (double) death;
             l.add("KDR: " + "§a" + String.format("%.3f", kdr));
-            l.add("     ");
+            l.add("    ");
             l.add("§eplay.mcpbs.top");
             Main.s.showScoreboard(player, "§l§e天坑大乱斗", l);
         }

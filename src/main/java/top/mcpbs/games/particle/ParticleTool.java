@@ -18,6 +18,7 @@ public class ParticleTool {
         HashMap<String, Boolean> plist = PlayerInfoTool.getInfo(player,"particle.list",new HashMap<>());
         plist.put(pname,false);
         PlayerInfoTool.setInfo(player,"particle.list",plist);
+        player.sendMessage("§d粒子特效 §7» §a你获得了一个新粒子特效!");
     }
 
     @Deprecated//this method is not used very often

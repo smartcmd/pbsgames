@@ -141,8 +141,8 @@ public class UHCRoom extends Room {
         this.killnum.put(player,0);
         this.isdead.put(player,false);
         this.waitRoom.joinWaitRoom(player);
-        player.sendMessage("§a成功加入房间 §eUHC-" + this.roomId + "!");
-        player.sendMessage("§a输入/hub即可退出当前房间!");
+        player.sendMessage("§b游戏 §7» §a成功加入房间 §eUHC-" + this.roomId + "!");
+        player.sendMessage("§b游戏 §7» §a输入/hub即可退出当前房间!");
     }
 
     @Override
@@ -155,7 +155,7 @@ public class UHCRoom extends Room {
             this.playing.remove(player);
             Room.aplaying.remove(player);
             for (Player p : this.roomlevel.getPlayers().values()){
-                p.sendMessage("§c玩家 §e" + player.getName() + " §c消极比赛，已被扣除分数5!");
+                p.sendMessage("§b游戏 §7» §c玩家 §e" + player.getName() + " §c消极比赛，已被扣除分数5!");
             }
             Score.remScore(player,5);
             this.isdead.put(player,true);
@@ -202,7 +202,7 @@ public class UHCRoom extends Room {
             NameTool.setPlayerNameTag(player,this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "] " + "/name)" + "\n" + "/health/" + " §c❤");
             NameTool.setPlayerDisplayName(player,this.playerteam.get(player).color + "[" + this.playerteam.get(player).teamname + "] " + "/name/");
             player.teleport(team.spawnpos);
-            player.sendMessage("§a你加入了 " + team.teamname);
+            player.sendMessage("§c队伍 §7» §a你加入了 " + team.teamname);
             player.setGamemode(2);
         }
     }

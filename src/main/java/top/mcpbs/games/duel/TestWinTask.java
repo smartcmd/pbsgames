@@ -37,17 +37,15 @@ public class TestWinTask extends PluginTask {
                     }
                     if (winner != null && winner.isOnline()){
                         for (Player p : room.playing){
-                            p.sendMessage("§c[Duel]§e玩家 §a" + winner.getName() + "§e胜利了!");
+                            p.sendMessage("§b游戏 §7» §c[Duel]§e玩家 §a" + winner.getName() + "§e胜利了!");
                         }
                         winner.sendTitle("§a你胜利了!");
-                        winner.sendMessage("§6你的收益: §escore+10 §bcoin+2");
                         Score.addScore(winner,10);
                         Coin.addCoin(winner,2);
                         winner.getInventory().clearAll();
                     }
                     if (loser != null && loser.isOnline()){
                         loser.sendTitle("§c你输了!","§e再接再厉!");
-                        loser.sendMessage("§e你失去了5分数!");
                         Score.remScore(loser,5);
                         loser.getInventory().clearAll();
                     }
@@ -57,7 +55,7 @@ public class TestWinTask extends PluginTask {
             }
             if (room.isPlaying == true && room.playing.size() == 1 && room.isend == false){
                 Player player = room.playing.get(0);
-                player.sendMessage("§e对方意外退出，本次游戏无收益...");
+                player.sendMessage("§b游戏 §7» §e对方意外退出，本次游戏无收益...");
                 player.getInventory().clearAll();
                 room.isend = true;
                 Server.getInstance().getScheduler().scheduleDelayedTask(new top.mcpbs.games.duel.GameEndTask(Main.plugin, room),20 * 5);

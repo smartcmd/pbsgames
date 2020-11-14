@@ -37,7 +37,7 @@ class cmd extends Command{
     @Override
     public boolean execute(CommandSender sender, String s, String[] strings) {
         Player player = (Player)sender;
-        player.sendMessage("§a正在匹配房间...");
+        player.sendMessage("§b游戏 §7» §a匹配房间中...");
         if (!Room.awaiting.containsKey(player) && !Room.aplaying.containsKey(player)){
             for (DuelRoom room : DuelRoom.duelrooms.values()){
                 if (room.mode.equals(this.getName()) && room.canJoin() == true){
@@ -45,12 +45,12 @@ class cmd extends Command{
                     return true;
                 }
             }
-            player.sendMessage("§a未找到可用房间，正在创建新的房间...");
+            player.sendMessage("§b游戏 §7» §a未找到可用房间，正在创建新的房间...");
             DuelRoom room = new DuelRoom(this.getLabel());
             room.joinRoom(player);
             return true;
         }
-        player.sendMessage("§c你目前不能加入此游戏!");
+        player.sendMessage("§b游戏 §7» §c你目前不能加入此游戏!");
         return true;
     }
 }

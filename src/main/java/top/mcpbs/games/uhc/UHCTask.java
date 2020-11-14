@@ -117,7 +117,7 @@ public class UHCTask extends PluginTask {
                         }
                         Player nearestplayer = m.get(min);
                         if (nearestplayer != null) {
-                            player.sendActionBar("§e§l最近的敌对玩家: " + room.playerteam.get(nearestplayer).color + nearestplayer.getName() + "\n§a距离: §b" + String.format("%.3f", min) + " §am");
+                            player.sendActionBar("§d§l最近的敌对玩家: " + room.playerteam.get(nearestplayer).color + nearestplayer.getName() + "\n§6距离: §c" + String.format("%.3f", min) + " §am");
                             SetSpawnPositionPacket pk = new SetSpawnPositionPacket();
                             pk.spawnType = 1;
                             Position spawn = nearestplayer.getPosition();

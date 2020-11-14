@@ -35,15 +35,14 @@ public class LR implements Listener {
                 switch (pricetype){
                     case "coin":
                         if (Coin.getCoinNum(event.getPlayer()) < price){
-                            event.getPlayer().sendMessage("§c>>硬币不足!");
+                            event.getPlayer().sendMessage("§6抽奖箱 §7» §c硬币不足!");
                             break;
                         }
                         Coin.remCoin(event.getPlayer(),price);
                         for (Player p : event.getPlayer().getLevel().getPlayers().values()){
-                            p.sendMessage("§e>>玩家 §b" +event.getPlayer().getName() + " §a正在开启 §f" + lname);
+                            p.sendMessage("§6抽奖箱 §7» §e玩家 §b" +event.getPlayer().getName() + " §a正在开启 §f" + lname);
                         }
                         LotteryTool.givePrizes(event.getPlayer(),LotteryTool.drawPrize(lname));
-                        event.getPlayer().sendMessage("§a>>快去个人中心启用吧!");
                 }
             }
         }

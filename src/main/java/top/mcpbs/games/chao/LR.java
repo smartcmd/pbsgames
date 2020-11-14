@@ -141,7 +141,7 @@ public class LR implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event){
         if (Chao.players.containsKey(event.getPlayer()) && Chao.players.get(event.getPlayer()) == false && event.getPlayer().getInventory().getItemInHand().getId() == 355){
-            Server.getInstance().getCommandMap().dispatch(event.getPlayer(),"hub");
+            Server.getInstance().dispatchCommand(event.getPlayer(),"hub");
             Server.getInstance().getPluginManager().callEvent(new PlayerCommandPreprocessEvent(event.getPlayer(),"/hub"));
         }
     }

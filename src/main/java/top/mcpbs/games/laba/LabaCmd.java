@@ -25,16 +25,15 @@ public class LabaCmd extends Command {
         }else{
             Player p = (Player)sender;
             if (strings == null){
-                p.sendMessage("§c你还没输要说的话呢!");
+                p.sendMessage("§d小喇叭 §7» §c你还没输要说的话呢!");
                 return true;
             }
             if (Coin.getCoinNum(p) < 1){
-                p.sendMessage("§c硬币不足，无法完成支付!");
+                p.sendMessage("§d小喇叭 §7» §c硬币不足，无法完成支付!");
                 return true;
             }
             if (Coin.getCoinNum(p) >= 1){
                 Coin.remCoin(p,1);
-                p.sendMessage("§a成功支付1硬币!");
                 String ss = "";
                 for (String sss : strings){
                     ss += (" " + sss);

@@ -30,7 +30,7 @@ public class LR implements Listener {
                         m.put(s,false);
                     }
                     PlayerInfoTool.setInfo(event.getPlayer(),"particle.list",m);
-                    event.getPlayer().sendMessage("§a>>已关闭粒子效果!");
+                    event.getPlayer().sendMessage("§d粒子效果 §7» §a已关闭粒子效果!");
                     break;
                 case 2:
                     Forms.showParticleSpeedForm(event.getPlayer());
@@ -46,11 +46,11 @@ public class LR implements Listener {
             String use = (String) ((SElementButton)response.getClickedButton()).s;
             HashMap<String,Boolean> p = ParticleTool.getPlayerAllParticle(event.getPlayer());
             if (p.get(use) == true){
-                event.getPlayer().sendMessage("§e>>你正在使用这个粒子!");
+                event.getPlayer().sendMessage("§d粒子效果 §7» §e你正在使用这个粒子!");
                 return;
             }
             ParticleTool.setPlayerUseParticle(event.getPlayer(), use);
-            event.getPlayer().sendMessage("§a>>启用成功!");
+            event.getPlayer().sendMessage("§d粒子效果 §7» §a启用成功!");
         }
         if (event.getFormID() == FormID.PARTICLE_SPEED_FORM){
             FormResponseCustom response = (FormResponseCustom) event.getResponse();
@@ -58,7 +58,7 @@ public class LR implements Listener {
                 return;
             }
             ParticleTool.setPlayerParticleSpeed(event.getPlayer(), (int) response.getSliderResponse(1));
-            event.getPlayer().sendMessage("§a>>设置成功!");
+            event.getPlayer().sendMessage("§d粒子效果 §7» §a设置成功!");
         }
     }
 }
