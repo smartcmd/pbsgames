@@ -4,7 +4,6 @@ import cn.nukkit.Server;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.data.Skin;
 import cn.nukkit.level.Level;
-import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
 import cn.nukkit.nbt.tag.CompoundTag;
@@ -30,6 +29,7 @@ public class NPCTool {
         l.add(npc.getPosition().getZ());
         l.add(npc.getPosition().getLevel().getName());
         option.put("position",l);
+        option.put("alwayssave",npc.alwayssave);
         config.set(String.valueOf(npc.id),option);
         config.save();
     }
