@@ -7,6 +7,7 @@ import cn.nukkit.command.ConsoleCommandSender;
 public class RemNPCCMD extends Command {
     public RemNPCCMD(String name, String description) {
         super(name, description);
+        this.setPermission("op");
     }
 
     @Override
@@ -15,10 +16,6 @@ public class RemNPCCMD extends Command {
             sender.sendMessage("控制台不能使用此指令");
         }else{
             NPC npc = NPCTool.getAllNPC().get(strings[0]);
-            NPC.npc.remove(npc.id);
-            if (npc.alwayssave){
-                NPCTool.remNPCFromConfig(npc.id);
-            }
             npc.close();
         }
         return true;

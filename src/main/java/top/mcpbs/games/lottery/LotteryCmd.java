@@ -15,11 +15,8 @@ import java.util.HashMap;
 
 public class LotteryCmd extends Command {
 
-    Plugin plugin;
-
-    public LotteryCmd(String name, String description,Plugin plugin) {
+    public LotteryCmd(String name, String description) {
         super(name, description);
-        this.plugin = plugin;
     }
 
     @Override

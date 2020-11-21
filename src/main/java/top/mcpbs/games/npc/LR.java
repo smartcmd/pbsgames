@@ -6,6 +6,8 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
+import cn.nukkit.event.player.PlayerCommandPreprocessEvent;
+import cn.nukkit.event.server.ServerCommandEvent;
 
 public class LR implements Listener {
     @EventHandler
@@ -19,6 +21,28 @@ public class LR implements Listener {
                     if (Server.getInstance().getCommandMap().getCommands().containsKey(npc.cmd)){
                         Server.getInstance().dispatchCommand((Player)event1.getDamager(),npc.cmd);
                     }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onServerReload(ServerCommandEvent event){
+        if (event.getCommand().equals("reload")){
+            for (NPC npc : NPC.npc.values()){
+                if(!npc.alwayssave){
+                    npc.close();
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerReload(PlayerCommandPreprocessEvent event){
+        if (event.getMessage().equals("/reload")){
+            for (NPC npc : NPC.npc.values()){
+                if(!npc.alwayssave){
+                    npc.close();
                 }
             }
         }

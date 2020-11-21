@@ -7,11 +7,9 @@ import cn.nukkit.plugin.Plugin;
 import top.mcpbs.games.room.Room;
 
 public class JoinRoom extends Command {
-    Plugin plugin;
 
-    public JoinRoom(String name, String description,Plugin plugin) {
+    public JoinRoom(String name, String description) {
         super(name, description);
-        this.plugin = plugin;
     }
     @Override
     public boolean execute(CommandSender sender, String s, String[] strings) {

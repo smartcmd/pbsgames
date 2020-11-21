@@ -16,6 +16,7 @@ import java.io.IOException;
 public class AddNPCCMD extends Command {
     public AddNPCCMD(String name, String description) {
         super(name, description);
+        this.setPermission("op");
     }
 
     @Override

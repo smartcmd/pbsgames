@@ -10,11 +10,8 @@ import top.mcpbs.games.playerinfo.coin.Coin;
 
 public class LabaCmd extends Command {
 
-    Plugin plugin;
-
-    public LabaCmd(String name, String description,Plugin plugin) {
+    public LabaCmd(String name, String description) {
         super(name, description);
-        this.plugin = plugin;
     }
 
     @Override

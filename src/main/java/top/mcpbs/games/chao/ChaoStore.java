@@ -12,11 +12,8 @@ import top.mcpbs.games.FormID;
 
 public class ChaoStore extends Command {
 
-    Plugin plugin;
-
-    public ChaoStore(String name, String description, Plugin plugin) {
+    public ChaoStore(String name, String description) {
         super(name, description);
-        this.plugin = plugin;
     }
 
     @Override
