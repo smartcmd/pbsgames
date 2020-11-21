@@ -15,7 +15,7 @@ public class RemNPCCMD extends Command {
         if (sender instanceof ConsoleCommandSender){
             sender.sendMessage("控制台不能使用此指令");
         }else{
-            NPC npc = NPCTool.getAllNPC().get(strings[0]);
+            NPC npc = NPC.npc.get(Long.valueOf(strings[0]));
             npc.close();
         }
         return true;

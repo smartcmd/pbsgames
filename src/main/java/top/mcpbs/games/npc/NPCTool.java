@@ -20,7 +20,6 @@ public class NPCTool {
     public static Config config = new Config(Main.plugin.getDataFolder() + "/npc.yml");
 
     public static void saveNPCToConfig(NPC npc){
-        Config config = new Config(Main.plugin.getDataFolder() + "/npc.yml");
         HashMap<String, Object> option = new HashMap<>();
         option.put("cmd",npc.cmd);
         ArrayList l = new ArrayList();
@@ -67,7 +66,7 @@ public class NPCTool {
 
     public static void loadConfigAllNPC(){
         HashMap<Long,HashMap> all = (HashMap) config.getAll();
-        HashMap tmp = getAllNPC();
+        HashMap tmp = NPC.npc;
         Set set = tmp.keySet();
         for(Map.Entry<Long,HashMap> e : all.entrySet()){
             if (!set.contains(e.getKey())){
@@ -86,20 +85,8 @@ public class NPCTool {
         }
     }
 
-    public static HashMap<Long, NPC> getAllNPC(){
-        HashMap<Long, NPC> m = new HashMap();
-        for (Level level : Server.getInstance().getLevels().values()){
-            for (Entity e : level.getEntities()){
-                if (e instanceof NPC){
-                    m.put(((NPC)e).id,(NPC)e);
-                }
-            }
-        }
-        return m;
-    }
-
     public static NPC getNPCByID(long id){//can null
-       return getAllNPC().get(id);
+       return NPC.npc.get(id);
     }
 
     public static void remNPCFromConfig(long id){

@@ -5,10 +5,7 @@ import cn.nukkit.entity.EntityHuman;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.nbt.tag.CompoundTag;
-import cn.nukkit.network.protocol.MobArmorEquipmentPacket;
-import cn.nukkit.network.protocol.MobEquipmentPacket;
 import cn.nukkit.network.protocol.MoveEntityAbsolutePacket;
-import cn.nukkit.network.protocol.SetEntityMotionPacket;
 
 import java.util.HashMap;
 
@@ -47,28 +44,6 @@ public class NPC extends EntityHuman{
 
     public void setArmor(Item[] armor) {
         this.armor = armor;
-    }
-
-    @Override
-    public boolean onUpdate(int currentTick) {
-        boolean b = super.onUpdate(currentTick);
-        if (b) {
-            for (Player p : this.getLevel().getPlayers().values()) {
-                MoveEntityAbsolutePacket packet = new MoveEntityAbsolutePacket();
-                double npcx = this.x - p.x;
-                double npcy = this.y - p.y;
-                double npcz = this.z - p.z;
-                double yaw = Math.asin(npcx / Math.sqrt(npcx * npcx + npcz * npcz)) / 3.14D * 180.0D;
-                double pitch = (double) Math.round(Math.asin(npcy / Math.sqrt(npcx * npcx + npcz * npcz + npcy * npcy)) / 3.14D * 180.0D);
-                if (npcz > 0.0D) {
-                    yaw = -yaw + 180.0D;
-                }
-                packet.yaw = yaw;
-                packet.pitch = pitch;
-                p.dataPacket(packet);
-            }
-        }
-        return b;
     }
 
     public void reload(){

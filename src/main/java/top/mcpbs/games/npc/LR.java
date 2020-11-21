@@ -30,10 +30,9 @@ public class LR implements Listener {
     public void onServerReload(ServerCommandEvent event){
         if (event.getCommand().equals("reload")){
             for (NPC npc : NPC.npc.values()){
-                if(!npc.alwayssave){
-                    npc.close();
-                }
+                npc.close();
             }
+            NPCTool.loadConfigAllNPC();
         }
     }
 
@@ -41,10 +40,9 @@ public class LR implements Listener {
     public void onPlayerReload(PlayerCommandPreprocessEvent event){
         if (event.getMessage().equals("/reload")){
             for (NPC npc : NPC.npc.values()){
-                if(!npc.alwayssave){
-                    npc.close();
-                }
+                npc.close();
             }
+            NPCTool.loadConfigAllNPC();
         }
     }
 }

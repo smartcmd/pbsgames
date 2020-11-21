@@ -8,6 +8,7 @@ import top.mcpbs.games.chao.Chao;
 import top.mcpbs.games.duel.LoadCmd;
 import top.mcpbs.games.getid.GetBlockID;
 import top.mcpbs.games.hub.Hub;
+import top.mcpbs.games.npc.NPC;
 import top.mcpbs.games.npc.NPCTool;
 import top.mcpbs.games.pbc.AddPBC;
 import top.mcpbs.games.pbc.RemPBC;
@@ -112,11 +113,15 @@ public class Main extends PluginBase {
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.duel.DuelTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.rush.TestWinTask(this),5);
         this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.name.NameRefreshTask(this),1);
+        this.getServer().getScheduler().scheduleRepeatingTask(new top.mcpbs.games.npc.NPCTask(this),5);
     }
 
     @Override
     public void onDisable() {
         this.getLogger().info("正在关闭插件");
+        for (NPC npc : NPC.npc.values()){
+            npc.close();
+        }
     }
 
 }
